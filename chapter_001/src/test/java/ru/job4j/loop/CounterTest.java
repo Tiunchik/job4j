@@ -12,12 +12,6 @@ public class CounterTest {
         Assert.assertEquals(expected, out);
     }
     @Test
-    public void testForSillyUser() {
-        int out = Counter.add(10,1);
-        int expected = 30;
-        Assert.assertEquals(expected, out);
-    }
-    @Test
     public void BigTest() {
         int out = Counter.add(20,30);
         int expected = 150;
