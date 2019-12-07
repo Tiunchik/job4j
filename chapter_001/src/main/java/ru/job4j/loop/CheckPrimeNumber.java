@@ -7,7 +7,7 @@ public class CheckPrimeNumber {
         if  (victim < 2)  {
             simple = false;
         }
-        else if (victim != 2 && victim != 3 && victim != 5 && victim != 7){
+        else {
             for (int i = 2; i < victim; i++) {
                 if (victim % i == 0) {
                     simple = false;
