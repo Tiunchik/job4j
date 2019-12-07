@@ -1,10 +1,8 @@
-﻿/**
+/**
  * Калькулятор
  * @author Maksim Tiunchik
  */
-
 package ru.job4j.calculator;
-
 /**
  * Класс для проведения арифмитических операций: + - * /
  * @author Maksim Tiunchik (senebh@gmail.com)
