@@ -13,12 +13,6 @@ public class FactorialTest {
     }
 
     @Test
-    public void testFactorialFrom0 (){
-        int out = Factorial.multiplyAndMultiply(0);
-        assertThat(out, is(0));
-    }
-
-    @Test
     public void testFactorialFrom1 (){
         int out = Factorial.multiplyAndMultiply(1);
         assertThat(out, is(1));
