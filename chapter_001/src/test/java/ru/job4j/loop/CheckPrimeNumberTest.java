@@ -2,6 +2,7 @@ package ru.job4j.loop;
 
 import org.junit.Test;
 
+
 import static org.hamcrest.Matchers.is;
 import static org.junit.Assert.*;
 
@@ -25,11 +26,15 @@ public class CheckPrimeNumberTest {
     }
 
     @Test
-    public void when1() {
-        boolean rsl = CheckPrimeNumber.isItPrime(1);
+    public void when117() {
+        boolean rsl = CheckPrimeNumber.isItPrime(117);
         assertThat(rsl, is(false));
     }
 
-
+    @Test
+    public void when119() {
+        boolean rsl = CheckPrimeNumber.isItPrime(119);
+        assertThat(rsl, is(true));
+    }
 
 }

@@ -3,13 +3,15 @@ package ru.job4j.loop;
 public class CheckPrimeNumber {
 
     public static boolean isItPrime(int victim) {
-        int count = 0;
-        for (int i = 2; i != 10; i++) {
-            if (victim%i == 0 ) {
-                count++;
+        boolean simple = true;
+        if (victim != 2 && victim != 3 && victim != 5){
+            for (int i = 2; i <= 5; i++) {
+                if (victim % i == 0) {
+                    simple = false;
+                }
             }
         }
-        return (count == 1);
+        return simple;
     }
 
 }
