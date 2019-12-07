@@ -4,7 +4,9 @@ public class CheckPrimeNumber {
 
     public static boolean isItPrime(int victim) {
         boolean simple = true;
-        if (victim == 1) simple = false;
+        if  (victim < 2)  {
+            simple = false;
+        }
         else if (victim != 2 && victim != 3 && victim != 5 && victim != 7){
             for (int i = 2; i < victim; i++) {
                 if (victim % i == 0) {
