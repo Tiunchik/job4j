@@ -1,6 +1,6 @@
 /**
  * Тест для учебного одномерный массива типа integer
- * @author Maksim Tiunchik
+ * @author Petr Arsentev
  */
 package ru.job4j.array;
 
@@ -13,7 +13,7 @@ import static org.junit.Assert.assertThat;
  * Автоматический тест для массива, в котором все переменные взведены в квадрат
  * @author Petr Arsentev (parsentev@yandex.ru,job4j.ru)
  * @since -
- * @version -
+ * @version 0.2
  */
 
 public class SquareTest {

@@ -7,7 +7,7 @@ package ru.job4j.array;
  * Массив, в котором все переменные взведены в квадрат
  * @author Maksim Tiunchik (senebh@gmail.com)
  * @since 07.12.2019
- * @version 0.1
+ * @version 0.2
  */
 public class Square {
 
