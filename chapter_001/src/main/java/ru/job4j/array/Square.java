@@ -1,8 +1,10 @@
 /**
  * Учебный одномерный массив типа integer
+ *
  * @author Maksim Tiunchik
  */
 package ru.job4j.array;
+
 /**
  * Массив, в котором все переменные взведены в квадрат
  * @author Maksim Tiunchik (senebh@gmail.com)
@@ -19,8 +21,8 @@ public class Square {
      */
     public int[] fullFillInt(int bound) {
         int[] rst = new int[bound];
-        for (int i = 1; i < (bound + 1); i++ ) {
-            rst[i-1] = i*i;
+        for (int i = 1; i < (bound + 1); i++) {
+            rst[i - 1] = i * i;
         }
         return rst;
     }

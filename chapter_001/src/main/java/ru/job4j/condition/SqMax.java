@@ -10,13 +10,9 @@ public class SqMax {
         int result = forth;
         if (first > second && first > third && first > forth) {
             result = first; //изменил 3 на 1
-        }
-
-        else if (second > third && second > forth) {
+        } else if (second > third && second > forth) {
             result = second; //изменил 1 на 2
-        }
-
-        else if (third > forth) {
+        } else if (third > forth) {
             result = third; //изменил 2 на 3
         }
         return result;

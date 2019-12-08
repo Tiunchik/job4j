@@ -11,7 +11,7 @@ public class SillyBot {
         if ("Привет, Бот.".equals(question)) {
             rsl = "Привет, умник.";
         } else if ("Пока.".equals(question)) {
-            rsl ="До скорой встречи.";
+            rsl = "До скорой встречи.";
         }
         return rsl;
     }
@@ -36,7 +36,7 @@ public class SillyBot {
     public static void main(String[] args) throws IOException { //readLine так же вызвает Исключения
         String line;
         //начинал на джавараш, надресировали с Buffered, сканером ни разу не пользовался
-        BufferedReader reader = new BufferedReader (new InputStreamReader(System.in));
+        BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
         line = reader.readLine();
         System.out.println(SillyBot.answer(line));
     }

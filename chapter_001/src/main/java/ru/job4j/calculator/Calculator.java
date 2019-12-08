@@ -1,8 +1,10 @@
 /**
  * Калькулятор
+ *
  * @author Maksim Tiunchik
  */
 package ru.job4j.calculator;
+
 /**
  * Класс для проведения арифмитических операций: + - * /
  * @author Maksim Tiunchik (senebh@gmail.com)
@@ -17,9 +19,9 @@ public class Calculator {
      * @param first - первая переменная
      * @param second - вторая переменная
      */
-    public static void add (double first, double second){
+    public static void add(double first, double second) {
         double result = first + second;
-        System.out.println(first + " + " +second + " = "+ result);
+        System.out.println(first + " + " + second + " = " + result);
     }
 
     /**
@@ -27,9 +29,9 @@ public class Calculator {
      * @param first - первяа переменная, из неё вычитают
      * @param second - вторая переменная, её вычитают
      */
-    public static void subtract (double first, double second){
+    public static void subtract(double first, double second) {
         double result = first - second;
-        System.out.println(first + " - " +second + " = "+ result);
+        System.out.println(first + " - " + second + " = " + result);
     }
 
     /**
@@ -37,9 +39,9 @@ public class Calculator {
      * @param first - первая перменная
      * @param second - вторая переменная
      */
-    public static void multiply (double first, double second){
+    public static void multiply(double first, double second) {
         double result = first * second;
-        System.out.println(first + " * " +second + " = "+ result);
+        System.out.println(first + " * " + second + " = " + result);
     }
 
     /**
@@ -47,9 +49,9 @@ public class Calculator {
      * @param first - данную переменную делят
      * @param second - данной переменнй делят
      */
-    public static void div (double first, double second){
+    public static void div(double first, double second) {
         double result = first / second;
-        System.out.println(first + " / " +second + " = "+ result);
+        System.out.println(first + " / " + second + " = " + result);
     }
 
     /**
@@ -58,10 +60,10 @@ public class Calculator {
      * @param args - args.
      */
     public static void main(String[] args) {
-        add(1,1);
-        div(4,2);
-        multiply(2,1);
-        subtract(10,5);
+        add(1, 1);
+        div(4, 2);
+        multiply(2, 1);
+        subtract(10, 5);
 
     }
 }

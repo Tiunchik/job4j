@@ -8,19 +8,16 @@ public class SqMax2 {
                 if (first > forth) {
                     result = first; //поменял 3 на 1
                 }
-            }
-            else if (third > forth) { //скопировал часть кода
+            } else if (third > forth) { //скопировал часть кода
                 result = third;
             }
-        }
-        else if (second > third) {
+        } else if (second > third) {
             if (second > forth) {
                 result = second; //поменял 3 на 2
             }
-            }
-            else if (third > forth) {
-                result = third; //поменял 2 на 3
-            }
+        } else if (third > forth) {
+            result = third; //поменял 2 на 3
+        }
 
         return result;
     }
