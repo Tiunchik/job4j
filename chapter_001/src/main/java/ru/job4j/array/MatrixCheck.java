@@ -26,14 +26,14 @@ public class MatrixCheck {
             if (board[row][column] == 'X') {
                 int count1 = 0, count2 = 0;
                 for (int i = 0; i < board.length; i++) {
-                    if (board[i][column] != 'X') {
+                    if (board[i][column] == 'X') {
                         count1++;
                     }
-                    if (board[row][i] != 'X') {
+                    if (board[row][i] == 'X') {
                         count2++;
                     }
                 }
-                if (count1 == 5 && count2 == 5) {
+                if (count1 == 5 || count2 == 5) {
                     return true;
                 }
             }
