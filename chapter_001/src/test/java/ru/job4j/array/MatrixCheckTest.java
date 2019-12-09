@@ -21,6 +21,7 @@ import static org.junit.Assert.assertThat;
  */
 @Ignore
 public class MatrixCheckTest {
+
     /**
      * Метод для автоматического теста класса ru.job4j.array.MatrixCheck
      */

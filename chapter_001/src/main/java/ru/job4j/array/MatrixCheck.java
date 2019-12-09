@@ -10,7 +10,7 @@ package ru.job4j.array;
  * (поиск ряда или строки с одинаковыми значениями)
  *
  * @author Maksim Tiunchik (senebh@gmail.com)
- * @version 0.1
+ * @version 0.3
  * @since 08.12.2019
  */
 public class MatrixCheck {
@@ -22,37 +22,24 @@ public class MatrixCheck {
      * @return логическое значение, 1 - если ряд из Х есть и 0 - если непрерывного ряда или строки из х нету
      */
     public static boolean isWin(char[][] board) {
-        boolean result = false;
-        for (int row = 0; row < board.length; row++) {
-            for (int column = 0; column < board.length; column++) {
-                if (board[0][column] == 'X') {
-                    result = true;
-                    for (int i = 0; i < board.length; i++) {
-                        if (board[i][column] != 'X') {
-                            result = false;
-                            break;
-                        }
+        for (int row = 0, column = 0; row < board.length && column < board.length; row++, column++) {
+            if (board[row][column] == 'X') {
+                int count1 = 0, count2 = 0;
+                for (int i = 0; i < board.length; i++) {
+                    if (board[i][column] != 'X') {
+                        count1++;
                     }
-                    if (result) {
-                        return result;
+                    if (board[row][i] != 'X') {
+                        count2++;
                     }
                 }
-                if (board[row][0] == 'X') {
-                    result = true;
-                    for (int i = 0; i < board.length; i++) {
-                        if (board[row][i] != 'X') {
-                            result = false;
-                            break;
-                        }
-                    }
-                    if (result) {
-                        return result;
-                    }
+                if (count1 == 5 && count2 == 5) {
+                    return true;
                 }
             }
             System.out.println();
         }
-        return result;
+        return false;
     }
 
     /**
