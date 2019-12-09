@@ -9,7 +9,7 @@ public class СonverterTest {
     public void rubleToEuro (){
         int in = 140;
         int expected = 2;
-        int out = Сonverter.rubleToEuro(in);
+        int out = Converter.rubleToEuro(in);
         Assert.assertEquals(expected,out);
 
     }
@@ -33,7 +33,7 @@ public class СonverterTest {
     public void rubleToDollar () {
         int in = 180;
         int expected = 3;
-        int out = Сonverter.rubleToDollar(in);
+        int out = Converter.rubleToDollar(in);
         Assert.assertEquals(expected,out);
     }
 
@@ -41,14 +41,14 @@ public class СonverterTest {
     public void euroBackRuble () {
         int in = 3;
         int expected = 210;
-        int out = Сonverter.euroBackRuble(in);
+        int out = Converter.euroBackRuble(in);
         Assert.assertEquals(expected, out);
     }
     @Test
     public void dollarBackRuble () {
         int in = 10;
         int expected = 600;
-        int out = Сonverter.dollarBackRuble(in);
+        int out = Converter.dollarBackRuble(in);
         Assert.assertEquals(expected, out);
     }
 }
