@@ -8,7 +8,7 @@ package ru.job4j.sort;
 import java.util.Arrays;
 
 /**
- * Класс для тестового задания по слинию двух массивов
+ * Класс для тестового задания по слинию двух разнодлинных массивов
  *
  * @author Maksim Tiunchik (senebh@gmail.com)
  * @version 0.1

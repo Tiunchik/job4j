@@ -14,7 +14,7 @@ import static org.junit.Assert.assertThat;
 
 
 /**
- * Автоматический тест по слиянию двух массивов
+ * Автоматический тест по слиянию двух разнодлинных массивов
  *
  * @author Petr Arsentev (parsentev@yandex.ru,job4j.ru)
  * @version -
