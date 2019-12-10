@@ -10,7 +10,7 @@ package ru.job4j.array;
  * (поиск ряда или строки с одинаковыми значениями)
  *
  * @author Maksim Tiunchik (senebh@gmail.com)
- * @version 0.4
+ * @version 0.5
  * @since 08.12.2019
  */
 public class MatrixCheck {
@@ -22,18 +22,18 @@ public class MatrixCheck {
      * @return логическое значение, 1 - если ряд из Х есть и 0 - если непрерывного ряда или строки из х нету
      */
     public static boolean isWin(char[][] board) {
-        for (int j = 0; j < board.length && j < board.length; j++) {
-            if (board[j][j] == 'X') {
-                int count1 = 0, count2 = 0;
-                for (int i = 0; i < board.length; i++) {
-                    if (board[i][j] == 'X') {
-                        count1++;
+        for (short bigCircle = 0; bigCircle < board.length; bigCircle++) {
+            if (board[bigCircle][bigCircle] == 'X') {
+                short countWin1 = 0, countWin2 = 0;
+                for (short smallCircle = 0; smallCircle < board.length; smallCircle++) {
+                    if (board[smallCircle][bigCircle] == 'X') {
+                        countWin1++;
                     }
-                    if (board[j][i] == 'X') {
-                        count2++;
+                    if (board[bigCircle][smallCircle] == 'X') {
+                        countWin2++;
                     }
                 }
-                if (count1 == board.length || count2 == board.length) {
+                if (countWin1 == board.length || countWin2 == board.length) {
                     return true;
                 }
             }
