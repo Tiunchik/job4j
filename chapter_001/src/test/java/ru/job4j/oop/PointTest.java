@@ -25,7 +25,16 @@ public class PointTest {
         double expected = 14.14;
         double out = x.distance(y);
         Assert.assertEquals(expected, out, 0.01);
-
     }
-
+    /**
+     * Тест метод для определение корректности работы метода distance3d в классе Point в трёхмерной системе координат
+     */
+    @Test
+    public void distance3d (){
+        Point x = new Point (5,10, 6);
+        Point y = new Point (15,20, 14);
+        double expected = 16.248;
+        double out = x.distance3d(y);
+        Assert.assertEquals(expected, out, 0.01);
+    }
 }
