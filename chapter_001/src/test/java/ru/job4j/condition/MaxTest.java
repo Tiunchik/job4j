@@ -1,5 +1,6 @@
 /**
  * Тестовый класс для класса Max - рефакторинг, работа с перегруженными методами.
+ *
  * @author Maksim Tiunchik
  */
 package ru.job4j.condition;
@@ -26,6 +27,7 @@ public class MaxTest {
         int out = Max.max(i1, i2);
         Assert.assertEquals(expected, out);
     }
+
     /**
      * Тест метод для определение корректности работы метода в классе Max
      */
@@ -38,6 +40,7 @@ public class MaxTest {
         int out = Max.max(i1, i2, i3);
         Assert.assertEquals(expected, out);
     }
+
     /**
      * Тест метод для определение корректности работы метода в классе Max
      */

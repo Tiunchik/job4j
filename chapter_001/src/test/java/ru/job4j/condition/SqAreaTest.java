@@ -6,12 +6,12 @@ import org.junit.Test;
 public class SqAreaTest {
 
     @Test
-    public void SqArea () {
+    public void SqArea() {
         int p = 6;
         int k = 2;
         double expected = 2;
-        double out = SqArea.square(p,k);
-        Assert.assertEquals(expected , out, 0.01);
+        double out = SqArea.square(p, k);
+        Assert.assertEquals(expected, out, 0.01);
 
 
     }
