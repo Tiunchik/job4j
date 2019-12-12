@@ -4,7 +4,7 @@
  * @author Maksim Tiunchik (Senebh@mail.com
  */
 
-package ru.job4j.tracker;
+package ru.job4j.oop.tracker;
 
 /**
  * Пустой класс
