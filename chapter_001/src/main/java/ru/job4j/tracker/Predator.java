@@ -20,4 +20,13 @@ public class Predator extends Animal {
         super();
         System.out.println("Predator");
     }
+
+    /**
+     * Конструктор использующий конструктор суперкласс для задания переменной экземпляра name
+     *
+     * @param name - аргумент параметра будет передан в переменную экземпляра name
+     */
+    public Predator(String name) {
+        super(name);
+    }
 }

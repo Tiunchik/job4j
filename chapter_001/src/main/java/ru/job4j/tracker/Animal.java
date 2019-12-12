@@ -14,10 +14,24 @@ package ru.job4j.tracker;
  */
 public class Animal {
     /**
+     * Переменая экземпляра содержит имя объекта
+     */
+    String name;
+    /**
      * Эмуляция дефолтного конструктора с выделением метода super
      */
     public Animal() {
         super();
         System.out.println("Animal");
+    }
+
+    /**
+     * Конструктор позволяющий задать поле name при создании объекта
+     *
+     * @param name - аргумент параметра будет передан в переменную экземпляра name
+     */
+    public Animal(String name) {
+        super();
+        this.name = name;
     }
 }
