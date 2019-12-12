@@ -1,5 +1,5 @@
 /**
- * Тестовое задание по отработке наследования и переопределения методов
+ * Тестовое задание по работе с аннотацией
  *
  * @author Maksim Tiunchik
  */
@@ -14,12 +14,13 @@ package ru.job4j.oop.textreport;
  */
 public class TextReport {
     /**
-     * метод по генерации отчёта
+     * Метод по генерации отчёта
      *
      * @param name - имя отчёта
      * @param body - тело отчёта
      * @return - отчёт
      */
+    //@Override //- нет суперкласса для переопределения
     public String generate(String name, String body) {
         return name + System.lineSeparator() + body;
     }

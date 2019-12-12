@@ -12,9 +12,9 @@ package ru.job4j.oop.textreport;
  * @version 0.1
  * @since 12.12.2019
  */
-public class JSONReport extends TextReport {
+public class HtmlReport extends TextReport {
     /**
-     * метод по генерации отчёта в формету JSON
+     * Отдельный метод генерации отчёта
      *
      * @param name - имя отчёта
      * @param body - тело отчёта
@@ -22,7 +22,8 @@ public class JSONReport extends TextReport {
      */
     @Override
     public String generate(String name, String body) {
-        return "{" + "\n" + "name : " + name + "\n" + "body : " + body + "\n" + "}";
+        return "<h1>" + name + "</h1>"
+                + "<br/>"
+                + "<span>" + body + "</span>";
     }
-
 }
