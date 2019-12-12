@@ -15,7 +15,7 @@ public class FitTest {
 // не захтел включать тест пока я не снял static с опредлений к методу
 
     @Test
-    public void womanWeight () {
+    public void womanWeight() {
         double in = 160.0;
         double expected = 57.50;
         double out = Fit.womanWeight(in);

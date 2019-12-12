@@ -6,13 +6,14 @@ import org.junit.Test;
 public class СonverterTest {
 
     @Test
-    public void rubleToEuro (){
+    public void rubleToEuro() {
         int in = 140;
         int expected = 2;
         int out = Converter.rubleToEuro(in);
-        Assert.assertEquals(expected,out);
+        Assert.assertEquals(expected, out);
 
     }
+
     /*
     public static int rubleToDollar(int i){
         return -1;
@@ -30,22 +31,23 @@ public class СonverterTest {
     }
     */
     @Test
-    public void rubleToDollar () {
+    public void rubleToDollar() {
         int in = 180;
         int expected = 3;
         int out = Converter.rubleToDollar(in);
-        Assert.assertEquals(expected,out);
+        Assert.assertEquals(expected, out);
     }
 
     @Test
-    public void euroBackRuble () {
+    public void euroBackRuble() {
         int in = 3;
         int expected = 210;
         int out = Converter.euroBackRuble(in);
         Assert.assertEquals(expected, out);
     }
+
     @Test
-    public void dollarBackRuble () {
+    public void dollarBackRuble() {
         int in = 10;
         int expected = 600;
         int out = Converter.dollarBackRuble(in);
