@@ -4,12 +4,13 @@
  * @author Maksim Tiunchik
  */
 package ru.job4j.oop;
+
 /**
  * Класс треуольник, представляет из себя треугольникпостроенный между тремя точками
  *
  * @author Maksim Tiunchik (senebh@gmail.com)
- * @version 0.1
- * @since 11.12.2019
+ * @version 0.2
+ * @since 12.12.2019
  */
 public class Triangle {
     /**
@@ -24,6 +25,18 @@ public class Triangle {
      * Одна из вершин треугольника, привязанная в двухмерной координатной сетке
      */
     private Point three;
+    /**
+     * Длина одной из сторон треугольника
+     */
+    double a;
+    /**
+     * Длина одной из сторон треугольника
+     */
+    double b;
+    /**
+     * Длина одной из сторон треугольника
+     */
+    double c;
 
     /**
      * Конструктор объекта Треугольник, получает местоположение всех вершин из которых планируеться построить
@@ -34,9 +47,12 @@ public class Triangle {
      * @param z - третья вершина
      */
     public Triangle(Point x, Point y, Point z) {
-        this.one = x;
-        this.two = y;
-        this.three = z;
+        one = x;
+        two = y;
+        three = z;
+        a = x.distance(y);
+        c = x.distance(z);
+        b = y.distance(z);
     }
 
     /**
@@ -47,9 +63,6 @@ public class Triangle {
      * Видно не до конца понимаю эту задачу - между тремя точками всегда можно построить треугольник
      */
     public boolean exist() {
-        double a = this.one.distance(this.two);
-        double c = this.one.distance(this.three);
-        double b = this.three.distance(this.two);
         if (a + b > c && a + c > b && c + b > a) {
             return true;
         } else {
@@ -63,9 +76,6 @@ public class Triangle {
      * @return - вовзращает периметр треугольника типа double
      */
     public double period() {
-        double a = this.one.distance(this.two);
-        double c = this.one.distance(this.three);
-        double b = this.three.distance(this.two);
         if (this.exist()) {
             return (a + b + c) / 2;
         }
@@ -78,9 +88,6 @@ public class Triangle {
      * @return - возвращает площадь треугольника типа double
      */
     public double area() {
-        double a = this.one.distance(this.two);
-        double c = this.one.distance(this.three);
-        double b = this.three.distance(this.two);
         double p = this.period();
         if (this.exist()) {
             return Math.sqrt(p * (p - a) * (p - b) * (p - c));
