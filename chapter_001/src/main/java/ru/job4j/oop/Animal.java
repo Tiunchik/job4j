@@ -3,30 +3,35 @@
  *
  * @author Maksim Tiunchik
  */
-package ru.job4j.oop.tracker;
+package ru.job4j.oop;
 
 /**
- * Подкласс. Создат для отработки команд наследования
+ * Суперкласс. Создат для отработки команд наследования
  *
  * @author Maksim Tiunchik (senebh@gmail.com)
  * @version 0.1
  * @since 12.12.2019
  */
-public class Tiger extends Predator {
+public class Animal {
+    /**
+     * Переменая экземпляра содержит имя объекта
+     */
+    String name;
     /**
      * Эмуляция дефолтного конструктора с выделением метода super
      */
-    public Tiger() {
+    public Animal() {
         super();
-        System.out.println("Tiger");
+        System.out.println("Animal");
     }
 
     /**
-     * Конструктор использующий конструктор суперкласс для задания переменной экземпляра name
+     * Конструктор позволяющий задать поле name при создании объекта
      *
      * @param name - аргумент параметра будет передан в переменную экземпляра name
      */
-    public Tiger(String name) {
-        super(name);
+    public Animal(String name) {
+        super();
+        this.name = name;
     }
 }

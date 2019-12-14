@@ -3,7 +3,7 @@
  *
  * @author Maksim Tiunchik
  */
-package ru.job4j.oop.tracker;
+package ru.job4j.oop;
 
 /**
  * Суперкласс/Подкласс. Создат для отработки команд наследования
