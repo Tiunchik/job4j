@@ -15,8 +15,8 @@ import static org.junit.Assert.assertThat;
  * Автоматические тесты для класса Traker
  *
  * @author Maksim Tiunchik (senebh@gmail.com)
- * @version 0.1
- * @since 14.12.2019
+ * @version 0.2
+ * @since 15.12.2019
  */
 public class TrackerTest {
     /**
@@ -38,12 +38,10 @@ public class TrackerTest {
     public void findAllTest() {
         Tracker basa = new Tracker();
         for (int i = 0; i < 10; i++) {
-            if (i == 0 || i == 3 || i == 5 || i == 7 || i == 9) {
-                basa.add(new Item("Элемент " + i));
+            basa.add(new Item("Элемент " + i));
             }
-        }
         Item[] outItems = basa.findAll();
-        assertThat(outItems.length, is(5));
+        assertThat(outItems.length, is(10));
     }
 
     /**
@@ -71,5 +69,17 @@ public class TrackerTest {
         Item tempArray[] = basa.findByName("Элемент");
         Item temp = tempArray[0];
         assertThat(basa.findById(temp.getId()) != null, is(true));
+    }
+    /**
+     * Тест метода deleteById
+     */
+    @Test
+    public void deleteById() {
+        Tracker basa = new Tracker();
+        basa.add(new Item("Элемент"));
+        Item tempArray[] = basa.findByName("Элемент");
+        Item temp = tempArray[0];
+        basa.deleteById(temp.getId());
+        assertThat(basa.findById(temp.getId()) == null, is(true));
     }
 }
