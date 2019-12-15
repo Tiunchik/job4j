@@ -5,7 +5,6 @@
  */
 package ru.job4j.oop.tracker;
 
-import java.sql.SQLOutput;
 import java.util.Scanner;
 
 /**
