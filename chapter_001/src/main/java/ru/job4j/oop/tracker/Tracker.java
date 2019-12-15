@@ -33,7 +33,8 @@ public class Tracker {
      */
     public Item add(Item item) {
         item.setId(this.generateId());
-        items[this.position++] = item;
+        items[this.position] = item;
+        this.position++;
         return item;
     }
 
@@ -44,7 +45,7 @@ public class Tracker {
      */
     private String generateId() {
         Random korea = new Random();
-        return String.valueOf(korea.nextLong() + System.currentTimeMillis());
+        return String.valueOf(System.currentTimeMillis() + korea.nextLong());
     }
 
     /**
@@ -81,49 +82,53 @@ public class Tracker {
      * @return - возвращает ссылку на найденный объект
      */
     public Item findById(String id) {
-        Item temp = null;
-        for (int mainCircle = 0; mainCircle < this.position; mainCircle++) {
-            if (this.items[mainCircle].getId().equals(id)) {
-                temp = this.items[mainCircle];
-                break;
-            }
+        if (this.indexOf(id) != -1) {
+            return items[this.indexOf(id)];
+        } else {
+            return null;
         }
-        return temp;
     }
 
     /**
      * Метод удаляет позицию массива items и производит сортировку массива, в первой части, до индекса position
      * содержатся только переменные имеющие ссылки на объекты
      *
-     * @param id - по данному идентификатору ищется позиция. которю необходимо удалить
+     * @param id - по данному идентификатору ищется позиция, которю необходимо удалить
      */
     public void deleteById(String id) {
-        for (int mainCircle = 0; mainCircle < this.position; mainCircle++) {
-            if (this.items[mainCircle].getId().equals(id)) {
-                this.items[mainCircle] = this.items[--this.position];
-                this.items[this.position] = null;
-            }
+        int index = this.indexOf(id);
+        if (index != -1) {
+            System.arraycopy(this.items, index + 1, this.items, index, this.position - index);
+            items[this.position--] = null;
         }
     }
-    /*
-    public void deleteById(String id) {
-        Item temp = null;
-        for (int mainCircle = 0; mainCircle < this.position; mainCircle++) {
-            if (this.items[mainCircle].getId().equals(id)) {
-                this.items[mainCircle] = null;
-            }
-            if (this.items[mainCircle] == null) {
-                int smallCircle = mainCircle + 1;
-                for (; smallCircle < this.position; smallCircle++) {
-                    if (this.items[smallCircle] != null) {
-                        this.items[mainCircle] = this.items[smallCircle];
-                        this.items[smallCircle] = null;
-                    }
-                }
+
+    /**
+     * Метод поиска индекса позиции по ID
+     *
+     * @param id - по аргменту данного параметра ищут индекс заявки
+     * @return - индекс зявки в массиве items
+     */
+    private int indexOf(String id) {
+        int rsl = -1;
+        for (int index = 0; index < position; index++) {
+            if (items[index].getId().equals(id)) {
+                rsl = index;
+                break;
             }
         }
-        this.position--;
+        return rsl;
     }
-    */
+
+    /**
+     * Метод замены зявки по ID номеру
+     *
+     * @param id в данный параметр необходимо передовать ID номер заявки, которую неоходимо зменить
+     */
+    public void replace(String id, Item item) {
+        if (this.indexOf(id) != -1) {
+            this.items[this.indexOf(id)].setName(item.getName());
+        }
+    }
 }
 
