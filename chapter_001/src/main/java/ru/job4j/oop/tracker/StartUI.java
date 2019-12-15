@@ -94,8 +94,7 @@ public class StartUI {
         Item item = new Item(name);
         System.out.print("\nEnter ID number of an adjusted item: ");
         name = input.askStr("");
-        if (tracker.findById(name) != null) {
-            tracker.replace(name, item);
+        if (tracker.replace(name, item)) {
             System.out.println("Item was adjusted");
         } else {
             System.out.println("ID is incorrect. Try again");
@@ -112,9 +111,7 @@ public class StartUI {
         System.out.println("=== Start proceduring of a deleting item ====");
         System.out.print("\nEnter ID number of a deleting item: ");
         String name = input.askStr("");
-        StartUI.printAll(tracker.findAll());
-        if (tracker.findById(name) != null) {
-            tracker.deleteById(name);
+        if (tracker.deleteById(name)) {
             System.out.println("Item was deleted");
         } else {
             System.out.println("ID is incorrect. Try again");

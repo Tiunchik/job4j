@@ -95,12 +95,14 @@ public class Tracker {
      *
      * @param id - по данному идентификатору ищется позиция, которю необходимо удалить
      */
-    public void deleteById(String id) {
+    public boolean deleteById(String id) {
         int index = this.indexOf(id);
         if (index != -1) {
             System.arraycopy(this.items, index + 1, this.items, index, this.position - index);
             items[this.position--] = null;
+            return true;
         }
+        return false;
     }
 
     /**
@@ -125,10 +127,12 @@ public class Tracker {
      *
      * @param id в данный параметр необходимо передовать ID номер заявки, которую неоходимо зменить
      */
-    public void replace(String id, Item item) {
+    public boolean replace(String id, Item item) {
         if (this.indexOf(id) != -1) {
             this.items[this.indexOf(id)].setName(item.getName());
+            return true;
         }
+        return false;
     }
 }
 
