@@ -1,5 +1,5 @@
 /**
- * Тестовое задание по работе с авто-генеаторами геттеров и сеттеров
+ * Тестовое задание по приведению объектов
  *
  * @author Maksim Tiunchik
  */
@@ -8,13 +8,13 @@ package ru.job4j.oop.college;
 import java.util.Date;
 
 /**
- * Student - класс хранилище данных по студентам
+ * Student - суперкласс для класа Freshman
  *
  * @author Maksim Tiunchik (senebh@gmail.com)
- * @version 0.1
- * @since 14.12.2019
+ * @version 0.2
+ * @since 15.12.2019
  */
-public class Student {
+public class Student extends College {
     /**
      * Поля клсса - данные по учащемуся: имя, фамилия, отчество, номер группы, дата принятия на учёбу;
      */
