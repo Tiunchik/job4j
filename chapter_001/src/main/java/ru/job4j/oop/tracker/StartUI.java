@@ -40,11 +40,7 @@ public class StartUI {
                         break;
                     case (1):
                         System.out.println("=== Create a list of Items ====");
-                        Item[] array = tracker.findAll();
-                        for (int i = 0; i < array.length; i++) {
-                            System.out.println("Position: " + i + " Name: " + array[i].getName() + " ID: "
-                                    + array[i].getId());
-                        }
+                        this.printAll(tracker.findAll());
                         break;
                     case (2):
                         System.out.println("=== Start proceduring of a replacing name ====");
@@ -54,12 +50,16 @@ public class StartUI {
                         System.out.print("\nEnter ID number of an adjusted item: ");
                         name = scanner.nextLine();
                         tracker.replace(name, item);
+                        System.out.println("=== Create a  new list of Items ====");
+                        this.printAll(tracker.findAll());
                         break;
                     case (3):
                         System.out.println("=== Start proceduring of a deleting item ====");
                         System.out.print("\nEnter ID number of a deleting item: ");
                         name = scanner.nextLine();
                         tracker.deleteById(name);
+                        System.out.println("Current list of items:");
+                        this.printAll(tracker.findAll());
                         break;
                     case (4):
                         System.out.println("=== Start proceduring of searching ====");
@@ -77,13 +77,10 @@ public class StartUI {
                         System.out.println("=== Start proceduring of searching by name ====");
                         System.out.print("\nEnter name number for searching: ");
                         name = scanner.nextLine();
-                        array = tracker.findByName(name);
+                        Item[] array = tracker.findByName(name);
                         if (array.length > 0) {
                             System.out.println("Found following positions:");
-                            for (int i = 0; i < array.length; i++) {
-                                System.out.println("Position: " + i + " Name: " + array[i].getName() + " ID: "
-                                        + array[i].getId());
-                            }
+                            this.printAll(array);
                         } else {
                             System.out.println("Didn't find anything");
                         }
@@ -113,6 +110,23 @@ public class StartUI {
                 + "Select:");
     }
 
+    /**
+     * Меотд вывода на печать всеъ хначений массива Item
+     *
+     * @param array - передаваемый в метод массив
+     */
+    private void printAll(Item[] array) {
+        for (int i = 0; i < array.length; i++) {
+            System.out.println("Position: " + i + " Name: " + array[i].getName() + " ID: "
+                    + array[i].getId());
+        }
+    }
+
+    /**
+     * Метод main
+     *
+     * @param args - args.
+     */
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
         Tracker tracker = new Tracker();
