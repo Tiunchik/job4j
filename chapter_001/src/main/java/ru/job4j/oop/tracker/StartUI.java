@@ -42,7 +42,7 @@ public class StartUI {
                         System.out.println("=== Create a list of Items ====");
                         Item[] array = tracker.findAll();
                         for (int i = 0; i < array.length; i++) {
-                            System.out.println("Позиция: " + i + " Имя: " + array[i].getName() + " Идентификатор: "
+                            System.out.println("Position: " + i + " Name: " + array[i].getName() + " ID: "
                                     + array[i].getId());
                         }
                         break;
@@ -67,10 +67,10 @@ public class StartUI {
                         name = scanner.nextLine();
                         item = tracker.findById(name);
                         if (item != null) {
-                            System.out.println("Найдена позиция - имя: " + item.getName() + " Идентификатор: "
+                            System.out.println("Found position - name: " + item.getName() + " ID: "
                                     + item.getId());
                         } else {
-                            System.out.println("По данному ID ничего не найдено");
+                            System.out.println("Didn't find anything");
                         }
                         break;
                     case (5):
@@ -81,11 +81,11 @@ public class StartUI {
                         if (array.length > 0) {
                             System.out.println("Found following positions:");
                             for (int i = 0; i < array.length; i++) {
-                                System.out.println("Позиция: " + i + " Имя: " + array[i].getName() + " Идентификатор: "
+                                System.out.println("Position: " + i + " Name: " + array[i].getName() + " ID: "
                                         + array[i].getId());
                             }
                         } else {
-                            System.out.println("По данному имени ничего не найдено");
+                            System.out.println("Didn't find anything");
                         }
                         break;
                     case (6):
