@@ -5,6 +5,7 @@
  */
 package ru.job4j.oop.tracker;
 
+import org.junit.Assert;
 import org.junit.Test;
 
 import static org.hamcrest.Matchers.is;
@@ -31,5 +32,37 @@ public class StartUITest {
         Item created = tracker.findAll()[0];
         Item expected = new Item("Develop code");
         assertThat(created.getName(), is(expected.getName()));
+    }
+    /**
+     * Автоматический тест метода StartUI.adjustItem;
+     */
+    @Test
+    public void whenReplaceItem() {
+        Tracker tracker = new Tracker();
+        Item item = new Item("new item");
+        tracker.add(item);
+        String[] answers = {
+                "replaced item",
+                item.getId()
+                           };
+        StartUI.adjustItem(new StubInput(answers), tracker);
+        Item replaced = tracker.findById(item.getId());
+        assertThat(replaced.getName(), is("replaced item"));
+    }
+    /**
+     * Автоматический тест метода StartUI.deleteItem;
+     */
+    @Test
+    public void whenDeleteItem() {
+        Tracker tracker = new Tracker();
+        Item item = new Item("new item");
+        tracker.add(item);
+        String i = item.getId();
+        String[] answers = {
+                            i
+                            };
+        StartUI.deleteItem(new StubInput(answers), tracker);
+        Item replaced = tracker.findById(i);
+        Assert.assertEquals(replaced, null);
     }
 }
