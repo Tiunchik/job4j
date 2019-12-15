@@ -29,65 +29,22 @@ public class StartUI {
                 select = Integer.parseInt(input.askStr(""));
                 switch (select) {
                     case (0):
-                        System.out.println("=== Create a new Item ====");
-                        System.out.print("Enter name: ");
-                        String name = input.askStr("");
-                        Item item = new Item(name);
-                        tracker.add(item);
+                        StartUI.choseZero(input, tracker);
                         break;
                     case (1):
-                        System.out.println("=== Create a list of Items ====");
-                        this.printAll(tracker.findAll());
+                        StartUI.choseOne(input, tracker);
                         break;
                     case (2):
-                        System.out.println("=== Start proceduring of a replacing name ====");
-                        System.out.print("Enter new name: ");
-                        name = input.askStr("");
-                        item = new Item(name);
-                        System.out.print("\nEnter ID number of an adjusted item: ");
-                        name = input.askStr("");
-                        if (tracker.findById(name) != null) {
-                            tracker.replace(name, item);
-                            System.out.println("Item was adjusted");
-                        } else {
-                            System.out.println("ID is incorrect. Try again");
-                        }
+                        StartUI.choseTwo(input, tracker);
                         break;
                     case (3):
-                        System.out.println("=== Start proceduring of a deleting item ====");
-                        System.out.print("\nEnter ID number of a deleting item: ");
-                        name = input.askStr("");
-                        this.printAll(tracker.findAll());
-                        if (tracker.findById(name) != null) {
-                            tracker.deleteById(name);
-                            System.out.println("Item was deleted");
-                        } else {
-                            System.out.println("ID is incorrect. Try again");
-                        }
+                        StartUI.choseThree(input, tracker);
                         break;
                     case (4):
-                        System.out.println("=== Start proceduring of searching ====");
-                        System.out.print("\nEnter ID number for searching: ");
-                        name = input.askStr("");
-                        item = tracker.findById(name);
-                        if (item != null) {
-                            System.out.println("Found position - name: " + item.getName() + " ID: "
-                                    + item.getId());
-                        } else {
-                            System.out.println("Didn't find anything");
-                        }
+                        StartUI.choseFour(input, tracker);
                         break;
                     case (5):
-                        System.out.println("=== Start proceduring of searching by name ====");
-                        System.out.print("\nEnter name number for searching: ");
-                        name = input.askStr("");
-                        Item[] array = tracker.findByName(name);
-                        if (array.length > 0) {
-                            System.out.println("Found following positions:");
-                            this.printAll(array);
-                        } else {
-                            System.out.println("Didn't find anything");
-                        }
+                        StartUI.choseFive(input, tracker);
                         break;
                     case (6):
                         break one;
@@ -96,6 +53,109 @@ public class StartUI {
                         break;
                 }
             }
+        }
+    }
+
+    /**
+     * Метод выполняет действие - добавить позицию в трекер
+     *
+     * @param input   - интерфейс получчения ИД от пользоватля
+     * @param tracker - трэкер - база данных, с которым ведёться работа
+     */
+    public static void choseZero(Input input, Tracker tracker) {
+        System.out.println("=== Create a new Item ====");
+        System.out.print("Enter name: ");
+        String name = input.askStr("");
+        Item item = new Item(name);
+        tracker.add(item);
+    }
+
+    /**
+     * Метод выполняет действие - показать все позиции в трекере
+     *
+     * @param input   - интерфейс получчения ИД от пользоватля
+     * @param tracker - трэкер - база данных, с которым ведёться работа
+     */
+    public static void choseOne(Input input, Tracker tracker) {
+        System.out.println("=== Create a list of Items ====");
+        StartUI.printAll(tracker.findAll());
+    }
+
+    /**
+     * Метод выполняет действие - откорректировать позицию в трекере
+     *
+     * @param input   - интерфейс получчения ИД от пользоватля
+     * @param tracker - трэкер - база данных, с которым ведёться работа
+     */
+    public static void choseTwo(Input input, Tracker tracker) {
+        System.out.println("=== Start proceduring of a replacing name ====");
+        System.out.print("Enter new name: ");
+        String name = input.askStr("");
+        Item item = new Item(name);
+        System.out.print("\nEnter ID number of an adjusted item: ");
+        name = input.askStr("");
+        if (tracker.findById(name) != null) {
+            tracker.replace(name, item);
+            System.out.println("Item was adjusted");
+        } else {
+            System.out.println("ID is incorrect. Try again");
+        }
+    }
+
+    /**
+     * Метод выполняет действие - удалить позицию в трекере
+     *
+     * @param input   - интерфейс получчения ИД от пользоватля
+     * @param tracker - трэкер - база данных, с которым ведёться работа
+     */
+    public static void choseThree(Input input, Tracker tracker) {
+        System.out.println("=== Start proceduring of a deleting item ====");
+        System.out.print("\nEnter ID number of a deleting item: ");
+        String name = input.askStr("");
+        StartUI.printAll(tracker.findAll());
+        if (tracker.findById(name) != null) {
+            tracker.deleteById(name);
+            System.out.println("Item was deleted");
+        } else {
+            System.out.println("ID is incorrect. Try again");
+        }
+    }
+
+    /**
+     * Метод выполняет действие - найти позицию в трекере по ID
+     *
+     * @param input   - интерфейс получчения ИД от пользоватля
+     * @param tracker - трэкер - база данных, с которым ведёться работа
+     */
+    public static void choseFour(Input input, Tracker tracker) {
+        System.out.println("=== Start proceduring of searching ====");
+        System.out.print("\nEnter ID number for searching: ");
+        String name = input.askStr("");
+        Item item = tracker.findById(name);
+        if (item != null) {
+            System.out.println("Found position - name: " + item.getName() + " ID: "
+                    + item.getId());
+        } else {
+            System.out.println("Didn't find anything");
+        }
+    }
+
+    /**
+     * Метод выполняет действие - найти позиции по имени
+     *
+     * @param input   - интерфейс получчения ИД от пользоватля
+     * @param tracker - трэкер - база данных, с которым ведёться работа
+     */
+    public static void choseFive(Input input, Tracker tracker) {
+        System.out.println("=== Start proceduring of searching by name ====");
+        System.out.print("\nEnter name number for searching: ");
+        String name = input.askStr("");
+        Item[] array = tracker.findByName(name);
+        if (array.length > 0) {
+            System.out.println("Found following positions:");
+            StartUI.printAll(array);
+        } else {
+            System.out.println("Didn't find anything");
         }
     }
 
@@ -115,11 +175,11 @@ public class StartUI {
     }
 
     /**
-     * Меотд вывода на печать всеъ хначений массива Item
+     * Метод вывода на печать всеъ хначений массива Item
      *
      * @param array - передаваемый в метод массив
      */
-    private void printAll(Item[] array) {
+    private static void printAll(Item[] array) {
         for (int i = 0; i < array.length; i++) {
             System.out.println("Position: " + i + " Name: " + array[i].getName() + " ID: "
                     + array[i].getId());
