@@ -29,22 +29,22 @@ public class StartUI {
                 select = Integer.parseInt(input.askStr(""));
                 switch (select) {
                     case (0):
-                        StartUI.choseZero(input, tracker);
+                        StartUI.addItem(input, tracker);
                         break;
                     case (1):
-                        StartUI.choseOne(input, tracker);
+                        StartUI.showAll(input, tracker);
                         break;
                     case (2):
-                        StartUI.choseTwo(input, tracker);
+                        StartUI.adjustItem(input, tracker);
                         break;
                     case (3):
-                        StartUI.choseThree(input, tracker);
+                        StartUI.deleteItem(input, tracker);
                         break;
                     case (4):
-                        StartUI.choseFour(input, tracker);
+                        StartUI.findItemId(input, tracker);
                         break;
                     case (5):
-                        StartUI.choseFive(input, tracker);
+                        StartUI.findItemName(input, tracker);
                         break;
                     case (6):
                         break one;
@@ -62,7 +62,7 @@ public class StartUI {
      * @param input   - интерфейс получчения ИД от пользоватля
      * @param tracker - трэкер - база данных, с которым ведёться работа
      */
-    public static void choseZero(Input input, Tracker tracker) {
+    public static void addItem(Input input, Tracker tracker) {
         System.out.println("=== Create a new Item ====");
         System.out.print("Enter name: ");
         String name = input.askStr("");
@@ -76,7 +76,7 @@ public class StartUI {
      * @param input   - интерфейс получчения ИД от пользоватля
      * @param tracker - трэкер - база данных, с которым ведёться работа
      */
-    public static void choseOne(Input input, Tracker tracker) {
+    public static void showAll(Input input, Tracker tracker) {
         System.out.println("=== Create a list of Items ====");
         StartUI.printAll(tracker.findAll());
     }
@@ -87,7 +87,7 @@ public class StartUI {
      * @param input   - интерфейс получчения ИД от пользоватля
      * @param tracker - трэкер - база данных, с которым ведёться работа
      */
-    public static void choseTwo(Input input, Tracker tracker) {
+    public static void adjustItem(Input input, Tracker tracker) {
         System.out.println("=== Start proceduring of a replacing name ====");
         System.out.print("Enter new name: ");
         String name = input.askStr("");
@@ -108,7 +108,7 @@ public class StartUI {
      * @param input   - интерфейс получчения ИД от пользоватля
      * @param tracker - трэкер - база данных, с которым ведёться работа
      */
-    public static void choseThree(Input input, Tracker tracker) {
+    public static void deleteItem(Input input, Tracker tracker) {
         System.out.println("=== Start proceduring of a deleting item ====");
         System.out.print("\nEnter ID number of a deleting item: ");
         String name = input.askStr("");
@@ -127,7 +127,7 @@ public class StartUI {
      * @param input   - интерфейс получчения ИД от пользоватля
      * @param tracker - трэкер - база данных, с которым ведёться работа
      */
-    public static void choseFour(Input input, Tracker tracker) {
+    public static void findItemId(Input input, Tracker tracker) {
         System.out.println("=== Start proceduring of searching ====");
         System.out.print("\nEnter ID number for searching: ");
         String name = input.askStr("");
@@ -146,7 +146,7 @@ public class StartUI {
      * @param input   - интерфейс получчения ИД от пользоватля
      * @param tracker - трэкер - база данных, с которым ведёться работа
      */
-    public static void choseFive(Input input, Tracker tracker) {
+    public static void findItemName(Input input, Tracker tracker) {
         System.out.println("=== Start proceduring of searching by name ====");
         System.out.print("\nEnter name number for searching: ");
         String name = input.askStr("");
