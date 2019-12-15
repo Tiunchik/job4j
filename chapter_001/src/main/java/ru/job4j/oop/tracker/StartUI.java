@@ -46,17 +46,24 @@ public class StartUI {
                         item = new Item(name);
                         System.out.print("\nEnter ID number of an adjusted item: ");
                         name = input.askStr("");
-                        tracker.replace(name, item);
-                        System.out.println("=== Create a  new list of Items ====");
-                        this.printAll(tracker.findAll());
+                        if (tracker.findById(name) != null) {
+                            tracker.replace(name, item);
+                            System.out.println("Item was adjusted");
+                        } else {
+                            System.out.println("ID is incorrect. Try again");
+                        }
                         break;
                     case (3):
                         System.out.println("=== Start proceduring of a deleting item ====");
                         System.out.print("\nEnter ID number of a deleting item: ");
                         name = input.askStr("");
-                        tracker.deleteById(name);
-                        System.out.println("Current list of items:");
                         this.printAll(tracker.findAll());
+                        if (tracker.findById(name) != null) {
+                            tracker.deleteById(name);
+                            System.out.println("Item was deleted");
+                        } else {
+                            System.out.println("ID is incorrect. Try again");
+                        }
                         break;
                     case (4):
                         System.out.println("=== Start proceduring of searching ====");
