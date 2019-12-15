@@ -98,6 +98,15 @@ public class Tracker {
      * @param id - по данному идентификатору ищется позиция. которю необходимо удалить
      */
     public void deleteById(String id) {
+        for (int mainCircle = 0; mainCircle < this.position; mainCircle++) {
+            if (this.items[mainCircle].getId().equals(id)) {
+                this.items[mainCircle] = this.items[--this.position];
+                this.items[this.position] = null;
+            }
+        }
+    }
+    /*
+    public void deleteById(String id) {
         Item temp = null;
         for (int mainCircle = 0; mainCircle < this.position; mainCircle++) {
             if (this.items[mainCircle].getId().equals(id)) {
@@ -115,5 +124,6 @@ public class Tracker {
         }
         this.position--;
     }
+    */
 }
 
