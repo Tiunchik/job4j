@@ -19,7 +19,7 @@ public class ConsoleInput implements Input {
 
     @Override
     public String askStr(String question) {
-        System.out.print(question);
+        System.out.println(question);
         return scanner.nextLine();
     }
 

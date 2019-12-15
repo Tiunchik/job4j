@@ -63,9 +63,8 @@ public class StartUI {
      * @param tracker - трэкер - база данных, с которым ведёться работа
      */
     public static void addItem(Input input, Tracker tracker) {
-        System.out.println("=== Create a new Item ====");
-        System.out.print("Enter name: ");
-        String name = input.askStr("");
+        String name = input.askStr("=== Create a new Item ====\n"
+                + "Enter name: ");
         Item item = new Item(name);
         tracker.add(item);
     }
@@ -88,12 +87,10 @@ public class StartUI {
      * @param tracker - трэкер - база данных, с которым ведёться работа
      */
     public static void adjustItem(Input input, Tracker tracker) {
-        System.out.println("=== Start proceduring of a replacing name ====");
-        System.out.print("Enter new name: ");
-        String name = input.askStr("");
+        String name = input.askStr("=== Start proceduring of a replacing name ====\n"
+                + "Enter new name: ");
         Item item = new Item(name);
-        System.out.print("\nEnter ID number of an adjusted item: ");
-        name = input.askStr("");
+        name = input.askStr("Enter ID number of an adjusted item: ");
         if (tracker.replace(name, item)) {
             System.out.println("Item was adjusted");
         } else {
@@ -108,9 +105,8 @@ public class StartUI {
      * @param tracker - трэкер - база данных, с которым ведёться работа
      */
     public static void deleteItem(Input input, Tracker tracker) {
-        System.out.println("=== Start proceduring of a deleting item ====");
-        System.out.print("\nEnter ID number of a deleting item: ");
-        String name = input.askStr("");
+        String name = input.askStr("=== Start proceduring of a deleting item ====\n"
+                + "Enter ID number of a deleting item: ");
         if (tracker.deleteById(name)) {
             System.out.println("Item was deleted");
         } else {
@@ -125,9 +121,8 @@ public class StartUI {
      * @param tracker - трэкер - база данных, с которым ведёться работа
      */
     public static void findItemId(Input input, Tracker tracker) {
-        System.out.println("=== Start proceduring of searching ====");
-        System.out.print("\nEnter ID number for searching: ");
-        String name = input.askStr("");
+        String name = input.askStr("=== Start proceduring of searching ====\n"
+                + "Enter ID number for searching: ");
         Item item = tracker.findById(name);
         if (item != null) {
             System.out.println("Found position - name: " + item.getName() + " ID: "
@@ -144,9 +139,8 @@ public class StartUI {
      * @param tracker - трэкер - база данных, с которым ведёться работа
      */
     public static void findItemName(Input input, Tracker tracker) {
-        System.out.println("=== Start proceduring of searching by name ====");
-        System.out.print("\nEnter name number for searching: ");
-        String name = input.askStr("");
+        String name = input.askStr("=== Start proceduring of searching by name ===="
+                                                + "Enter name number for searching: ");
         Item[] array = tracker.findByName(name);
         if (array.length > 0) {
             System.out.println("Found following positions:");
@@ -160,7 +154,7 @@ public class StartUI {
      * Метод вывода меню перед пользователем
      */
     private void showMenu() {
-        System.out.println("Menu:\n"
+        System.out.print("Menu:\n"
                 + "0. Add new Item\n"
                 + "1. Show all items\n"
                 + "2. Edit item\n"
