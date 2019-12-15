@@ -82,8 +82,9 @@ public class Tracker {
      * @return - возвращает ссылку на найденный объект
      */
     public Item findById(String id) {
-        if (this.indexOf(id) != -1) {
-            return items[this.indexOf(id)];
+        int index = this.indexOf(id);
+        if (index != -1) {
+            return items[index];
         } else {
             return null;
         }
@@ -128,8 +129,9 @@ public class Tracker {
      * @param id в данный параметр необходимо передовать ID номер заявки, которую неоходимо зменить
      */
     public boolean replace(String id, Item item) {
-        if (this.indexOf(id) != -1) {
-            this.items[this.indexOf(id)].setName(item.getName());
+        int index = this.indexOf(id);
+        if (index != -1) {
+            this.items[index].setName(item.getName());
             return true;
         }
         return false;
