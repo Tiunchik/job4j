@@ -14,14 +14,23 @@ package ru.job4j.oop.strategy;
  */
 public class Paint {
     /**
+     * Метод запускает выполнение метода Shape.drawshape. Метод выполняеться в зависимости от того,
+     * какой объект проинициирован в методе;
+     *
+     * @param shape - передаваемым аргументом инициилизируется вариант выполнения метода
+     */
+    public void draw(Shape shape) {
+        System.out.println(shape.drawshape());
+    }
+
+    /**
      * Метод main
      *
-     * @param args - args.
+     * @param args
      */
     public static void main(String[] args) {
-        Shape pictureOne = new Square();
-        pictureOne.drawshape();
-        Shape pictureTwo = new Triangle();
-        pictureTwo.drawshape();
+        Paint paint = new Paint();
+        paint.draw(new Triangle());
+        paint.draw(new Square());
     }
 }

@@ -13,6 +13,5 @@ package ru.job4j.oop.strategy;
  * @since 16.12.2019
  */
 public interface Shape {
-
-    void drawshape();
+    String drawshape();
 }

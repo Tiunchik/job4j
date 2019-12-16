@@ -14,15 +14,16 @@ package ru.job4j.oop.strategy;
  */
 public class Square implements Shape {
     /**
-     * переопределённый метод, рисует в псевдографике квадрат
+     * переопределённый метод, формирует фигуру квадрат в строку
      */
     @Override
-    public void drawshape() {
-        for (int column = 0; column < 10; column++) {
-            for (int row = 0; row < 10; row++) {
-                System.out.print((char) ('A' + row));
-            }
-            System.out.print("\n");
-        }
+    public String drawshape() {
+        StringBuilder pic = new StringBuilder();
+        pic.append("++++");
+        pic.append("+  +");
+        pic.append("+  +");
+        pic.append("++++");
+        return pic.toString();
     }
 }
+

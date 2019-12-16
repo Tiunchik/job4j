@@ -14,17 +14,16 @@ package ru.job4j.oop.strategy;
  */
 public class Triangle implements Shape {
     /**
-     * переопределённый метод, рисует в псевдографике треугольник
+     * переопределённый метод, формирует фигуру треугольник в строку
      */
     @Override
-    public void drawshape() {
-        char let = 'A';
-        for (int column = 1; column < 11; column++) {
-            for (int row = 0; row < column; row++) {
-                System.out.print((char) ('A' + row));
-            }
-            System.out.print("\n");
-
-        }
+    public String drawshape() {
+        StringBuilder pic = new StringBuilder();
+        pic.append("+");
+        pic.append("+ +");
+        pic.append("+  +");
+        pic.append("+++++");
+        return pic.toString();
     }
 }
+
