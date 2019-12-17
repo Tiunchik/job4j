@@ -34,7 +34,7 @@ public class StartUI {
      *
      * @param action - база данных действий для работы с базой данных
      */
-    private void showMenu(UserActions[] action) {
+    public void showMenu(UserActions[] action) {
         System.out.println("Menu:");
         for (int index = 0; index < action.length; index++) {
             System.out.print(index + " ");
