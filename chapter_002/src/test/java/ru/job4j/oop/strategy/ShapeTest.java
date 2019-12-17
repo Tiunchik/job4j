@@ -5,6 +5,8 @@
  */
 package ru.job4j.oop.strategy;
 
+import org.junit.After;
+import org.junit.Before;
 import org.junit.Test;
 
 import java.io.ByteArrayOutputStream;
@@ -17,10 +19,36 @@ import static org.junit.Assert.assertThat;
  * Класс ShapeTest - используется для автотестов созданных методов
  *
  * @author Maksim Tiunchik (senebh@gmail.com)
- * @version 0.1
- * @since 16.12.2019
+ * @version 0.2
+ * @since 17.12.2019
  */
 public class ShapeTest {
+    /**
+     * Переменная записывает в себя ссылку на объект выполняющий функции вывода данных в консоль
+     */
+    private final PrintStream stdout = System.out;
+    /**
+     * Переменная записывает в себя ссылку на буфер, где может храниться выводимая в консоль информация
+     */
+    private final ByteArrayOutputStream out = new ByteArrayOutputStream();
+
+    /**
+     * В данном методе вывод в консоль заменяется выводом в созданный ранее буфер.
+     */
+    @Before
+    public void readFromBuffer(){
+        System.out.println("print before tests");
+        System.setOut(new PrintStream(out));
+    }
+
+    /**
+     * в данном методе возвращаеться вывод в консоль
+     */
+    @After
+    public void readFromConsole(){
+        System.setOut(stdout);
+        System.out.println("print after test");
+    }
     /**
      * Тест метода создания треугольника
      */
@@ -58,9 +86,6 @@ public class ShapeTest {
      */
     @Test
     public void whenDrawSquare() {
-        PrintStream stdout = System.out;
-        ByteArrayOutputStream out = new ByteArrayOutputStream();
-        System.setOut(new PrintStream(out));
         new Paint().draw(new Square());
         assertThat(
                 new String(out.toByteArray()),
@@ -74,7 +99,6 @@ public class ShapeTest {
                                 .toString()
                 )
         );
-        System.setOut(stdout);
     }
 
 }
