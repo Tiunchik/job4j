@@ -11,8 +11,8 @@ package ru.job4j.oop.tracker;
  * Один из вариантов методов для интерфейса UserActions
  *
  * @author Maksim Tiunchik (senebh@gmail.com)
- * @version 0.1
- * @since 17.12.2019
+ * @version 0.3
+ * @since 18.12.2019
  */
 public class FindItemName implements UserActions {
 
@@ -38,8 +38,9 @@ public class FindItemName implements UserActions {
         Item[] array = tracker.findByName(name);
         if (array.length > 0) {
             System.out.println("Found following positions:");
-            UserActions print = new ShowAll();
-            print.execute(input, tracker);
+            for (Item x : array) {
+                System.out.println("Name: " + x.getName() + " ID: " + x.getId());
+            }
         } else {
             System.out.println("Didn't find anything");
         }
