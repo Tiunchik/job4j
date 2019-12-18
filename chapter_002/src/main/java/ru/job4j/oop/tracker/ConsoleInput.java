@@ -27,7 +27,7 @@ public class ConsoleInput implements Input {
      * Метод получения данных в формате int, в метод отсутвует исключение на случай получения текстовоо значения
      *
      * @param question данны текст выводиться в консоль, задаётся вопрос пользователю
-     * @return получаемые данные от пользователя
+     * @return получаемые данные типа int
      */
     @Override
     public int askInt(String question) {

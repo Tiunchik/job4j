@@ -1,18 +1,41 @@
 /**
- * Тестовое задание по созданию класса для борьбы с исключениями
+ * Тестовое задание по созданию класса обёртки для борьбы с исключениями
  *
  * @author Maksim Tiunchik
  */
 package ru.job4j.oop.tracker;
 
 /**
- * Класс ValidateInput - класс для перегрузки методов интерфейса Input/ConsoleInput и борьбы с исключениями;
+ * Класс ValidateInput - класс обёртка для классов SubInport/ConsoleInput;
  *
  * @author -
- * @version 0.1
+ * @version 0.2
  * @since 18.12.2019
  */
-public class ValidateInput extends ConsoleInput {
+public class ValidateInput implements Input {
+    /**
+     * Переменная по которой определяется как будет вести себя даный метод
+     */
+    private final Input input;
+
+    /**
+     * Конструктор класса
+     * @param input требует объект типа Input, для опредления типа полчаемых данных
+     */
+    public ValidateInput(Input input) {
+        this.input = input;
+    }
+
+    /**
+     * Используем метод класса, который декорируем
+     * @param question - данны текст выводиться в консоль, задаётся вопрос пользователю
+     * @return - получаемые данные типа String
+     */
+    @Override
+    public String askStr(String question) {
+        return input.askStr(question);
+    }
+
     /**
      * Перегруженный метод. В меотде осуществлена борьба с исключением - ввод не верного типа данных пользователм
      *
@@ -25,7 +48,7 @@ public class ValidateInput extends ConsoleInput {
         int value = -1;
         do {
             try {
-                value = super.askInt(question);
+                value = input.askInt(question);
                 invalid = false;
             } catch (NumberFormatException nfe) {
                 System.out.println("Please enter validate data again ");
@@ -47,7 +70,7 @@ public class ValidateInput extends ConsoleInput {
         int value = -1;
         do {
             try {
-                value = super.askInt(question, max);
+                value = input.askInt(question, max);
                 invalid = false;
             } catch (IllegalStateException moe) {
                 System.out.println("Please select key from menu ");
