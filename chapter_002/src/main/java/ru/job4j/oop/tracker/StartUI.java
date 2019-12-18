@@ -9,8 +9,8 @@ package ru.job4j.oop.tracker;
  * Класс StartUI - основной клас связующий все остальные классы для работы консольного приложения, содержит метод main
  *
  * @author Maksim Tiunchik (senebh@gmail.com)
- * @version 0.5
- * @since 17.12.2019
+ * @version 0.6
+ * @since 18.12.2019
  */
 public class StartUI {
     /**
@@ -25,7 +25,7 @@ public class StartUI {
         int select = 0;
         while (run) {
                 this.showMenu(actions);
-                select = Integer.parseInt(input.askStr("Select: "));
+                select = input.askInt("Select: ", actions.length);
                 run = actions[select].execute(input, tracker);
             }
         }
@@ -48,7 +48,7 @@ public class StartUI {
      * @param args - args.
      */
     public static void main(String[] args) {
-        Input input = new ConsoleInput();
+        Input input = new ValidateInput();
         Tracker tracker = new Tracker();
         UserActions[] action = {new AddItem(), new ShowAll(), new AdjustItem(),
                 new DeleteItem(), new FindItemId(), new FindItemName(), new Escape()};

@@ -9,8 +9,8 @@ package ru.job4j.oop.tracker;
  * Класс ConsoleInput - класс для перегрузки методов интерфейса Input;
  *
  * @author Maksim Tiunchik (senebh@gmail.com)
- * @version 0.1
- * @since 15.12.2019
+ * @version 0.2
+ * @since 18.12.2019
  */
 public class StubInput implements Input {
     /**
@@ -51,5 +51,10 @@ public class StubInput implements Input {
     @Override
     public int askInt(String question) {
         return Integer.parseInt(askStr(question));
+    }
+
+    @Override
+    public int askInt(String question, int max) {
+        return askInt(question);
     }
 }
