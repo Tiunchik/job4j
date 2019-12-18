@@ -17,6 +17,8 @@ import java.util.StringJoiner;
 import static org.hamcrest.CoreMatchers.is;
 import static org.junit.Assert.assertThat;
 
+import ru.job4j.oop.tracker.Tracker;
+
 /**
  * Тесты для класса StartUI
  *
@@ -81,24 +83,50 @@ public class StartUITest {
     public void anotherTestshowMenu() {
         StubInput input = new StubInput(new String[]{"0"});
         StubAction action = new StubAction();
-        new StartUI().init(input, new Tracker(), new UserActions[] {action});
+        new StartUI().init(input, new Tracker(), new UserActions[]{action});
         String expect = new StringJoiner(System.lineSeparator(), "", System.lineSeparator())
-                 .add("Menu:")
-                 .add("0 Stub action")
-                 .toString();
+                .add("Menu:")
+                .add("0 Stub action")
+                .toString();
         assertThat(new String(testout.toByteArray()), is(expect));
     }
+
     /**
      * Тест для метода FindItemName
      */
     @Test
     public void FindByNameTest() {
-        StubInput input = new StubInput(new String[]{"0"});
-        StubAction action = new StubAction();
-        new StartUI().init(input, new Tracker(), new UserActions[] {action});
+        StubInput input = new StubInput(new String[]{"Big"});
+        Tracker tracker = new Tracker();
+        Item item = new Item("Big");
+        tracker.add(item);
+        new FindItemName().execute(input, tracker);
         String expect = new StringJoiner(System.lineSeparator(), "", System.lineSeparator())
-                .add("Menu:")
-                .add("0 Stub action")
+                .add("Found following positions:")
+                .add("Name: " + item.getName() + " ID: " + item.getId())
+                .toString();
+        assertThat(new String(testout.toByteArray()), is(expect));
+    }
+
+    /**
+     * Тест для метода ShowAll
+     */
+    @Test
+    public void FindByAllAction() {
+        Item[] array = new Item[5];
+        Tracker tracker = new Tracker();
+        for (int index = 0; index <5; index++) {
+            Item item = new Item("Big" + index);
+            tracker.add(item);
+            array[index] = item;
+        }
+        new ShowAll().execute(new StubInput(new String []{}), tracker);
+        String expect = new StringJoiner(System.lineSeparator(), "", System.lineSeparator())
+                .add("Position: " + 0 + " Name: " + array[0].getName() + " ID: " + array[0].getId())
+                .add("Position: " + 1 + " Name: " + array[1].getName() + " ID: " + array[1].getId())
+                .add("Position: " + 2 + " Name: " + array[2].getName() + " ID: " + array[2].getId())
+                .add("Position: " + 3 + " Name: " + array[3].getName() + " ID: " + array[3].getId())
+                .add("Position: " + 4 + " Name: " + array[4].getName() + " ID: " + array[4].getId())
                 .toString();
         assertThat(new String(testout.toByteArray()), is(expect));
     }
