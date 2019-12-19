@@ -11,6 +11,7 @@ import org.junit.Test;
 
 import java.io.ByteArrayOutputStream;
 import java.io.PrintStream;
+import java.util.StringJoiner;
 
 import static org.junit.Assert.assertThat;
 import static org.hamcrest.Matchers.is;
@@ -19,8 +20,7 @@ import static org.hamcrest.Matchers.is;
  * Класс ValidateInputTest - набор автоматических тестов для методов класса ValidateInput
  *
  * @author -
- * @version 0.2
- * @since 18.12.2019
+ * @version 0.3
  */
 public class ValidateInputTest {
     /**
@@ -56,9 +56,10 @@ public class ValidateInputTest {
         StubInput input = new StubInput(new String[]{"help", "0"});
         ValidateInput testinput = new ValidateInput(input);
         testinput.askInt("Select: ",6);
-        assertThat(
-                testout.toString(),
-                is(String.format("Please enter validate data again \r\n")));
+        String expect = new StringJoiner(System.lineSeparator(), "", System.lineSeparator())
+                .add("Please enter validate data again ")
+                .toString();
+        assertThat(testout.toString(),is(expect));
     }
 
     /**
@@ -69,8 +70,9 @@ public class ValidateInputTest {
         StubInput input = new StubInput(new String[]{"8", "2"});
         ValidateInput testinput = new ValidateInput(input);
         testinput.askInt("Select: ",4);
-        assertThat(
-                testout.toString(),
-                is(String.format("Please select key from menu \r\n")));
+        String expect = new StringJoiner(System.lineSeparator(), "", System.lineSeparator())
+                .add("Please select key from menu ")
+                .toString();
+        assertThat(testout.toString(),is(expect));
     }
 }
