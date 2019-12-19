@@ -11,14 +11,14 @@ import ru.job4j.oop.tracker.*;
  * и переменной INSTANCE, загрузка трэкера только после обращения к методу
  *
  * @author Maksim Tiunchik (senebh@gmail.com)
- * @version 0.1
+ * @version 0.2
  * @since 19.12.2019
  */
 public class TrackerSingleLazyFinal {
     private TrackerSingleLazyFinal() {
     }
 
-    public static Tracker getINSTANCE() {
+    public static Tracker getInstance() {
         return Holder.INSTANCE;
     }
 
@@ -29,6 +29,6 @@ public class TrackerSingleLazyFinal {
     private static final Tracker INSTANCE = new Tracker();
 
     public static void main(String[] args) {
-        Tracker track = TrackerSingleLazyFinal.getINSTANCE();
+        Tracker track = TrackerSingleLazyFinal.getInstance();
     }
 }

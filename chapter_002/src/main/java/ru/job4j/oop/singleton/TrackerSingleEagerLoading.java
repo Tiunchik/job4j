@@ -11,7 +11,7 @@ import ru.job4j.oop.tracker.*;
  * и переменной INSTANCE, загрузка трэкера сразу при запуске программы
  *
  * @author Maksim Tiunchik (senebh@gmail.com)
- * @version 0.1
+ * @version 0.2
  * @since 19.12.2019
  */
 public class TrackerSingleEagerLoading {
@@ -25,6 +25,6 @@ public class TrackerSingleEagerLoading {
     }
 
     public static void main(String[] args) {
-        Tracker track = TrackerSingleLazyFinal.getINSTANCE();
+        Tracker track = TrackerSingleEagerLoading.getINSTANCE();
     }
 }
