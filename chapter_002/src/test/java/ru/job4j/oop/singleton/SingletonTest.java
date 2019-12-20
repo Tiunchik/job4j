@@ -14,8 +14,7 @@ import java.io.ByteArrayOutputStream;
 import java.io.PrintStream;
 
 import static org.hamcrest.core.Is.is;
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertThat;
+import static org.junit.Assert.*;
 
 public class SingletonTest {
 
@@ -23,27 +22,27 @@ public class SingletonTest {
     public void trackerSingleEnun(){
         Tracker first = TrackerSingleEnun.INSTANCE.getTracker();
         Tracker second = TrackerSingleEnun.INSTANCE.getTracker();
-        assertEquals(first,second);
+        assertTrue(first == second);
     }
 
     @Test
     public void trackerSingleLazyStatic(){
         Tracker first = TrackerSingleLazyStatic.getInstance();
         Tracker second = TrackerSingleLazyStatic.getInstance();
-        assertEquals(first,second);
+        assertTrue(first == second);
     }
 
     @Test
     public void trackerSingleEagerLoading(){
         Tracker first = TrackerSingleEagerLoading.getINSTANCE();
         Tracker second = TrackerSingleEagerLoading.getINSTANCE();
-        assertEquals(first,second);
+        assertTrue(first == second);
     }
 
     @Test
     public void trackerSingleLazyFinal(){
         Tracker first = TrackerSingleLazyFinal.getInstance();
         Tracker second = TrackerSingleLazyFinal.getInstance();
-        assertEquals(first,second);
+        assertTrue(first == second);
     }
 }
