@@ -3,7 +3,7 @@
  *
  * @author Maksim Tiunchik
  */
-package ru.job4j.colliection.search;
+package ru.job4j.collection.search;
 
 import java.util.ArrayList;
 /**
