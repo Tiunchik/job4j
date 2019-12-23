@@ -5,6 +5,7 @@
  */
 package ru.job4j.collection;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -18,7 +19,7 @@ public class ConvertListToArray {
     /**
      * метод по превращению одномерного массива из коллкеции list (Array, Linked и т.п.) в обычный двумерный массив
      *
-     * @param list - массив тпа List
+     * @param list  - массив тпа List
      * @param cells - количество ячеек в первом ряду формируемого двумерного массива
      * @return - заполненный двумерный массив
      */
@@ -38,5 +39,21 @@ public class ConvertListToArray {
 
         }
         return array;
+    }
+
+    /**
+     * Метод превращения списка массивов List<int[]> в коллекцию типа ArrayList
+     *
+     * @param list - вводмый для преобразования список массивов int[]
+     * @return - возвращаемое значение - коллекцию ArrayList<Integer>
+     */
+    public List<Integer> convert(List<int[]> list) {
+        List<Integer> answer = new ArrayList<Integer>();
+        for (int[] row : list) {
+            for (int column : row) {
+                answer.add(column);
+            }
+        }
+        return answer;
     }
 }

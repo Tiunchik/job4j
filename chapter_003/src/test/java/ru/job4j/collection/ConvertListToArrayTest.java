@@ -5,10 +5,13 @@
  */
 package ru.job4j.collection;
 
+import org.junit.Assert;
 import org.junit.Ignore;
 import org.junit.Test;
 
+import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.List;
 
 import static org.hamcrest.core.Is.is;
 import static org.junit.Assert.assertThat;
@@ -39,6 +42,7 @@ public class ConvertListToArrayTest {
         };
         assertThat(result, is(expect));
     }
+
     /**
      * Автоматический тест метод метода ConvertListToArray
      */
@@ -55,5 +59,23 @@ public class ConvertListToArrayTest {
                 {9, 10, 11, 0}
         };
         assertThat(result, is(expect));
+    }
+
+    /**
+     * Автоматический тест метод метода convert
+     */
+    @Test
+    public void convertToArrayList() {
+        ConvertListToArray list = new ConvertListToArray();
+        List<int[]> array = new ArrayList<int[]>();
+        array.add(new int[] {1, 2, 3, 4});
+        array.add(new int[] {5, 6, 7});
+        List<Integer> out = new ArrayList<Integer>();
+        out = list.convert(array);
+        List<Integer> expect = new ArrayList<Integer>();
+        for (int i = 1; i < 8; i++){
+            expect.add(i);
+        }
+        Assert.assertEquals(expect, out);
     }
 }
