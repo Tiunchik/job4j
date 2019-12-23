@@ -5,21 +5,22 @@
  */
 package ru.job4j.oop.tracker;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Random;
 
 /**
- * Класс Traker - обёрта над массивом, иметт мтоды работы с данным массивом
+ * Класс Traker - обёрта над массивом ArrayList, имеет методы работы с данным массивом
  *
  * @author Maksim Tiunchik (senebh@gmail.com)
- * @version 0.2
- * @since 15.12.2019
+ * @version 0.3
+ * @since 23.12.2019
  */
 public class Tracker {
     /**
      * Массив для хранения заявок.
      */
-    private final Item[] items = new Item[100];
+    private final ArrayList<Item> items = new ArrayList<Item>();
 
     /**
      * Указатель ячейки для новой заявки.
@@ -33,8 +34,7 @@ public class Tracker {
      */
     public Item add(Item item) {
         item.setId(this.generateId());
-        items[this.position] = item;
-        this.position++;
+        items.add(item);
         return item;
     }
 
@@ -54,7 +54,12 @@ public class Tracker {
      * @return массив заполненный всеми не пустыми ячейками массива tracker.item[]
      */
     public Item[] findAll() {
-        return Arrays.copyOf(this.items, this.position);
+        int index = 0;
+        Item[] rsl = new Item[items.size()];
+        for (Item temp : items) {
+            rsl[index++] = temp;
+        }
+        return rsl;
     }
 
     /**
@@ -64,11 +69,11 @@ public class Tracker {
      * @return массив заполненный объектами типа Item поле name которых содержит значение key
      */
     public Item[] findByName(String key) {
-        Item[] array = new Item[this.items.length];
+        Item[] array = new Item[items.size()];
         int smallCircle = 0;
-        for (int mainCircle = 0; mainCircle < this.position; mainCircle++) {
-            if (this.items[mainCircle].getName().equals(key)) {
-                array[smallCircle++] = this.items[mainCircle];
+        for (Item temp : items) {
+            if (temp.getName().equals(key)) {
+                array[smallCircle++] = temp;
             }
         }
         array = Arrays.copyOf(array, smallCircle);
@@ -84,7 +89,7 @@ public class Tracker {
     public Item findById(String id) {
         int index = this.indexOf(id);
         if (index != -1) {
-            return items[index];
+            return items.get(index);
         } else {
             return null;
         }
@@ -99,9 +104,7 @@ public class Tracker {
     public boolean deleteById(String id) {
         int index = this.indexOf(id);
         if (index != -1) {
-            System.arraycopy(this.items, index + 1, this.items, index, this.position - index);
-            items[this.position--] = null;
-            return true;
+            items.remove(index);
         }
         return false;
     }
@@ -114,11 +117,13 @@ public class Tracker {
      */
     private int indexOf(String id) {
         int rsl = -1;
-        for (int index = 0; index < position; index++) {
-            if (items[index].getId().equals(id)) {
+        int index = 0;
+        for (Item temp: items) {
+            if (temp.equals(id)) {
                 rsl = index;
                 break;
             }
+            index++;
         }
         return rsl;
     }
@@ -131,7 +136,7 @@ public class Tracker {
     public boolean replace(String id, Item item) {
         int index = this.indexOf(id);
         if (index != -1) {
-            this.items[index].setName(item.getName());
+            items.get(index).setName(item.getName());
             return true;
         }
         return false;
