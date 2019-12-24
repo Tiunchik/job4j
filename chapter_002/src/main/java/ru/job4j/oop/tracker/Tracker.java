@@ -146,15 +146,10 @@ public class Tracker {
      * @param x true - по порядку, else - в обратном порядке
      */
     public void sorter(boolean x, Tracker tracker) {
-        ArrayList<Item> temp = new ArrayList<Item>(tracker.items);
         if (x) {
-            Collections.sort(temp, new SortTrackerUp()); //can be replaised list sort
-            tracker.items.clear();
-            tracker.items.addAll(temp);
+            Collections.sort(items, new SortTrackerUp()); //can be replaised list sort
         } else {
-            Collections.sort(temp, new SortTrackerDown());
-            tracker.items.clear();
-            tracker.items.addAll(temp);
+            Collections.sort(items, new SortTrackerDown());
         }
     }
 }
