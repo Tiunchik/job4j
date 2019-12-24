@@ -5,9 +5,7 @@
  */
 package ru.job4j.oop.tracker;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Random;
+import java.util.*;
 
 /**
  * Класс Traker - обёрта над массивом ArrayList, имеет методы работы с данным массивом
@@ -118,7 +116,7 @@ public class Tracker {
     private int indexOf(String id) {
         int rsl = -1;
         int index = 0;
-        for (Item temp: items) {
+        for (Item temp : items) {
             if (temp.equals(id)) {
                 rsl = index;
                 break;
@@ -141,5 +139,24 @@ public class Tracker {
         }
         return false;
     }
+
+    /**
+     * Метод сортировки ArraнList items
+     *
+     * @param x true - по порядку, else - в обратном порядке
+     */
+    public void sorter(boolean x, Tracker tracker) {
+        ArrayList<Item> temp = new ArrayList<Item>(tracker.items);
+        if (x) {
+            Collections.sort(temp, new SortTrackerUp()); //can be replaised list sort
+            tracker.items.clear();
+            tracker.items.addAll(temp);
+        } else {
+            Collections.sort(temp, new SortTrackerDown());
+            tracker.items.clear();
+            tracker.items.addAll(temp);
+        }
+    }
 }
+
 

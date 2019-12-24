@@ -12,7 +12,7 @@ package ru.job4j.oop.tracker;
  * @version 0.1
  * @since 14.12.2019
  */
-public class Item {
+public class Item implements Comparable<Item> {
     /**
      * id - индивидуальная переменная для каждого элемента массива
      */
@@ -66,5 +66,10 @@ public class Item {
      */
     public void setName(String name) {
         this.name = name;
+    }
+
+    @Override
+    public int compareTo(Item o) {
+        return getName().compareTo(o.getName());
     }
 }
