@@ -24,10 +24,8 @@ public class OrderConvert {
      */
     public static HashMap<String, Order> process(List<Order> orders) {
         HashMap<String, Order> map = new HashMap<>();
-        int index = 0;
         for (Order x : orders) {
-            map.put(index + "", x);
-            index++;
+            map.put(x.getNumber(), x);
         }
         return map;
     }
