@@ -68,12 +68,12 @@ public class ConvertListToArrayTest {
     public void convertToArrayList() {
         ConvertListToArray list = new ConvertListToArray();
         List<int[]> array = new ArrayList<int[]>();
-        array.add(new int[] {1, 2, 3, 4});
-        array.add(new int[] {5, 6, 7});
+        array.add(new int[]{1, 2, 3, 4});
+        array.add(new int[]{5, 6, 7});
         List<Integer> out = new ArrayList<Integer>();
         out = list.convert(array);
         List<Integer> expect = new ArrayList<Integer>();
-        for (int i = 1; i < 8; i++){
+        for (int i = 1; i < 8; i++) {
             expect.add(i);
         }
         Assert.assertEquals(expect, out);

@@ -6,9 +6,12 @@
 package ru.job4j.collection;
 
 import org.junit.Test;
+
 import java.util.Comparator;
+
 import static org.hamcrest.Matchers.lessThan;
 import static org.junit.Assert.assertThat;
+
 /**
  * Класс JobTest исползуется для автоматических тесотв компораторов, в том числе автоматических тестов
  * последовательности компораторов
@@ -40,7 +43,7 @@ public class JobTest {
     }
 
     @Test
-    public void ReversewhenCompatorByNameAndPrority() {
+    public void reversewhenCompatorByNameAndPrority() {
         Comparator<User> nameUpAgeUp = new UserNameDown().thenComparing(new UserAgeDown());
         int rsl = nameUpAgeUp.compare(
                 new User("Ivan", 26),
@@ -50,7 +53,7 @@ public class JobTest {
     }
 
     @Test
-    public void ReversewhenCompatorByNameAndProrityTwo() {
+    public void reversewhenCompatorByNameAndProrityTwo() {
         Comparator<User> nameUpAgeUp = new UserNameDown().thenComparing(new UserAgeDown());
         int rsl = nameUpAgeUp.compare(
                 new User("Fedor", 34),
