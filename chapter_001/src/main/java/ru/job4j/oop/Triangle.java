@@ -62,13 +62,8 @@ public class Triangle {
      * <p>
      * Видно не до конца понимаю эту задачу - между тремя точками всегда можно построить треугольник
      */
-    @SuppressWarnings("checkstyle:SimplifyBooleanReturn")
     public boolean exist() {
-        if (a + b > c && a + c > b && c + b > a) {
-            return true;
-        } else {
-            return false;
-        }
+        return a + b > c && a + c > b && c + b > a;
     }
 
     /**

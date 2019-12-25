@@ -19,7 +19,7 @@ public class Fox {
      * @param ball - передаваемый аргумент в параметр - колобок, которого пытаються съесть
      */
     public void eatBall(Ball ball) {
-        if (ball.exist == true) {
+        if (ball.exist) {
             System.out.println("Встретилась Колобку Лиса и попытался съесть его.");
             if (Math.random() * 100 > 60) {
                 System.out.println("Колобок был сьеден Лисой");
