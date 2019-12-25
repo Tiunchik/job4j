@@ -69,4 +69,24 @@ public class StringCompareTest {
         );
         assertThat(rst, lessThan(0));
     }
+
+    @Test
+    public void additinoalTestOne() {
+        StringCompare compare = new StringCompare();
+        int rst = compare.compare(
+                "Moscow1983",
+                "Moscow2019"
+        );
+        assertThat(rst, lessThan(0));
+    }
+
+    @Test
+    public void additinoalTestTwo() {
+        StringCompare compare = new StringCompare();
+        int rst = compare.compare(
+                "15",
+                ""
+        );
+        assertThat(rst, greaterThan(0));
+    }
 }
