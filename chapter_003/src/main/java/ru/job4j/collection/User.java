@@ -9,7 +9,7 @@ import org.jetbrains.annotations.NotNull;
 
 import java.util.Objects;
 /**
- * Класс User исползуется для отработки переопределения метода compateTo
+ * Класс User исползуется для отработки переопределе ния метода compateTo
  *
  * @author Maksim Tiunchik (senebh@gmail.com)
  * @version 0.1
@@ -35,7 +35,7 @@ public class User implements Comparable<User> {
     @Override
     public int compareTo(@NotNull User o) {
         if ((name.compareTo(o.name) == 0)) {
-            return Integer.compare(age - o.age, 0); //либо   age - o.age > 0 ? 1 : age - o.age == 0 ? 0 : -1;
+            return Integer.compare(age, o.age); //либо   age - o.age > 0 ? 1 : age - o.age == 0 ? 0 : -1;
         }
         return name.compareTo(o.name);
     }
