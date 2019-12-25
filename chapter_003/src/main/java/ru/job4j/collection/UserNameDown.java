@@ -10,7 +10,7 @@ import java.util.Comparator;
  * Класс UserAgeUp реализует компоратор для объкета User, обратная сортировка по полю name
  *
  * @author Maksim Tiunchik (senebh@gmail.com)
- * @version 0.1
+ * @version 0.2
  * @since 24.12.2019
  */
 public class UserNameDown implements Comparator<User> {
