@@ -15,8 +15,8 @@ import static org.junit.Assert.assertThat;
  * так и в ограниченном
  *
  * @author Petr Arsentev (parsentev@yandex.ru,job4j.ru)
- * @since -
  * @version -
+ * @since -
  */
 public class FindLoopTest {
 
@@ -35,6 +35,7 @@ public class FindLoopTest {
 
     /**
      * Метод для автоматического теста класса ru.job4j.array.FindLoop
+     *
      * @author Maksim Tiunchik
      */
     @Test
@@ -79,7 +80,7 @@ public class FindLoopTest {
      */
     @Test
     public void studentOneTest() {
-        int[] input = new int[]{5, 2, 10, 2, 4, 1, 5, 11, 7, 24, 56 , 7, 9, 5, 4};
+        int[] input = new int[]{5, 2, 10, 2, 4, 1, 5, 11, 7, 24, 56, 7, 9, 5, 4};
         int value = 7;
         int start = 5;
         int finish = 10;
@@ -94,7 +95,7 @@ public class FindLoopTest {
      */
     @Test
     public void studentOneTwo() {
-        int[] input = new int[]{5, 2, 10, 2, 4, 1, 5, 11, 7, 24, 56 , 7, 9, 5, 4};
+        int[] input = new int[]{5, 2, 10, 2, 4, 1, 5, 11, 7, 24, 56, 7, 9, 5, 4};
         int value = 34;
         int start = 5;
         int finish = 10;

@@ -13,7 +13,7 @@ public class CounterTest {
     }
 
     @Test
-    public void BigTest() {
+    public void bigTest() {
         int out = Counter.add(20, 30);
         int expected = 150;
         Assert.assertEquals(expected, out);

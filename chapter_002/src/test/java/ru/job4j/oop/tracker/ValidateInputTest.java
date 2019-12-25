@@ -52,27 +52,27 @@ public class ValidateInputTest {
      * Тест работы исключений на методе askInt - введно значение типа String (не преобразуемое)
      */
     @Test
-    public void whenStringInstead (){
+    public void whenStringInstead() {
         StubInput input = new StubInput(new String[]{"help", "0"});
         ValidateInput testinput = new ValidateInput(input);
-        testinput.askInt("Select: ",6);
+        testinput.askInt("Select: ", 6);
         String expect = new StringJoiner(System.lineSeparator(), "", System.lineSeparator())
                 .add("Please enter validate data again ")
                 .toString();
-        assertThat(testout.toString(),is(expect));
+        assertThat(testout.toString(), is(expect));
     }
 
     /**
      * Тест работы исключений на методе askInt - введно значение типа int больше значения max
      */
     @Test
-    public void whenIntTooBig (){
+    public void whenIntTooBig() {
         StubInput input = new StubInput(new String[]{"8", "2"});
         ValidateInput testinput = new ValidateInput(input);
-        testinput.askInt("Select: ",4);
+        testinput.askInt("Select: ", 4);
         String expect = new StringJoiner(System.lineSeparator(), "", System.lineSeparator())
                 .add("Please select key from menu ")
                 .toString();
-        assertThat(testout.toString(),is(expect));
+        assertThat(testout.toString(), is(expect));
     }
 }

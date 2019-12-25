@@ -36,7 +36,7 @@ public class ShapeTest {
      * В данном методе вывод в консоль заменяется выводом в созданный ранее буфер.
      */
     @Before
-    public void readFromBuffer(){
+    public void readFromBuffer() {
         System.out.println("print before tests");
         System.setOut(new PrintStream(out));
     }
@@ -45,10 +45,11 @@ public class ShapeTest {
      * в данном методе возвращаеться вывод в консоль
      */
     @After
-    public void readFromConsole(){
+    public void readFromConsole() {
         System.setOut(stdout);
         System.out.println("print after test");
     }
+
     /**
      * Тест метода создания треугольника
      */

@@ -95,7 +95,7 @@ public class StartUITest {
      * Тест для метода FindItemName
      */
     @Test
-    public void FindByNameTest() {
+    public void findByNameTest() {
         StubInput input = new StubInput(new String[]{"Big"});
         Tracker tracker = new Tracker();
         Item item = new Item("Big");
@@ -112,15 +112,15 @@ public class StartUITest {
      * Тест для метода ShowAll
      */
     @Test
-    public void FindByAllAction() {
+    public void findByAllAction() {
         Item[] array = new Item[5];
         Tracker tracker = new Tracker();
-        for (int index = 0; index <5; index++) {
+        for (int index = 0; index < 5; index++) {
             Item item = new Item("Big" + index);
             tracker.add(item);
             array[index] = item;
         }
-        new ShowAll().execute(new StubInput(new String []{}), tracker);
+        new ShowAll().execute(new StubInput(new String[]{}), tracker);
         String expect = new StringJoiner(System.lineSeparator(), "", System.lineSeparator())
                 .add("Position: " + 0 + " Name: " + array[0].getName() + " ID: " + array[0].getId())
                 .add("Position: " + 1 + " Name: " + array[1].getName() + " ID: " + array[1].getId())

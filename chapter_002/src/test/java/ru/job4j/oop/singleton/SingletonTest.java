@@ -19,28 +19,28 @@ import static org.junit.Assert.*;
 public class SingletonTest {
 
     @Test
-    public void trackerSingleEnun(){
+    public void trackerSingleEnun() {
         Tracker first = TrackerSingleEnun.INSTANCE.getTracker();
         Tracker second = TrackerSingleEnun.INSTANCE.getTracker();
         assertTrue(first == second);
     }
 
     @Test
-    public void trackerSingleLazyStatic(){
+    public void trackerSingleLazyStatic() {
         Tracker first = TrackerSingleLazyStatic.getInstance();
         Tracker second = TrackerSingleLazyStatic.getInstance();
         assertTrue(first == second);
     }
 
     @Test
-    public void trackerSingleEagerLoading(){
+    public void trackerSingleEagerLoading() {
         Tracker first = TrackerSingleEagerLoading.getINSTANCE();
         Tracker second = TrackerSingleEagerLoading.getINSTANCE();
         assertTrue(first == second);
     }
 
     @Test
-    public void trackerSingleLazyFinal(){
+    public void trackerSingleLazyFinal() {
         Tracker first = TrackerSingleLazyFinal.getInstance();
         Tracker second = TrackerSingleLazyFinal.getInstance();
         assertTrue(first == second);

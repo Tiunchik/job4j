@@ -67,7 +67,7 @@ public class TrackerTest {
     public void findByIdTest() {
         Tracker basa = new Tracker();
         basa.add(new Item("Элемент"));
-        Item tempArray[] = basa.findByName("Элемент");
+        Item[] tempArray = basa.findByName("Элемент");
         Item temp = tempArray[0];
         assertThat(basa.findById(temp.getId()) != null, is(true));
     }
@@ -78,7 +78,7 @@ public class TrackerTest {
     public void deleteById() {
         Tracker basa = new Tracker();
         basa.add(new Item("Элемент"));
-        Item tempArray[] = basa.findByName("Элемент");
+        Item[] tempArray = basa.findByName("Элемент");
         Item temp = tempArray[0];
         basa.deleteById(temp.getId());
         assertThat(basa.findById(temp.getId()) == null, is(true));

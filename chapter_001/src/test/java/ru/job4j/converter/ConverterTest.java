@@ -3,7 +3,7 @@ package ru.job4j.converter;
 import org.junit.Assert;
 import org.junit.Test;
 
-public class СonverterTest {
+public class ConverterTest {
 
     @Test
     public void rubleToEuro() {

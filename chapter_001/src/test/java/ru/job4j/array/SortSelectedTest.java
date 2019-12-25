@@ -26,7 +26,7 @@ public class SortSelectedTest {
     @Test
     public void whenSort() {
         int[] input = new int[]{3, 4, 1, 2, 5};
-        int result[] = SortSelected.sort(input);
+        int[] result = SortSelected.sort(input);
         int[] expect = new int[]{1, 2, 3, 4, 5};
         assertThat(result, is(expect));
     }
@@ -39,7 +39,7 @@ public class SortSelectedTest {
     @Test
     public void studentTestOne() {
         int[] input = new int[]{3, 4, 1, 2, 5, 7, 9, 11, 13, 10, 1};
-        int result[] = SortSelected.sort(input);
+        int[] result = SortSelected.sort(input);
         int[] expect = new int[]{1, 1, 2, 3, 4, 5, 7, 9, 10, 11, 13};
         assertThat(result, is(expect));
     }

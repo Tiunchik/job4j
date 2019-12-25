@@ -5,9 +5,9 @@
  */
 package ru.job4j.collection;
 
-import org.jetbrains.annotations.NotNull;
 
 import java.util.Objects;
+
 /**
  * Класс User исползуется для отработки переопределе ния метода compateTo
  *
@@ -33,7 +33,7 @@ public class User implements Comparable<User> {
     }
 
     @Override
-    public int compareTo(@NotNull User o) {
+    public int compareTo(User o) {
         if ((name.compareTo(o.name) == 0)) {
             return Integer.compare(age, o.age); //либо   age - o.age > 0 ? 1 : age - o.age == 0 ? 0 : -1;
         }
