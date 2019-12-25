@@ -1,7 +1,3 @@
+[![Build Status](https://travis-ci.org/Tiunchik/job4j.svg?branch=master)](https://travis-ci.org/Tiunchik/job4j)
+[![codecov](https://codecov.io/gh/Tiunchik/job4j/branch/master/graph/badge.svg)](https://codecov.io/gh/Tiunchik/job4j)
 # job4j
-again and again
-Объединение зафиксированных изменений
-Повторное объединение
-Дополнитлньые изменения
-# change README.md
-� ����� ������������� ������ � ������� git.
