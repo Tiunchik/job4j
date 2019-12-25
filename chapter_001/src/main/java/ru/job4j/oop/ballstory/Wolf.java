@@ -19,7 +19,7 @@ public class Wolf {
      * @param ball - передаваемый аргумент в параметр - колобок, которого пытаються съесть
      */
     public void eatBall(Ball ball) {
-        if (ball.exist == true) {
+        if (ball.exist) {
             System.out.println("Встретился Колобку Волк и попытался съесть его.");
             if (Math.random() * 100 > 40) {
                 System.out.println("Колобок был сьеден Волком");

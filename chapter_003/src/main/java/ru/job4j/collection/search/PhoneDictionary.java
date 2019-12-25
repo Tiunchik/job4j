@@ -6,6 +6,7 @@
 package ru.job4j.collection.search;
 
 import java.util.ArrayList;
+
 /**
  * Класс PhoneDictionary - класс содержит список пользователей и осуществляет поиск по ключевому слову
  *
@@ -30,14 +31,15 @@ public class PhoneDictionary {
 
     /**
      * Вернуть список всех пользователей, который содержат key в любых полях.
+     *
      * @param key Ключ поиска.
      * @return Список подощедщих пользователей.
      */
     public ArrayList<Person> find(String key) {
         ArrayList<Person> result = new ArrayList<>();
         for (Person check : persons) {
-            if (check.getName().contains(key) || check.getSurname().contains(key) ||
-                    check.getPhone().contains(key)|| check.getAddress().contains(key)) {
+            if (check.getName().contains(key) || check.getSurname().contains(key)
+                    || check.getPhone().contains(key) || check.getAddress().contains(key)) {
                 result.add(check);
             }
         }

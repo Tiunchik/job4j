@@ -17,7 +17,7 @@ public class CofeMachine {
     /**
      * Массив содержит список возможных монет на сдачу
      */
-    private final int[] COINS = {10, 5, 2, 1};
+    private final int[] coins = {10, 5, 2, 1};
 
     /**
      * Метод осуществляет подбор сдачи жадным алгоритмом
@@ -31,10 +31,10 @@ public class CofeMachine {
         int size = 0;
         int charge = money - price;
         while (charge != 0) {
-            for (int index = 0; index < COINS.length; index++) {
-                if (charge - COINS[index] >= 0) {
-                    charge -= COINS[index];
-                    rsl[size++] = COINS[index];
+            for (int index = 0; index < coins.length; index++) {
+                if (charge - coins[index] >= 0) {
+                    charge -= coins[index];
+                    rsl[size++] = coins[index];
                     break;
                 }
             }

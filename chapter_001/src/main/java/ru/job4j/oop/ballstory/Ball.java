@@ -30,7 +30,7 @@ public class Ball {
      * Если колобка сьели, анный метод ему поможет.
      */
     public void shawshankRedemption() {
-        if (this.exist == false) {
+        if (!(this.exist)) {
             if (Math.random() * 100 > 20) {
                 System.out.println("Но он вырвался, сбежал, укатил без обратного адреса");
                 this.exist = true;

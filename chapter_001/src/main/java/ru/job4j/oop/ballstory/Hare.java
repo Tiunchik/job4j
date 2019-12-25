@@ -19,7 +19,7 @@ public class Hare {
      * @param ball - передаваемый аргумент в параметр - колобок, которого пытаються съесть
      */
     public void eatBall(Ball ball) {
-        if (ball.exist == true) {
+        if (ball.exist) {
             System.out.println("Встретился Колобку Заяц и попытался съесть его.");
             if (Math.random() * 100 > 80) {
                 System.out.println("Колобок был сьеден Зайцем");
