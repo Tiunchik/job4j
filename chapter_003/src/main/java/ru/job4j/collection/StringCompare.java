@@ -26,15 +26,7 @@ public class StringCompare implements Comparator<String> {
     @Override
     public int compare(String left, String right) {
         int answer = 0;
-        char[] charLeft = new char[left.length()], charRight = new char[right.length()];
-        for (int index = 0; index < left.length() || index < right.length(); index++) {
-            if (index < left.length()) {
-                charLeft[index] = left.charAt(index);
-            }
-            if (index < right.length()) {
-                charRight[index] = right.charAt(index);
-            }
-        }
+        char[] charLeft = left.toCharArray(), charRight = right.toCharArray();
         for (int index = 0; index < left.length() || index < right.length(); index++) {
             if (index == left.length()) {
                 answer = left.length() - right.length();
