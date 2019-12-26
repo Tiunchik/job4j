@@ -18,7 +18,7 @@ public class StringCompare implements Comparator<String> {
     /**
      * Метод compare - реализация метода интерфейса Comparator для объкета типа String
      *
-     * @param left - первая переменная типа string, с котрой сравнивают вторую
+     * @param left  - первая переменная типа string, с котрой сравнивают вторую
      * @param right - вторая переменная типа string, с котрой сравнивают первая
      * @return - возвращаемое значние по итогам сравнния 0 - равны, больше 0 - первая переменная больше второй,
      * меньше 0 - первая переменная меньше второй.
@@ -29,18 +29,18 @@ public class StringCompare implements Comparator<String> {
         char[] charLeft = new char[left.length()], charRight = new char[right.length()];
         for (int index = 0; index < left.length() || index < right.length(); index++) {
             if (index < left.length()) {
-                charLeft[index] = Character.toLowerCase(left.charAt(index));
+                charLeft[index] = left.charAt(index);
             }
             if (index < right.length()) {
-                charRight[index] = Character.toLowerCase(right.charAt(index));
+                charRight[index] = right.charAt(index);
             }
         }
         for (int index = 0; index < left.length() || index < right.length(); index++) {
             if (index == left.length()) {
-                answer = -1;
+                answer = left.length() - right.length();
                 break;
             } else if (index == right.length()) {
-                answer = 1;
+                answer = left.length() - right.length();
                 break;
             } else if (Character.compare(charLeft[index], charRight[index]) != 0) {
                 answer = Character.compare(charLeft[index], charRight[index]);
