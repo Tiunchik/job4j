@@ -25,20 +25,13 @@ public class StringCompare implements Comparator<String> {
      */
     @Override
     public int compare(String left, String right) {
-        int answer = 0;
         char[] charLeft = left.toCharArray(), charRight = right.toCharArray();
-        for (int index = 0; index < left.length() || index < right.length(); index++) {
-            if (index == left.length()) {
-                answer = left.length() - right.length();
-                break;
-            } else if (index == right.length()) {
-                answer = left.length() - right.length();
-                break;
-            } else if (Character.compare(charLeft[index], charRight[index]) != 0) {
-                answer = Character.compare(charLeft[index], charRight[index]);
-                break;
+        int board = left.length() - right.length() >= 0 ? right.length() : left.length();
+        for (int index = 0; index < board; index++) {
+            if (Character.compare(charLeft[index], charRight[index]) != 0) {
+                return Character.compare(charLeft[index], charRight[index]);
             }
         }
-        return answer;
+        return left.length() - right.length();
     }
 }
