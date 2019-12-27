@@ -5,15 +5,13 @@
  */
 package ru.job4j.collection.bank;
 
-import ru.job4j.test.Account;
-
 import java.util.Objects;
 
 /**
  * Класс User - класс модель данных
  *
  * @author Maksim Tiunchik (senebh@gmail.com)
- * @version 0.1
+ * @version 0.2
  * @since 28.12.2019
  */
 public class User {

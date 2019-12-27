@@ -12,7 +12,7 @@ import java.util.Iterator;
  * Класс Account - класс модель данных для счёта
  *
  * @author Maksim Tiunchik (senebh@gmail.com)
- * @version 0.1
+ * @version 0.2
  * @since 28.12.2019
  */
 public class Account {

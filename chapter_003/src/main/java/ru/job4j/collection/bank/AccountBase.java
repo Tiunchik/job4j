@@ -15,7 +15,7 @@ import java.util.TreeMap;
  * содержит в себе самм массив (связь - композиция)
  *
  * @author Maksim Tiunchik (senebh@gmail.com)
- * @version 0.1
+ * @version 0.2
  * @since 28.12.2019
  */
 public class AccountBase {
