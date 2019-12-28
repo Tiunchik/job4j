@@ -6,7 +6,6 @@
 package ru.job4j.collection.bank;
 
 import java.util.ArrayList;
-import java.util.Iterator;
 import java.util.List;
 import java.util.TreeMap;
 
@@ -110,7 +109,7 @@ public class AccountBase {
             dstRequisite, double amount) {
         if (getUser(srcPassport) != null && getAccount(getUser(srcPassport), srcRequisite) != null
                 && getUser(destPassport) != null && getAccount(getUser(destPassport), dstRequisite) != null
-                && amount > 0) {
+                && amount > 0 && amount != 0) {
             if (getAccount(getUser(srcPassport), srcRequisite).setWealth(-1 * amount)) {
                 getAccount(getUser(destPassport), dstRequisite).setWealth(amount);
                 return true;
@@ -128,10 +127,9 @@ public class AccountBase {
      */
     private User getUser(String srcPassport) {
         List<User> temp = new ArrayList<>(base.keySet());
-        Iterator<User> iretator = temp.iterator();
-        while (iretator.hasNext()) {
-            if (iretator.next().getPassportN().equals(srcPassport)) {
-                return iretator.next();
+        for (User index : temp) {
+            if (index.getPassportN().equals(srcPassport)) {
+                return index;
             }
         }
         return null;
@@ -146,13 +144,13 @@ public class AccountBase {
      */
     private Account getAccount(User user, String reqs) {
         List<Account> temp = base.get(user);
-        Iterator<Account> iter = temp.iterator();
-        while (iter.hasNext()) {
-            if (iter.next().getReq().equals(reqs)) {
-                return iter.next();
+        for (Account index : temp) {
+            if (index.getReq().equals(reqs)) {
+                return index;
             }
         }
         return null;
     }
 
 }
+
