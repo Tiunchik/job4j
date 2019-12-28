@@ -7,6 +7,7 @@ package ru.job4j.lambda;
 
 import org.junit.Assert;
 import org.junit.Test;
+
 import java.util.Arrays;
 import java.util.List;
 
@@ -17,7 +18,7 @@ import static org.junit.Assert.assertThat;
  * Класс LambdaTest - класс для тестирования метода с различными лямбда выражениями
  *
  * @author Maksim Tiunchik (senebh@gmail.com)
- * @version 0.1
+ * @version 0.2
  * @since 28.12.2019
  */
 public class LambdaTest {
@@ -33,6 +34,7 @@ public class LambdaTest {
         List<Double> expected = Arrays.asList(11D, 13D, 15D);
         assertThat(result, is(expected));
     }
+
     /**
      * Тест с квадратной функцией
      */
@@ -45,6 +47,7 @@ public class LambdaTest {
         List<Double> expected = Arrays.asList(18D, 28D, 40D);
         assertThat(result, is(expected));
     }
+
     /**
      * Тест с логарифмической функцией
      */
@@ -55,8 +58,8 @@ public class LambdaTest {
                     return (Math.log10(x));
                 });
         List<Double> expected = Arrays.asList(0.69, 0.77, 0.84);
-        Assert.assertEquals(expected.get(0),result.get(0), 0.01);
-        Assert.assertEquals(expected.get(1),result.get(1), 0.01);
-        Assert.assertEquals(expected.get(2),result.get(2), 0.01);
+        Assert.assertEquals(expected.get(0), result.get(0), 0.01);
+        Assert.assertEquals(expected.get(1), result.get(1), 0.01);
+        Assert.assertEquals(expected.get(2), result.get(2), 0.01);
     }
 }

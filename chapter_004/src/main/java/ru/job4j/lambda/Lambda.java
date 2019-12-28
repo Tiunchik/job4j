@@ -13,7 +13,7 @@ import java.util.function.Function;
  * Класс Lambda - класс с методом требующми опредлениям посредством лямбда выражний
  *
  * @author Maksim Tiunchik (senebh@gmail.com)
- * @version 0.1
+ * @version 0.2
  * @since 28.12.2019
  */
 public class Lambda {
