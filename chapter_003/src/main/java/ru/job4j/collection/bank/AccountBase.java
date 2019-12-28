@@ -109,7 +109,7 @@ public class AccountBase {
             dstRequisite, double amount) {
         if (getUser(srcPassport) != null && getAccount(getUser(srcPassport), srcRequisite) != null
                 && getUser(destPassport) != null && getAccount(getUser(destPassport), dstRequisite) != null
-                && amount > 0 && amount != 0) {
+                && amount > 0) {
             if (getAccount(getUser(srcPassport), srcRequisite).setWealth(-1 * amount)) {
                 getAccount(getUser(destPassport), dstRequisite).setWealth(amount);
                 return true;
