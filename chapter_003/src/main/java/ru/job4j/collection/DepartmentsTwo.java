@@ -60,7 +60,16 @@ public class DepartmentsTwo {
      * @param orgs - ввдимая для сортировки коллекция
      */
     public static void sortDesc(List<String> orgs) {
-        orgs.sort((o1, o2) -> o2.compareTo(o1)); //Can be replaced Comparator.reverseOrder, но опыт в данном случае бесценен =)
+        orgs.sort((o1, o2) -> {
+            char[] charLeft = o1.toCharArray(), charRight = o2.toCharArray();
+            int board = o1.length() - o2.length() >= 0 ? o2.length() : o1.length();
+            for (int index = 0; index < board; index++) {
+                if (Character.compare(charRight[index], charLeft[index]) != 0) {
+                    return Character.compare(charRight[index], charLeft[index]);
+                }
+            }
+            return o1.length() - o2.length();
+        });
     }
 
 }
