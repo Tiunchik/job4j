@@ -5,6 +5,8 @@
  */
 package ru.job4j.oop.tracker;
 
+import java.util.function.Consumer;
+
 /**
  * интерфейс для вызова действия с "базой данны"
  *
@@ -26,6 +28,6 @@ public interface UserActions {
      * @param tracker - база данных с которой происходит работа
      * @return - если false - прерывание работы программы
      */
-    public boolean execute(Input input, Tracker tracker);
+    public boolean execute(Input input, Tracker tracker, Consumer consumer);
 
 }

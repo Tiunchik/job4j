@@ -6,6 +6,8 @@
  */
 package ru.job4j.oop.tracker;
 
+import java.util.function.Consumer;
+
 /**
  * Один из вариантов методов для интерфейса UserActions
  *
@@ -30,11 +32,11 @@ public class AddItem implements UserActions {
      * @param tracker - трэкер - база данных, с которым ведёться работа
      */
     @Override
-    public boolean execute(Input input, Tracker tracker) {
+    public boolean execute(Input input, Tracker tracker, Consumer output) {
         String name = input.askStr("Enter name: ");
         Item item = new Item(name);
         tracker.add(item);
-        System.out.println("Position was added");
+        output.accept("Position was added");
         return true;
     }
 }

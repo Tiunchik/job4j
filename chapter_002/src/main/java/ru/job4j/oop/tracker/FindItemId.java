@@ -6,6 +6,8 @@
  */
 package ru.job4j.oop.tracker;
 
+import java.util.function.Consumer;
+
 /**
  * Один из вариантов методов для интерфейса UserActions
  *
@@ -30,14 +32,14 @@ public class FindItemId implements UserActions {
      * @param tracker - трэкер - база данных, с которым ведёться работа
      */
     @Override
-    public boolean execute(Input input, Tracker tracker) {
+    public boolean execute(Input input, Tracker tracker, Consumer output) {
         String name = input.askStr("Enter ID number for searching: ");
         Item item = tracker.findById(name);
         if (item != null) {
-            System.out.println("Found position - name: " + item.getName() + " ID: "
+            output.accept("Found position - name: " + item.getName() + " ID: "
                     + item.getId());
         } else {
-            System.out.println("Didn't find anything");
+            output.accept("Didn't find anything");
         }
         return true;
     }

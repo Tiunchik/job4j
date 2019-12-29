@@ -6,6 +6,8 @@
  */
 package ru.job4j.oop.tracker;
 
+import java.util.function.Consumer;
+
 /**
  * Один из вариантов методов для интерфейса UserActions
  *
@@ -21,7 +23,7 @@ public class Escape implements UserActions {
     }
 
     @Override
-    public boolean execute(Input input, Tracker tracker) {
+    public boolean execute(Input input, Tracker tracker, Consumer output) {
         return false;
     }
 }

@@ -6,6 +6,8 @@
  */
 package ru.job4j.oop.tracker;
 
+import java.util.function.Consumer;
+
 /**
  * Один из вариантов методов для интерфейса UserActions
  *
@@ -30,12 +32,12 @@ public class DeleteItem implements UserActions {
      * @param tracker - трэкер - база данных, с которым ведёться работа
      */
     @Override
-    public boolean execute(Input input, Tracker tracker) {
+    public boolean execute(Input input, Tracker tracker, Consumer output) {
         String name = input.askStr("Enter ID number of a deleting item: ");
         if (tracker.deleteById(name)) {
-            System.out.println("Item was deleted");
+            output.accept("Item was deleted");
         } else {
-            System.out.println("ID is incorrect. Try again");
+            output.accept("ID is incorrect. Try again");
         }
         return true;
     }

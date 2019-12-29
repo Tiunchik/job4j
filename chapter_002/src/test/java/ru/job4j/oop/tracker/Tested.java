@@ -20,6 +20,6 @@ public class Tested {
             array[index] = item;
         }
         tracker.sorter(false, tracker);
-        new ShowAll().execute(new StubInput(new String[]{}), tracker);
+        new ShowAll().execute(new StubInput(new String[]{}), tracker, System.out::println);
     }
 }

@@ -6,6 +6,8 @@
  */
 package ru.job4j.oop.tracker;
 
+import java.util.function.Consumer;
+
 /**
  * Один из вариантов методов для интерфейса UserActions
  *
@@ -30,10 +32,10 @@ public class ShowAll implements UserActions {
      * @param tracker - трэкер - база данных, с которым ведёться работа
      */
     @Override
-    public boolean execute(Input input, Tracker tracker) {
+    public boolean execute(Input input, Tracker tracker, Consumer output) {
         Item[] array = tracker.findAll();
         for (int i = 0; i < array.length; i++) {
-            System.out.println("Position: " + i + " Name: " + array[i].getName() + " ID: "
+            output.accept("Position: " + i + " Name: " + array[i].getName() + " ID: "
                     + array[i].getId());
         }
         return true;

@@ -5,53 +5,50 @@
  */
 package ru.job4j.oop.tracker;
 
+import java.util.function.Consumer;
+
 /**
  * Класс StartUI - основной клас связующий все остальные классы для работы консольного приложения, содержит метод main
  *
  * @author Maksim Tiunchik (senebh@gmail.com)
- * @version 0.7
- * @since 18.12.2019
+ * @version 0.8
+ * @since 29.12.2019
  */
 public class StartUI {
+    private final Input input;
+    private final Tracker tracker;
+    private final Consumer<String> output;
+
+    public StartUI(Input input, Tracker tracker, Consumer<String> output) {
+        this.input = input;
+        this.tracker = tracker;
+        this.output = output;
+    }
+
     /**
      * Метод создаёт базу данных из моделей данных item, иницилизирует объект для считывания ответов пользователя
      *
-     * @param input   - объект для работы с вводом данных с клавиатуры
-     * @param tracker - база данных программы, где храняться все занесенную в базу позиции
      * @param actions - база данных действий для работы с базой данных, реализованной посредством интерфейса
      */
-    public void init(Input input, Tracker tracker, UserActions[] actions) {
+    public void init(UserActions[] actions) {
         boolean run = true;
         int select = 0;
         while (run) {
-                this.showMenu(actions);
-                select = input.askInt("Select: ", actions.length);
-                run = actions[select].execute(input, tracker);
-            }
+            this.showMenu(actions);
+            select = input.askInt("Select: ", actions.length);
+            run = actions[select].execute(input, tracker, output);
         }
+    }
+
     /**
      * Метод вывода меню перед пользователем
      *
      * @param action - база данных действий для работы с базой данных
      */
     public void showMenu(UserActions[] action) {
-        System.out.println("Menu:");
+        output.accept("Menu:");
         for (int index = 0; index < action.length; index++) {
-            System.out.print(index + " ");
-            System.out.println(action[index].name());
+            output.accept(index + " " + action[index].name());
         }
-    }
-
-    /**
-     * Метод main
-     *
-     * @param args - args.
-     */
-    public static void main(String[] args) {
-        Input input = new ValidateInput(new ConsoleInput());
-        Tracker tracker = new Tracker();
-        UserActions[] action = {new AddItem(), new ShowAll(), new AdjustItem(),
-                new DeleteItem(), new FindItemId(), new FindItemName(), new Escape()};
-        new StartUI().init(input, tracker, action);
     }
 }
