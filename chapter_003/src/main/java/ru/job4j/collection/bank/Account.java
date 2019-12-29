@@ -52,9 +52,30 @@ public class Account {
      * @param wealth - на какую сумму меняется счёт, для уменьшения внесите отрицательное число
      * @return - 1 если счёт уменьшен, 0 если операция не произведена
      */
-    public boolean setWealth(double wealth) {
-        if (this.wealth + wealth >= 0) {
-            this.wealth += wealth;
+    public void setWealth(double wealth) {
+        this.wealth = wealth;
+    }
+
+    /**
+     * Геттер на переменную wealth
+     *
+     * @return значенеи wealth
+     */
+    public double getWealth() {
+        return wealth;
+    }
+
+    /**
+     * Метод перевода средств между счетами
+     *
+     * @param a2     - счёт на которой производится зачисление
+     * @param wealth - перемещаемая сумма
+     * @return - 1 если перевод осуществлён, 0 - если нет
+     */
+    public boolean transfer(Account a2, double wealth) {
+        if (this.getWealth() >= wealth && wealth > 0) {
+            this.setWealth(this.getWealth() - wealth);
+            a2.setWealth(a2.getWealth() + wealth);
             return true;
         }
         return false;

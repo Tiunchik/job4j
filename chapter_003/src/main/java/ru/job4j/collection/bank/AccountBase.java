@@ -107,12 +107,10 @@ public class AccountBase {
      */
     public boolean transferMoney(String srcPassport, String srcRequisite, String destPassport, String
             dstRequisite, double amount) {
-        if ((getAccount(srcPassport, srcRequisite) != null)
-                && (getAccount(srcPassport, dstRequisite) != null)
-                && amount > 0) {
-            getAccount(srcPassport, srcRequisite).setWealth(-1 * amount);
-            getAccount(destPassport, dstRequisite).setWealth(amount);
-            return true;
+        Account a1 = getAccount(srcPassport, srcRequisite),
+                a2 = getAccount(destPassport, dstRequisite);
+        if (a1 != null && a2 != null) {
+            return a1.transfer(a2, amount);
         }
         return false;
     }
@@ -139,7 +137,7 @@ public class AccountBase {
      * Метод возвращает счёт пользователя по рекизитам счёта
      *
      * @param srcPassport - паспортные данные пользователя
-     * @param reqs - реквизиты счёта для поиска
+     * @param reqs        - реквизиты счёта для поиска
      * @return - счёт с искомыми рекизитами
      */
     private Account getAccount(String srcPassport, String reqs) {
