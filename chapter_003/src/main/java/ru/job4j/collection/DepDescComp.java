@@ -24,6 +24,13 @@ public class DepDescComp implements Comparator<String> {
      */
     @Override
     public int compare(String o1, String o2) {
-        return o2.compareTo(o1);
+        char[] charLeft = o1.toCharArray(), charRight = o2.toCharArray();
+        int board = o1.length() - o2.length() >= 0 ? o2.length() : o1.length();
+        for (int index = 0; index < board; index++) {
+            if (Character.compare(charRight[index], charLeft[index]) != 0) {
+                return Character.compare(charRight[index], charLeft[index]);
+            }
+        }
+        return o1.length() - o2.length();
     }
 }

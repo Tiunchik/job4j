@@ -27,6 +27,17 @@ public class DepDescCompTest {
                 "K2/SK1/SSK2",
                 "K2/SK1/SSK1"
         );
-        assertThat(rsl, lessThan(0)); //почему больше а не меньше? В этом же суть данного компоратора, а вывод из теста как при естественном порядке
+        assertThat(rsl, lessThan(0));
+    }
+    /**
+     * Тест работы компоратора
+     */
+    @Test
+    public void compareTwo() {
+        int rsl = new DepDescComp().compare(
+                "K2",
+                "K2/SK1/SSK1"
+        );
+        assertThat(rsl, lessThan(0));
     }
 }
