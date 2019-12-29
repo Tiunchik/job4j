@@ -107,14 +107,12 @@ public class AccountBase {
      */
     public boolean transferMoney(String srcPassport, String srcRequisite, String destPassport, String
             dstRequisite, double amount) {
-        if (getUser(srcPassport) != null && getAccount(getUser(srcPassport), srcRequisite) != null
-                && getUser(destPassport) != null && getAccount(getUser(destPassport), dstRequisite) != null
+        if ((getAccount(srcPassport, srcRequisite) != null)
+                && (getAccount(srcPassport, dstRequisite) != null)
                 && amount > 0) {
-            if (getAccount(getUser(srcPassport), srcRequisite).setWealth(-1 * amount)) {
-                getAccount(getUser(destPassport), dstRequisite).setWealth(amount);
-                return true;
-            }
-
+            getAccount(srcPassport, srcRequisite).setWealth(-1 * amount);
+            getAccount(destPassport, dstRequisite).setWealth(amount);
+            return true;
         }
         return false;
     }
@@ -126,10 +124,12 @@ public class AccountBase {
      * @return - объект User
      */
     private User getUser(String srcPassport) {
-        List<User> temp = new ArrayList<>(base.keySet());
-        for (User index : temp) {
-            if (index.getPassportN().equals(srcPassport)) {
-                return index;
+        if (!(base.isEmpty())) {
+            List<User> temp = new ArrayList<>(base.keySet());
+            for (User index : temp) {
+                if (index.getPassportN().equals(srcPassport)) {
+                    return index;
+                }
             }
         }
         return null;
@@ -138,15 +138,17 @@ public class AccountBase {
     /**
      * Метод возвращает счёт пользователя по рекизитам счёта
      *
-     * @param user - пользователь у которого ищется счёт
+     * @param srcPassport - паспортные данные пользователя
      * @param reqs - реквизиты счёта для поиска
      * @return - счёт с искомыми рекизитами
      */
-    private Account getAccount(User user, String reqs) {
-        List<Account> temp = base.get(user);
-        for (Account index : temp) {
-            if (index.getReq().equals(reqs)) {
-                return index;
+    private Account getAccount(String srcPassport, String reqs) {
+        List<Account> temp = getUserAccounts(srcPassport);
+        if (temp != null) {
+            for (Account index : temp) {
+                if (index.getReq().equals(reqs)) {
+                    return index;
+                }
             }
         }
         return null;
