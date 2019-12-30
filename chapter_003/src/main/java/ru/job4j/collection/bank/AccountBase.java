@@ -8,6 +8,7 @@ package ru.job4j.collection.bank;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.TreeMap;
+import java.util.stream.Collectors;
 
 /**
  * Класс AccountBase - класс содержит методы для работы с массивом TreeMap<User, List<Account>>, а так же
@@ -124,11 +125,10 @@ public class AccountBase {
     private User getUser(String srcPassport) {
         if (!(base.isEmpty())) {
             List<User> temp = new ArrayList<>(base.keySet());
-            for (User index : temp) {
-                if (index.getPassportN().equals(srcPassport)) {
-                    return index;
-                }
-            }
+            return temp.stream()
+                    .filter(x -> x.getPassportN().equals(srcPassport))
+                    .findFirst()
+                    .orElse(null);
         }
         return null;
     }
@@ -143,11 +143,10 @@ public class AccountBase {
     private Account getAccount(String srcPassport, String reqs) {
         List<Account> temp = getUserAccounts(srcPassport);
         if (temp != null) {
-            for (Account index : temp) {
-                if (index.getReq().equals(reqs)) {
-                    return index;
-                }
-            }
+            return temp.stream()
+                    .filter(x -> x.getReq().equals(reqs))
+                    .findFirst()
+                    .orElse(null);
         }
         return null;
     }
