@@ -14,8 +14,8 @@ import static org.junit.Assert.assertThat;
  * тесты предоставлены Petr Arsentev (job4j.ru)
  *
  * @author -
- * @version 0.1
- * @since 22.12.2019
+ * @version 0.2
+ * @since 31.12.2019
  */
 public class PriorityQueueTest {
     /**
@@ -23,11 +23,11 @@ public class PriorityQueueTest {
      */
     @Test
     public void whenHigherPriority() {
-        PriorityQueue queue = new PriorityQueue();
+        var queue = new PriorityQueue();
         queue.put(new Task("low", 5));
         queue.put(new Task("urgent", 1));
         queue.put(new Task("middle", 3));
-        Task result = queue.take();
+        var result = queue.take();
         assertThat(result.getDesc(), is("urgent"));
     }
 
@@ -36,8 +36,8 @@ public class PriorityQueueTest {
      */
     @Test
     public void whenQueueEmpty() {
-        PriorityQueue queue = new PriorityQueue();
-        Task result = queue.take();
+        var queue = new PriorityQueue();
+        var result = queue.take();
         assertThat(result.getDesc(), is("null"));
     }
 
@@ -46,9 +46,9 @@ public class PriorityQueueTest {
      */
     @Test
     public void whenQueueWasEmpty() {
-        PriorityQueue queue = new PriorityQueue();
+        var queue = new PriorityQueue();
         queue.put(new Task("middle", 3));
-        Task result = queue.take();
+        var result = queue.take();
         assertThat(result.getDesc(), is("middle"));
     }
 }

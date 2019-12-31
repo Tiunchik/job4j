@@ -10,14 +10,14 @@ import java.util.LinkedList;
  * Класс PriorityQueue - класс для обучения работе с коллекцией LinkedList
  *
  * @author Maksim Tiunchik (senebh@gmail.com)
- * @version 0.1
- * @since 22.12.2019
+ * @version 0.2
+ * @since 31.12.2019
  */
 public class PriorityQueue {
     /**
      * Созданная колекция на основе объекта Task
      */
-    private LinkedList<Task> tasks = new LinkedList<>();
+    private LinkedList<Task> tasks = new LinkedList<Task>();
 
     /**
      * Метод организовывает вставку элементов в коллекцию согласно заданного в элементе приоритета
@@ -25,8 +25,8 @@ public class PriorityQueue {
      * @param task - добавляемая в коллекцию позиция
      */
     public void put(Task task) {
-        int index = 0;
-            for (Task element : tasks) {
+        var index = 0;
+            for (var element : tasks) {
                 if (element.getPriority() > task.getPriority()) {
                     break;
                 }

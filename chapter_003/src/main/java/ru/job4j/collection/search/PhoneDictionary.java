@@ -11,8 +11,8 @@ import java.util.ArrayList;
  * Класс PhoneDictionary - класс содержит список пользователей и осуществляет поиск по ключевому слову
  *
  * @author Maksim Tiunchik (senebh@gmail.com)
- * @version 0.1
- * @since 22.12.2019
+ * @version 0.2
+ * @since 31.12.2019
  */
 public class PhoneDictionary {
     /**
@@ -37,7 +37,7 @@ public class PhoneDictionary {
      */
     public ArrayList<Person> find(String key) {
         ArrayList<Person> result = new ArrayList<>();
-        for (Person check : persons) {
+        for (var check : persons) {
             if (check.getName().contains(key) || check.getSurname().contains(key)
                     || check.getPhone().contains(key) || check.getAddress().contains(key)) {
                 result.add(check);
