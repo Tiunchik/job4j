@@ -13,6 +13,7 @@ import java.util.Arrays;
 import java.util.Collection;
 import java.util.List;
 import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 /**
  * Класс NubmerMatrixConvert - класс содержит метод преобразования "матричной" коллекции в линейную коллекцию,
@@ -46,10 +47,8 @@ public class NubmerMatrixConvert {
                 {1, 2, 3},
                 {4, 5, 6}
         };
-        List<Integer> list = new ArrayList<Integer>();
-        for (Integer[] row : oldMatrix) {
-            list.addAll(Arrays.asList(row));
-        }
+        List<Integer> list = Stream.of(oldMatrix).flatMap(e -> Stream.of(e)).collect(Collectors.toList());
+        //List<Integer> list = Arrays.stream(oldMatrix).flatMap(Arrays::stream).collect(Collectors.toList());
         Assert.assertEquals(6, list.size());
     }
 
