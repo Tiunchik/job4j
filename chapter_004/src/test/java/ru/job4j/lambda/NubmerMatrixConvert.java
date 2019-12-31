@@ -8,6 +8,8 @@ package ru.job4j.lambda;
 import org.junit.Assert;
 import org.junit.Test;
 
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Collection;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -33,6 +35,22 @@ public class NubmerMatrixConvert {
         );
         List<Integer> result = matrix.stream().flatMap(Collection::stream).collect(Collectors.toList());
         Assert.assertEquals(6, result.size());
+    }
+
+    /**
+     * Преобразование  матрицы Integer в список объектв типа Integer
+     */
+    @Test
+    public void converIntegerMatrixTest() {
+        Integer[][] oldMatrix = {
+                {1, 2, 3},
+                {4, 5, 6}
+        };
+        List<Integer> list = new ArrayList<Integer>();
+        for (Integer[] row : oldMatrix) {
+            list.addAll(Arrays.asList(row));
+        }
+        Assert.assertEquals(6, list.size());
     }
 
 }
