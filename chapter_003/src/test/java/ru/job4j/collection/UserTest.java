@@ -7,13 +7,12 @@ package ru.job4j.collection;
 
 import org.junit.Test;
 
-import java.util.Iterator;
-import java.util.Set;
-import java.util.TreeSet;
+import java.util.*;
 
 import static org.hamcrest.Matchers.greaterThan;
 import static org.hamcrest.core.Is.is;
 import static org.junit.Assert.*;
+
 /**
  * Класс UserTest исползуется для автоматических тестов методов класса User
  *
@@ -22,14 +21,20 @@ import static org.junit.Assert.*;
  * @since 24.12.2019
  */
 public class UserTest {
+
     @Test
     public void whenAsc() {
-        Set<User> users = new TreeSet<>();
-        users.add(new User("Petr", 32));
-        users.add(new User("Ivan", 31));
+        Set<User> users = Set.of(
+                new User("ivan", 31),
+                new User("petr", 32),
+                new User("max", 29)
+        );
         Iterator<User> it = users.iterator();
-        assertThat(it.next(), is(new User("Ivan", 31)));
-        assertThat(it.next(), is(new User("Petr", 32)));
+        assertThat(it.next(), is(new User("ivan", 31)));
+        assertThat(it.next(), is(new User("max", 29)));
+        assertThat(it.next(), is(new User("petr", 32)));
+
+
     }
 
     @Test

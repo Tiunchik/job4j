@@ -31,7 +31,7 @@ public class ConvertArrayToListTest {
                 {1, 2},
                 {3, 4}
         };
-        List<Integer> expect = Arrays.asList(
+        List<Integer> expect = List.of(
                 1, 2, 3, 4
         );
         List<Integer> result = list.toList(input);
@@ -46,7 +46,7 @@ public class ConvertArrayToListTest {
                 {4, 5, 6},
                 {7, 8, 9},
         };
-        List<Integer> expect = Arrays.asList(
+        List<Integer> expect = List.of(
                 1, 2, 3, 4, 5, 6, 7, 8, 9
         );
         List<Integer> result = list.toList(input);

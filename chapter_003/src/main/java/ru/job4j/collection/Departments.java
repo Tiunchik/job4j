@@ -57,15 +57,6 @@ public class Departments {
      * @param orgs - ввдимая для сортировки коллекция
      */
     public static void sortDesc(List<String> orgs) {
-        /* А такой вариант в данном случае мне больше нравится
-        Comparator goToBack = new Comparator<String>() {
-            @Override
-            public int compare(String o1, String o2) {
-                return o2.compareTo(o1);
-            }
-        };
-        Collections.sort(orgs, goToBack);
-    */
         orgs.sort(new DepDescComp());
     }
 

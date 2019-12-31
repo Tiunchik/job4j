@@ -23,8 +23,8 @@ public class DepartmentsTest {
      */
     @Test
     public void whenMissed() {
-        List<String> input = Arrays.asList("k1/sk1");
-        List<String> expect = Arrays.asList("k1", "k1/sk1");
+        List<String> input = List.of("k1/sk1");
+        List<String> expect = List.of("k1", "k1/sk1");
         List<String> result = Departments.fillGaps(input);
         assertThat(result, is(expect));
     }
@@ -33,8 +33,8 @@ public class DepartmentsTest {
      */
     @Test
     public void whenNonChange() {
-        List<String> input = Arrays.asList("k1", "k1/sk1");
-        List<String> expect = Arrays.asList("k1", "k1/sk1");
+        List<String> input = List.of("k1", "k1/sk1");
+        List<String> expect = List.of("k1", "k1/sk1");
         List<String> result = Departments.fillGaps(input);
         assertThat(result, is(expect));
     }
@@ -43,8 +43,8 @@ public class DepartmentsTest {
      */
     @Test
     public void whenTwoMissed() {
-        List<String> input = Arrays.asList("K2/SK1/SSK1");
-        List<String> expect = Arrays.asList("K2", "K2/SK1", "K2/SK1/SSK1");
+        List<String> input = List.of("K2/SK1/SSK1");
+        List<String> expect = List.of("K2", "K2/SK1", "K2/SK1/SSK1");
         List<String> result = Departments.fillGaps(input);
         assertThat(result, is(expect));
     }
@@ -54,6 +54,7 @@ public class DepartmentsTest {
     @Test
     public void sortNaturalOrdering() {
         List<String> input = Arrays.asList("K2/SK1", "K2/SK1/SSK1", "K2");
+        //https://stackoverflow.com/questions/46579074/what-is-the-difference-between-list-of-and-arrays-aslist
         List<String> expect = Arrays.asList("K2", "K2/SK1", "K2/SK1/SSK1");
         Departments.sortAsc(input);
         assertThat(input, is(expect));

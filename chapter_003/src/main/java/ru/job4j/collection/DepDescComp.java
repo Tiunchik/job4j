@@ -27,7 +27,7 @@ public class DepDescComp implements Comparator<String> {
         char[] charLeft = o1.toCharArray(), charRight = o2.toCharArray();
         int board = o1.length() - o2.length() >= 0 ? o2.length() : o1.length();
         for (int index = 0; index < board; index++) {
-            if (Character.compare(charRight[index], charLeft[index]) != 0) {
+            if (charRight[index] != charLeft[index]) {
                 return Character.compare(charRight[index], charLeft[index]);
             }
         }

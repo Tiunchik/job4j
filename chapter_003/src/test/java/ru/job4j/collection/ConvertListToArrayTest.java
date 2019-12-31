@@ -67,9 +67,10 @@ public class ConvertListToArrayTest {
     @Test
     public void convertToArrayList() {
         ConvertListToArray list = new ConvertListToArray();
-        List<int[]> array = new ArrayList<int[]>();
-        array.add(new int[]{1, 2, 3, 4});
-        array.add(new int[]{5, 6, 7});
+        List<int[]> array = List.of(
+                new int[]{1, 2, 3, 4},
+                new int[]{5, 6, 7}
+        );
         List<Integer> out = new ArrayList<Integer>();
         out = list.convert(array);
         List<Integer> expect = new ArrayList<Integer>();
