@@ -24,17 +24,15 @@ public class UserTest {
 
     @Test
     public void whenAsc() {
-        Set<User> users = Set.of(
-                new User("ivan", 31),
+        Set<User> users = new TreeSet<>(Set.of(
                 new User("petr", 32),
+                new User("ivan", 31),
                 new User("max", 29)
-        );
+        ));
         Iterator<User> it = users.iterator();
         assertThat(it.next(), is(new User("ivan", 31)));
         assertThat(it.next(), is(new User("max", 29)));
         assertThat(it.next(), is(new User("petr", 32)));
-
-
     }
 
     @Test
