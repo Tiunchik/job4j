@@ -5,10 +5,7 @@
  */
 package ru.job4j.collection.bank;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Optional;
-import java.util.TreeMap;
+import java.util.*;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
@@ -17,14 +14,14 @@ import java.util.stream.Stream;
  * содержит в себе самм массив (связь - композиция)
  *
  * @author Maksim Tiunchik (senebh@gmail.com)
- * @version 0.2
+ * @version 0.3
  * @since 28.12.2019
  */
 public class AccountBase {
     /**
      * Массив типа Map, содежит базу данных клиентов банка
      */
-    private final TreeMap<User, ArrayList<Account>> base = new TreeMap<>();
+    private final HashMap<User, ArrayList<Account>> base = new HashMap<>();
 
     /**
      * Метод добавляет клиента банка в базу данных
@@ -33,11 +30,7 @@ public class AccountBase {
      * @return - возвращает 1 если клиент добавлен и 0 если клиент уже есть в базе
      */
     public boolean addUser(User user) {
-        if (!(base.containsKey(user))) {
-            base.put(user, new ArrayList<Account>());
-            return true;
-        }
-        return false;
+        return base.putIfAbsent(user, null) != null;
     }
 
     /**
@@ -62,8 +55,9 @@ public class AccountBase {
      * @return возвращает 1 если счет добавлен и 0 если нет
      */
     public boolean addAccountToUser(String passport, Account account) {
-        if (getUser(passport) != null) {
-            base.get(getUser(passport)).add(account);
+        var temp = getUser(passport);
+        if (temp != null) {
+            base.get(temp).add(account);
             return true;
         }
         return false;
@@ -77,9 +71,10 @@ public class AccountBase {
      * @return возвращает 1 если счет удалён и 0 если нет
      */
     public boolean deleteAccountFromUser(String passport, Account account) {
-        List<Account> temp = base.get(getUser(passport));
+        var uTemp = getUser(passport);
+        List<Account> temp = base.get(uTemp);
         if (temp.contains(account)) {
-            base.get(getUser(passport)).remove(account);
+            base.get(uTemp).remove(account);
             return true;
         }
         return false;
@@ -92,8 +87,9 @@ public class AccountBase {
      * @return - список счетов пользователя
      */
     public List<Account> getUserAccounts(String passport) {
-        if (getUser(passport) != null) {
-            return base.get(getUser(passport));
+        var temp = getUser(passport);
+        if (temp != null) {
+            return base.get(temp);
         }
         return null;
     }
@@ -145,11 +141,10 @@ public class AccountBase {
     private Account getAccount(String srcPassport, String reqs) {
         List<Account> temp = getUserAccounts(srcPassport);
         if (temp != null) {
-            Stream<Account> stream = temp.stream();
-            stream.filter(x -> x.getReq().equals(reqs));
-            if (stream.findFirst().isPresent()) {
-                Account acc = stream.findFirst().get();
-            }
+            return temp.stream()
+                    .filter(x -> x.getReq().equals(reqs))
+                    .findFirst()
+                    .orElse(null);
         }
         return null;
     }
