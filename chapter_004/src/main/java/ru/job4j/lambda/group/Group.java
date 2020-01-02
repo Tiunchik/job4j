@@ -4,16 +4,17 @@ import java.util.*;
 import java.util.stream.Collector;
 import java.util.stream.Collectors;
 
+
 public class Group {
 
-    public static Map<String, HashSet<String>> sections(List<Student> students) {
-        var temp = students.stream()
+    public static Map<String, Set<String>> sections(List<Student> students) {
+        return students.stream()
                 .flatMap(e -> e.getUnits().stream()
                         .map(x -> new Holder(e.getName(), x)))
                 .collect(
                         Collectors.groupingBy(t -> t.key,
                                 Collector.of(
-                                        HashSet<String>::new,
+                                        HashSet::new,
                                         (e, x) -> {
                                             e.add(x.value);
                                         },
@@ -21,7 +22,6 @@ public class Group {
                                             left.addAll(right);
                                             return left;
                                         })));
-        return temp;
     }
 
     static class Holder {
