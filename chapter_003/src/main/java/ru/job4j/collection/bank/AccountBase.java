@@ -1,21 +1,19 @@
 /**
- * Пакет для тестового задания "Банковские переводы"
+ * Пакет для тестового задания "Банковские переводы", работа с optional
  *
  * @author Maksim Tiunchik
  */
 package ru.job4j.collection.bank;
 
 import java.util.*;
-import java.util.stream.Collectors;
-import java.util.stream.Stream;
 
 /**
- * Класс AccountBase - класс содержит методы для работы с массивом TreeMap<User, List<Account>>, а так же
- * содержит в себе самм массив (связь - композиция)
+ * Класс AccountBase - класс содержит методы для работы с коллекциями HashMap<User, List<Account>, а так же
+ * содержит в себе самми коллекцию (композиция)
  *
  * @author Maksim Tiunchik (senebh@gmail.com)
- * @version 0.3
- * @since 28.12.2019
+ * @version 0.4
+ * @since 03.01.2019
  */
 public class AccountBase {
     /**
@@ -40,7 +38,7 @@ public class AccountBase {
      * @return возвращает 1 если клиент удалён и 0 если клиента нет в базе
      */
     public boolean deleteUser(User user) {
-        if (!(base.containsKey(user))) {
+        if (base.containsKey(user)) {
             base.remove(user);
             return true;
         }
@@ -56,8 +54,9 @@ public class AccountBase {
      */
     public boolean addAccountToUser(String passport, Account account) {
         var temp = getUser(passport);
-        if (temp != null) {
-            base.get(temp).add(account);
+        if (temp.isPresent()) {
+            base.get(temp.get()).add(account); //если делать через ifPresent то не выходит сделать метод с возвращаемым значением
+            // boolean - см метод deleteAccountFromUser
             return true;
         }
         return false;
@@ -66,18 +65,16 @@ public class AccountBase {
     /**
      * Удаляет у клиента счёт
      *
-     * @param passport - счёт удаляется у клиента со следующими паспортными данными
-     * @param account  - удаляемый счёт
-     * @return возвращает 1 если счет удалён и 0 если нет
+     * @param passport - счёт удаляется у клиента со следующими паспортными данными - если клиент сущевует
+     * @param account  - удаляемый счёт - если счёт существует
      */
-    public boolean deleteAccountFromUser(String passport, Account account) {
-        var uTemp = getUser(passport);
-        List<Account> temp = base.get(uTemp);
-        if (temp.contains(account)) {
-            base.get(uTemp).remove(account);
-            return true;
-        }
-        return false;
+    public void deleteAccountFromUser(String passport, Account account) {
+        var temp = getUser(passport);
+        temp.flatMap(x -> getUserAccounts(passport)).ifPresent(e -> {
+            if (e.contains(account)) {
+                base.get(temp.get()).remove(account);
+            }
+        });
     }
 
     /**
@@ -86,12 +83,9 @@ public class AccountBase {
      * @param passport - список принадлежит клиенту со следующими паспортными данными
      * @return - список счетов пользователя
      */
-    public List<Account> getUserAccounts(String passport) {
+    private Optional<List<Account>> getUserAccounts(String passport) {
         var temp = getUser(passport);
-        if (temp != null) {
-            return base.get(temp);
-        }
-        return null;
+        return temp.map(base::get);
     }
 
     /**
@@ -106,10 +100,10 @@ public class AccountBase {
      */
     public boolean transferMoney(String srcPassport, String srcRequisite, String destPassport, String
             dstRequisite, double amount) {
-        Account a1 = getAccount(srcPassport, srcRequisite),
-                a2 = getAccount(destPassport, dstRequisite);
-        if (a1 != null && a2 != null) {
-            return a1.transfer(a2, amount);
+        var a1 = getAccount(srcPassport, srcRequisite);
+        var a2 = getAccount(destPassport, dstRequisite);
+        if (a1.isPresent() && a2.isPresent()) {
+            return a1.get().transfer(a2.get(), amount);
         }
         return false;
     }
@@ -120,15 +114,14 @@ public class AccountBase {
      * @param srcPassport - паспортные данные для поиска
      * @return - объект User
      */
-    private User getUser(String srcPassport) {
+    private Optional<User> getUser(String srcPassport) {
         if (!(base.isEmpty())) {
-            List<User> temp = new ArrayList<>(base.keySet());
+            var temp = new ArrayList<>(base.keySet());
             return temp.stream()
                     .filter(x -> x.getPassportN().equals(srcPassport))
-                    .findFirst()
-                    .orElse(null);
+                    .findFirst();
         }
-        return null;
+        return Optional.empty();
     }
 
     /**
@@ -138,15 +131,11 @@ public class AccountBase {
      * @param reqs        - реквизиты счёта для поиска
      * @return - счёт с искомыми рекизитами
      */
-    private Account getAccount(String srcPassport, String reqs) {
-        List<Account> temp = getUserAccounts(srcPassport);
-        if (temp != null) {
-            return temp.stream()
-                    .filter(x -> x.getReq().equals(reqs))
-                    .findFirst()
-                    .orElse(null);
-        }
-        return null;
+    private Optional<Account> getAccount(String srcPassport, String reqs) {
+        var temp = getUserAccounts(srcPassport);
+        return temp.flatMap(accounts -> accounts.stream()
+                .filter(x -> x.getReq().equals(reqs))
+                .findFirst());
     }
 
 }
