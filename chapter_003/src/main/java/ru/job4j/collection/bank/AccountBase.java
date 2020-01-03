@@ -70,11 +70,8 @@ public class AccountBase {
      */
     public void deleteAccountFromUser(String passport, Account account) {
         var temp = getUser(passport);
-        temp.flatMap(x -> getUserAccounts(passport)).ifPresent(e -> {
-            if (e.contains(account)) {
-                base.get(temp.get()).remove(account);
-            }
-        });
+        temp.flatMap(x -> getUserAccounts(passport))
+                .ifPresent(e -> base.get(temp.get()).remove(account));
     }
 
     /**
