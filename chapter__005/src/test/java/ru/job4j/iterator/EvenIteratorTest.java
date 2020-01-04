@@ -1,6 +1,6 @@
 /**
  * Пакет для работы с коллекциями/итератором
- *
+ * <p>
  * -
  */
 package ru.job4j.iterator;
@@ -27,12 +27,12 @@ public class EvenIteratorTest {
     private Iterator<Integer> it;
 
     @Before
-    public void setUp(){
+    public void setUp() {
         it = new ClearEvenIterator(new int[]{1, 2, 3, 4, 5, 6, 7});
     }
 
     @Test(expected = NoSuchElementException.class)
-    public void shouldReturnEvenNumbersSequentially () {
+    public void shouldReturnEvenNumbersSequentially() {
         assertThat(it.hasNext(), is(true));
         assertThat(it.next(), is(2));
         assertThat(it.hasNext(), is(true));
@@ -44,7 +44,7 @@ public class EvenIteratorTest {
     }
 
     @Test
-    public void sequentialHasNextInvocationDoesntAffectRetrievalOrder () {
+    public void sequentialHasNextInvocationDoesntAffectRetrievalOrder() {
         assertThat(it.hasNext(), is(true));
         assertThat(it.hasNext(), is(true));
         assertThat(it.next(), is(2));
@@ -53,14 +53,14 @@ public class EvenIteratorTest {
     }
 
     @Test
-    public void  shouldReturnFalseIfNoAnyEvenNumbers(){
+    public void shouldReturnFalseIfNoAnyEvenNumbers() {
         it = new ClearEvenIterator(new int[]{1});
         assertThat(it.hasNext(), is(false));
     }
 
     @Test
-    public void allNumbersAreEven(){
-        it = new ClearEvenIterator(new int[]{2,4,6,8});
+    public void allNumbersAreEven() {
+        it = new ClearEvenIterator(new int[]{2, 4, 6, 8});
         assertThat(it.hasNext(), is(true));
         assertThat(it.next(), is(2));
         assertThat(it.hasNext(), is(true));
