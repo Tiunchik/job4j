@@ -66,7 +66,7 @@ public class SimpleArrayTest {
     @Test
     public void remove() {
         array.remove(0);
-        assertEquals(null, array.get(0));
+        assertEquals("time", array.get(0));
     }
 
     /**

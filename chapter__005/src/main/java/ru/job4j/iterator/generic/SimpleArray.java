@@ -5,6 +5,7 @@
  */
 package ru.job4j.iterator.generic;
 
+import java.util.Arrays;
 import java.util.Iterator;
 import java.util.NoSuchElementException;
 
@@ -59,7 +60,8 @@ public class SimpleArray<T> {
      * @param index - номер ячейки
      */
     public void remove(int index) {
-        this.base[index] = null;
+        System.arraycopy(base, index + 1, base, index, base.length - index - 1);
+        this.base[base.length - 1] = null;
     }
 
     /**
