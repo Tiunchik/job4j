@@ -6,6 +6,7 @@
 package ru.job4j.iterator;
 
 import java.util.Iterator;
+import java.util.NoSuchElementException;
 
 /**
  * Класс ArrayIterator - класс итератор для двумерного массива
@@ -20,25 +21,13 @@ public class ArrayIterator implements Iterator {
      */
     private final int[][] base;
     /**
-     * содержит длину каждого линейного массива в двумерном массиве
+     * содержит данные о положении каретки в линейном массиве
      */
-    private final int[] length;
+    private int length;
     /**
-     * содеержит длину двумерного массива
+     * содержит данные о том, в какои из массивов сейчас аретка
      */
-    private final int deep;
-    /**
-     * позиция в линейной матрице на текущий момент
-     */
-    private int posLength = 0;
-    /**
-     * в какой матрице сейчас находится итератор
-     */
-    private int posDeep = 0;
-    /**
-     * итератор прошёл все позиции матрицы или нет
-     */
-    private boolean end = true;
+    private int deep;
 
     /**
      * Конструктор итератора, задаёт часть переменных
@@ -47,11 +36,8 @@ public class ArrayIterator implements Iterator {
      */
     public ArrayIterator(int[][] base) {
         this.base = base;
-        this.deep = base.length;
-        this.length = new int[deep];
-        for (int index = 0; index < this.deep; index++) {
-            this.length[index] = base[index].length;
-        }
+        this.deep = 0;
+        this.length = 0;
     }
 
     /**
@@ -61,7 +47,7 @@ public class ArrayIterator implements Iterator {
      */
     @Override
     public boolean hasNext() {
-        return end;
+        return deep != base.length;
     }
 
     /**
@@ -72,18 +58,13 @@ public class ArrayIterator implements Iterator {
      */
     @Override
     public Object next() {
-        int temp = base[posDeep][posLength];
-        if (end) {
-            posLength++;
-            if (posLength == length[posDeep]) {
-                posDeep++;
-                posLength = 0;
-            }
-            if (posDeep == deep) {
-                posDeep = deep - 1;
-                posLength = length[deep - 1] - 1;
-                end = false;
-            }
+        if (deep == base.length) {
+            throw new NoSuchElementException("Array is excted");
+        }
+        int temp = base[deep][length++];
+        if (length == base[deep].length) {
+            length = 0;
+            deep++;
         }
         return temp;
     }
