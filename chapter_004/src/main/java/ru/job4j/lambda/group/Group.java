@@ -10,7 +10,7 @@ public class Group {
     public static Map<String, Set<String>> sections(List<Student> students) {
         return students.stream()
                 .flatMap(e -> e.getUnits().stream()
-                        .map(x -> new Holder(e.getName(), x)))
+                        .map(x -> new Holder(x, e.getName())))
                 .collect(
                         Collectors.groupingBy(t -> t.key,
                                 Collector.of(
