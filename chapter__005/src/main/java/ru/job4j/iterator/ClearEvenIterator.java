@@ -29,6 +29,8 @@ public class ClearEvenIterator implements Iterator {
      */
     private int position = 0;
 
+    private int nexPos = 0;
+
     /**
      * Конструктор итератора, задаёт часть переменных
      *
@@ -46,7 +48,8 @@ public class ClearEvenIterator implements Iterator {
      */
     @Override
     public boolean hasNext() {
-        return counter() != -1;
+        int nexPos = counter();
+        return nexPos != -1;
     }
 
     /**
@@ -56,12 +59,15 @@ public class ClearEvenIterator implements Iterator {
      */
     @Override
     public Object next() {
-        int temp, x = counter();
-        if (x == -1) {
-            throw new NoSuchElementException("There is no more ever elements in array");
+        int temp;
+        if (nexPos <= position) {
+            nexPos = counter();
+            if (nexPos == -1) {
+                throw new NoSuchElementException("There is no more ever elements in array");
+            }
         }
-        temp = base[x];
-        position++;
+        temp = base[nexPos];
+        position = nexPos + 1;
         return temp;
     }
 
