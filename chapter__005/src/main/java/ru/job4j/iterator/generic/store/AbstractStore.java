@@ -17,7 +17,7 @@ import java.util.Iterator;
  * @version 0.1
  * @since 05.01.2019
  */
-public abstract class AbstractStore<T extends Base> implements Store {
+public abstract class AbstractStore<T extends Base> implements Store<T> {
     /**
      * База данных реализована на "коллекции" SimpleArray
      */
@@ -33,8 +33,8 @@ public abstract class AbstractStore<T extends Base> implements Store {
      * @param model - добавляемый в базу объект
      */
     @Override
-    public void add(Base model) {
-        this.base.add((T) model);
+    public void add(T model) {
+        this.base.add(model);
     }
 
     /**
@@ -44,10 +44,10 @@ public abstract class AbstractStore<T extends Base> implements Store {
      * @param model - добавляемый в базу объект
      */
     @Override
-    public boolean replace(String id, Base model) {
+    public boolean replace(String id, T model) {
         int index = findIndex(id);
         if (index != -1) {
-            base.set(index, (T) model);
+            base.set(index, model);
             return true;
         }
         return false;
@@ -76,7 +76,7 @@ public abstract class AbstractStore<T extends Base> implements Store {
      * @return - объект возвращается для рабты
      */
     @Override
-    public Base findById(String id) {
+    public T findById(String id) {
         int index = findIndex(id);
         if (index != -1) {
             return base.get(index);
