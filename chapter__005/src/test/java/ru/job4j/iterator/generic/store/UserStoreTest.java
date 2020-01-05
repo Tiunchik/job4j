@@ -40,7 +40,7 @@ public class UserStoreTest {
 
     @Test
     public void replace() {
-        Assert.assertTrue(temp.replace("first", new User ("one")));
+        Assert.assertTrue(temp.replace("first", new User("one")));
         assertEquals("one", temp.findById("one").getId());
     }
 
