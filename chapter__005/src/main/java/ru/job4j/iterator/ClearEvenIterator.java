@@ -21,10 +21,6 @@ public class ClearEvenIterator implements Iterator {
      */
     private final int[] base;
     /**
-     * Содержит длину линейного массива массиве
-     */
-    private final int length;
-    /**
      * Текущее положение в массиве
      */
     private int position = 0;
@@ -36,7 +32,8 @@ public class ClearEvenIterator implements Iterator {
      */
     public ClearEvenIterator(int[] base) {
         this.base = base;
-        this.length = base.length;
+        this.position = counter();
+
     }
 
     /**
@@ -46,9 +43,6 @@ public class ClearEvenIterator implements Iterator {
      */
     @Override
     public boolean hasNext() {
-        if (position == 0) {
-            position = counter();
-        }
         return position != -1;
     }
 
@@ -59,14 +53,10 @@ public class ClearEvenIterator implements Iterator {
      */
     @Override
     public Object next() {
-        if (position == 0) {
-            position = counter();
-        }
-        if (position == -1) {
+        if (!(hasNext())) {
             throw new NoSuchElementException("There is no more ever elements in array");
         }
-        int temp = base[position];
-        position++;
+        int temp = base[position++];
         position = counter();
         return temp;
     }
@@ -78,7 +68,7 @@ public class ClearEvenIterator implements Iterator {
      */
     private int counter() {
         var rsl = -1;
-        for (int index = position; index < length; index++) {
+        for (int index = position; index < base.length; index++) {
             if (base[index] % 2 == 0) {
                 position = index;
                 rsl = index;
