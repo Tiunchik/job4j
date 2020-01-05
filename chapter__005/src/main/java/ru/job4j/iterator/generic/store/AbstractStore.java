@@ -40,20 +40,15 @@ public abstract class AbstractStore<T extends Base> implements Store {
     /**
      * Переопредёлнный метод замены объекта в базе данных
      *
-     * @param id - по данному идентификатору ищется объкет в баз
+     * @param id    - по данному идентификатору ищется объкет в баз
      * @param model - добавляемый в базу объект
      */
     @Override
     public boolean replace(String id, Base model) {
-        Iterator<T> temp = base.iretator();
-        int index = 0;
-        while (temp.hasNext()) {
-            T e = temp.next();
-            if (e.getId().equals(id)) {
-                base.set(index, (T) model);
-                return true;
-            }
-            index++;
+        int index = findIndex(id);
+        if (index != -1) {
+            base.set(index, (T) model);
+            return true;
         }
         return false;
     }
@@ -62,19 +57,14 @@ public abstract class AbstractStore<T extends Base> implements Store {
      * Метод удалния объкетв из базы
      *
      * @param id - по данному идентификатору ищется объкет в баз
-     * @return  удаляемый из базы объект (заменяется на null)
+     * @return удаляемый из базы объект (заменяется на null)
      */
     @Override
     public boolean delete(String id) {
-        Iterator<T> temp = base.iretator();
-        int index = 0;
-        while (temp.hasNext()) {
-            var e = temp.next();
-            if (e.getId().equals(id)) {
-                base.remove(index);
-                return true;
-            }
-            index++;
+        int index = findIndex(id);
+        if (index != -1) {
+            base.remove(index);
+            return true;
         }
         return false;
     }
@@ -87,15 +77,25 @@ public abstract class AbstractStore<T extends Base> implements Store {
      */
     @Override
     public Base findById(String id) {
+        int index = findIndex(id);
+        if (index != -1) {
+            return base.get(index);
+        }
+        return null;
+    }
+
+    private int findIndex(String id) {
         Iterator<T> temp = base.iretator();
+        var rsl = false;
         int index = 0;
         while (temp.hasNext()) {
             var e = temp.next();
             if (e != null && e.getId().equals(id)) {
-                return base.get(index);
+                rsl = true;
+                break;
             }
             index++;
         }
-        return null;
+        return rsl ? index : -1;
     }
 }
