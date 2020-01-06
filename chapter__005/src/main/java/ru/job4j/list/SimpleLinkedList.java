@@ -72,5 +72,7 @@ public class SimpleLinkedList<E> {
             this.data = data;
         }
     }
+
+
 }
 

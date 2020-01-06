@@ -17,7 +17,7 @@ import java.util.NoSuchElementException;
  * @version 0.1
  * @since 06.01.2019
  */
-public class LifeArrayList<E> {
+public class LifeArrayList<E> implements CollectionsList<E>, Iterable<E> {
 
     /**
      * Массив где всё хранится
@@ -64,6 +64,7 @@ public class LifeArrayList<E> {
      *
      * @param temp - добавляемое значение
      */
+    @Override
     public void add(E temp) {
         if (position == base.length) {
             this.base = Arrays.copyOf(this.base, (int) (position * 1.5));
@@ -79,6 +80,7 @@ public class LifeArrayList<E> {
      * @param index - номер ячейки
      * @return - возвращаемое значение типа Т
      */
+    @Override
     public E get(int index) {
         return (E) this.base[index];
     }
@@ -88,6 +90,7 @@ public class LifeArrayList<E> {
      *
      * @return - озвращает иретатор для массива
      */
+    @Override
     public Iterator<E> iterator() {
         return new Iterator<E>() {
 
