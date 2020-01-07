@@ -14,7 +14,7 @@ import static org.junit.Assert.*;
  * Класс CheckCircleTest - класс тест провеки работы меотда определяюещго зацикленность связанного списка
  *
  * @author Maksim Tiunchik (senebh@gmail.com)
- * @version 0.1
+ * @version 0.2
  * @since 07.01.2019
  */
 public class CheckCircleTest {
@@ -66,6 +66,17 @@ public class CheckCircleTest {
         Node first = new Node(1);
 
         first.next = first;
+        assertTrue(CheckCircle.hasCircle(first));
+    }
+
+    @Test
+    public void whenSecontLinkToFirst() {
+
+        Node first = new Node(1);
+        Node two = new Node(2);
+
+        first.next = two;
+        two.next = first;
         assertTrue(CheckCircle.hasCircle(first));
     }
 }

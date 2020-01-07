@@ -9,7 +9,7 @@ package ru.job4j.list;
  * Класс CheckCircle - класс содержит метод провеки зациклености связанного списка
  *
  * @author Maksim Tiunchik (senebh@gmail.com)
- * @version 0.1
+ * @version 0.2
  * @since 07.01.2019
  */
 public class CheckCircle {
@@ -21,19 +21,17 @@ public class CheckCircle {
      */
     public static boolean hasCircle(Node check) {
         Node current = check;
-        Node last = current.next;
-        while (last != null) {
-            if (last == last.next) {
+        Node finish = check;
+        while (finish != null) {
+            if (finish.next == current) {
                 return true;
             }
-            while (current != last) {
-                if (current == last.next) {
-                    return true;
-                }
-                current = current.next;
+            if (current == finish) {
+                current = check;
+                finish = finish.next;
+                continue; //по логике этот момент тут нужен, но и без него все тесты проходит
             }
-            last = last.next;
-            current = check;
+            current = current.next;
         }
         return false;
     }
