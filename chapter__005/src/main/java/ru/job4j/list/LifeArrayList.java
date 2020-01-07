@@ -104,7 +104,7 @@ public class LifeArrayList<E> implements CollectionsList<E>, Iterable<E> {
 
             private Object[] iterBase = base;
             private int iterPos = 0;
-            private int end = base.length;
+            private int end = position;
             private final int modCountStart = modCount;
 
             @Override
@@ -117,7 +117,7 @@ public class LifeArrayList<E> implements CollectionsList<E>, Iterable<E> {
                 if (modCountStart != getModCount()) {
                     throw new ConcurrentModificationException("Array was modificated");
                 }
-                if (iterPos == end) {
+                if (!hasNext()) {
                     throw new NoSuchElementException("Array is expired");
                 }
                 return (E) iterBase[iterPos++];
