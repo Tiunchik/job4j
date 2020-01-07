@@ -75,13 +75,21 @@ public class LifeArrayList<E> implements CollectionsList<E>, Iterable<E> {
     }
 
     /**
+     * геттер для поля position
+     *
+     * @return возвращает размер массива
+     */
+    public int size() {
+        return position;
+    }
+
+    /**
      * Возврат значения из ячейки
      *
      * @param index - номер ячейки
      * @return - возвращаемое значение типа Т
      */
-    @Override
-    public E get(int index) {
+     public E get(int index) {
         return (E) this.base[index];
     }
 
