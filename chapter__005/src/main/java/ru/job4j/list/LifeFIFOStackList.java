@@ -10,14 +10,14 @@ package ru.job4j.list;
  * основанная на композиции двух классов LifeStackList, работающих по принципу LIFO
  *
  * @author Maksim Tiunchik (senebh@gmail.com)
- * @version 0.1
+ * @version 0.2
  * @since 07.01.2019
  */
 public class LifeFIFOStackList<E> {
     /**
      * Внутрнние коллекции на принципе LIFO
      */
-    private LifeStackList<E> back;
+    private LifeStackList<E> back = new LifeStackList<>();
     private LifeStackList<E> prime = new LifeStackList<>();
 
     /**
@@ -41,7 +41,6 @@ public class LifeFIFOStackList<E> {
      * @param value добавляемое значение
      */
     public void push(E value) {
-        back = new LifeStackList<>();
         E temp = prime.poll();
         while (temp != null) {
             back.push(temp);
