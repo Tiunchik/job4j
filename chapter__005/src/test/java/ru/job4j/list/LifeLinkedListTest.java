@@ -5,6 +5,8 @@
  */
 package ru.job4j.list;
 
+import org.hamcrest.core.Is;
+import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 
@@ -61,5 +63,14 @@ public class LifeLinkedListTest {
         assertEquals("two", temp.next());
         base.delete();
         temp.next();
+    }
+
+    @Test
+    public void name() {
+        LifeLinkedList<Integer> base = new LifeLinkedList<>();
+        base.add(1);
+        base.add(2);
+        base.delete();
+        Assert.assertThat(base.get(0), Is.is(2));
     }
 }

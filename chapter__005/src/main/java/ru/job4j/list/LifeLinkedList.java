@@ -125,7 +125,7 @@ public class LifeLinkedList<E> implements CollectionsList<E>, Iterable<E> {
     public E delete() {
         if (size > 0) {
             Node<E> temp = first;
-            if (size > 2) {
+            if (size >= 2) {
                 first = first.next;
             } else {
                 first = null;
