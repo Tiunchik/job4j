@@ -17,7 +17,7 @@ import static org.junit.Assert.*;
  * Класс SimpleSetListTest - набор тестов для класса SimpleSetList
  *
  * @author Maksim Tiunchik (senebh@gmail.com)
- * @version 0.1
+ * @version 0.2
  * @since 07.01.2019
  */
 public class SimpleSetListTest {
@@ -56,5 +56,10 @@ public class SimpleSetListTest {
     @Test
     public void size() {
         assertTrue(base.size() == 4);
+    }
+
+    @Test
+    public void whenSetContains() {
+        assertTrue(base.contains("one"));
     }
 }

@@ -11,7 +11,7 @@ import java.util.Iterator;
  * Класс SimpleSetList - класс коллекция - иммитация коллекции Set
  *
  * @author Maksim Tiunchik (senebh@gmail.com)
- * @version 0.1
+ * @version 0.2
  * @since 07.01.2019
  */
 public class SimpleSetList<E> implements CollectionsList<E>, Iterable<E> {
@@ -27,16 +27,7 @@ public class SimpleSetList<E> implements CollectionsList<E>, Iterable<E> {
      */
     @Override
     public void add(E value) {
-        var rsl = true;
-        if (base.size() != 0) {
-            var iter = base.iterator();
-            while (iter.hasNext()) {
-                if (iter.next().equals(value)) {
-                    rsl = false;
-                }
-            }
-        }
-        if (rsl) {
+        if (!contains(value)) {
             base.add(value);
         }
     }
@@ -58,5 +49,19 @@ public class SimpleSetList<E> implements CollectionsList<E>, Iterable<E> {
      */
     public int size() {
         return base.size();
+    }
+
+    public boolean contains(E value) {
+        var rsl = false;
+        if (base.size() != 0) {
+            var iter = base.iterator();
+            while (iter.hasNext()) {
+                if (iter.next().equals(value)) {
+                    rsl = true;
+                    break;
+                }
+            }
+        }
+        return rsl;
     }
 }
