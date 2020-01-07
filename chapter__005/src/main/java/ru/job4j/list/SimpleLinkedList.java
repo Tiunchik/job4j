@@ -37,9 +37,12 @@ public class SimpleLinkedList<E> {
      */
     public E delete() {
         Node<E> delNode = this.first;
-        this.first = this.first.next;
-        this.size--;
-        return delNode.data;
+        if (delNode != null) {
+            this.first = this.first.next;
+            this.size--;
+            return delNode.data;
+        }
+        return null;
     }
 
     /**
