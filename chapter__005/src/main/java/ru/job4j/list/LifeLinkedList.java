@@ -60,7 +60,7 @@ public class LifeLinkedList<E> implements CollectionsList<E>, Iterable<E> {
      * @param index - индекс для поиска значения
      * @return - значение в коллекции соответствующее индкесу
      */
-    @Override
+
     public E get(int index) {
         if (index > size) {
             return null;
