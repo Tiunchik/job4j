@@ -6,12 +6,13 @@
 package ru.job4j.map;
 
 import java.util.Calendar;
+import java.util.Objects;
 
 /**
  * Класс User - модель данных
  *
  * @author Maksim Tiunchik (senebh@gmail.com)
- * @version 0.1
+ * @version 0.2
  * @since 08.01.2019
  */
 public class User {
@@ -23,6 +24,12 @@ public class User {
         this.name = name;
         this.children = children;
         this.bithday = bithday;
+    }
+
+    @SuppressWarnings("checkstyle:EqualsHashCode")
+    @Override
+    public int hashCode() {
+        return Objects.hash(getName(), getChildren(), getBithday());
     }
 
     public String getName() {
