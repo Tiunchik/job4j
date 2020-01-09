@@ -41,16 +41,16 @@ public class LifeFIFOStackList<E> {
      * @param value добавляемое значение
      */
     public void push(E value) {
-        E temp = prime.poll();
-        while (temp != null) {
+        E temp = prime.poll(); //Так как poll вытягивает значение навсегда, то вытягиваем первое значение из стека который должен "возвращать" в FIFO
+        while (temp != null) { //Если данное значение не равно нулю, то значит это не первая итерация и все значения переписываються во второй стэк
             back.push(temp);
             temp = prime.poll();
         }
-        back.push(value);
-        temp = back.poll();
+        back.push(value); //Потом новое значение кладём последним в только что записанный второй стэк
+        temp = back.poll(); // запускаем цикл и все значения LIFO стэка переписываем в цикл, который имулирует FIFO
         while (temp != null) {
             prime.push(temp);
             temp = back.poll();
         }
-    }
+    } // Профит
 }
