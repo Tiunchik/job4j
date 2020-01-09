@@ -17,10 +17,9 @@ public class UserTest {
     public void whenEqualsAndHashIsStandart() {
         User one = new User("Ivanov", 3, new GregorianCalendar(2005, Calendar.JANUARY, 15));
         User two = new User("Ivanov", 3, new GregorianCalendar(2005, Calendar.JANUARY, 15));
-        Map<User, Integer> base = new HashMap<>(Map.of(
-                one, 1,
-                two, 2
-        ));
+        Map<User, Integer> base = new HashMap<>();
+        base.put(one, 1);
+        base.put(two, 2);
         System.out.println(base);
 
     }

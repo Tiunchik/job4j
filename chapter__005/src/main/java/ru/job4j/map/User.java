@@ -26,14 +26,12 @@ public class User {
         this.bithday = bithday;
     }
 
-    /*
-    @SuppressWarnings("checkstyle:EqualsHashCode")
+
     @Override
     public int hashCode() {
         return Objects.hash(getName(), getChildren(), getBithday());
     }
 
-     */
 
     @Override
     public boolean equals(Object obj) {
@@ -46,7 +44,7 @@ public class User {
         User user = (User) obj;
         return getName().equals(user.getName())
                 && getChildren() == user.getChildren()
-                && getBithday() == user.getBithday();
+                && getBithday().equals(user.getBithday());
     }
 
     public String getName() {

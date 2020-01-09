@@ -20,18 +20,18 @@ public class CheckCircle {
      * @return - 1 если цикл существует, 0 если цикла нет
      */
     public static boolean hasCircle(Node check) {
-        Node current = check;
-        Node finish = check;
-        while (finish != null) {
-            if (finish.next == current) {
+        Node slow = check;
+        Node fast = check;
+        while (slow != null && fast != null) {
+            if (slow == fast.next) {
                 return true;
             }
-            if (current == finish) {
-                current = check;
-                finish = finish.next;
-                continue; //по логике этот момент тут нужен, но и без него все тесты проходит
+            if (fast.next != null) {
+                slow = slow.next;
+                fast = fast.next.next;
+            } else {
+                return false;
             }
-            current = current.next;
         }
         return false;
     }
