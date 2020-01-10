@@ -16,7 +16,7 @@ import java.util.NoSuchElementException;
  * @version 0.1
  * @since 09.01.2019
  */
-public class SimpleMap<K, V> implements Map<K, V>, Iterable<K> {
+public class SimpleMap<K, V> implements Map<K, V> {
 
     /**
      * Корзины
@@ -81,11 +81,18 @@ public class SimpleMap<K, V> implements Map<K, V>, Iterable<K> {
         if (table == null || ((size / table.length) > persent)) {
             changeTab();
         }
-        if (table[hash(key) & (table.length - 1)] == null) {
-            table[hash(key) & (table.length - 1)] = new Node<>(key, value);
+        var tab = table;
+        var index = (hash(key) & (table.length - 1));
+        if (tab[index] == null) {
+            tab[index] = new Node<>(key, value);
             size++;
             modeCount++;
             return true;
+        } else {
+            if (tab[index].key.equals(key)) {
+                tab[index].value = value;
+                return true;
+            }
         }
         return false;
     }
@@ -98,8 +105,9 @@ public class SimpleMap<K, V> implements Map<K, V>, Iterable<K> {
      */
     @Override
     public V get(K key) {
-        if (table[hash(key) & (table.length - 1)] != null) {
-            return table[hash(key) & (table.length - 1)].value;
+        var temp = table[hash(key) & (table.length - 1)];
+        if (temp != null) {
+            return temp.value;
         }
         return null;
     }
@@ -112,11 +120,12 @@ public class SimpleMap<K, V> implements Map<K, V>, Iterable<K> {
      */
     @Override
     public boolean delete(K key) {
-        if (table[hash(key) & (table.length - 1)] != null) {
-            table[hash(key) & (table.length - 1)] = null;
+        var tab = table;
+        var index = (hash(key) & (table.length - 1));
+        if (tab != null) {
+            tab[index] = null;
             modeCount++;
             return true;
-
         }
         return false;
     }
@@ -142,9 +151,8 @@ public class SimpleMap<K, V> implements Map<K, V>, Iterable<K> {
      *
      * @return - возвращает итератор
      */
-    @Override
-    public Iterator<K> iterator() {
-        return new Iterator<K>() {
+    public Iterator<Node<K, V>> iterator() {
+        return new Iterator<Node<K, V>>() {
 
             private int modified = modeCount;
             private K[] line = keySet();
@@ -156,14 +164,16 @@ public class SimpleMap<K, V> implements Map<K, V>, Iterable<K> {
             }
 
             @Override
-            public K next() {
+            public Node<K, V> next() {
                 if (modified != getModCount()) {
                     throw new ConcurrentModificationException("Array was modificated");
                 }
                 if (!hasNext()) {
                     throw new NoSuchElementException("Array is expired");
                 }
-                return line[position++];
+                Node<K, V> temp = new Node<>(line[position], get(line[position]));
+                position++;
+                return temp;
             }
         };
     }
@@ -210,11 +220,13 @@ public class SimpleMap<K, V> implements Map<K, V>, Iterable<K> {
      * @param <K>
      * @param <V>
      */
-    static class Node<K, V> {
+    public static class Node<K, V> {
         K key;
         V value;
 
-        private Node(K key, V value) {
+
+
+        public Node(K key, V value) {
             this.key = key;
             this.value = value;
         }

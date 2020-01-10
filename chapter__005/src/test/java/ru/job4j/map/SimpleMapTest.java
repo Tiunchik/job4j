@@ -18,8 +18,8 @@ import static org.junit.Assert.*;
  * Класс SimpleMapTest -набор тестов для SimpleMap
  *
  * @author Maksim Tiunchik (senebh@gmail.com)
- * @version 0.1
- * @since 09.01.2019
+ * @version 0.2
+ * @since 10.01.2019
  */
 public class SimpleMapTest {
 
@@ -32,7 +32,7 @@ public class SimpleMapTest {
 
     @Test
     public void whenWeTryInsertTheSameObject() {
-        assertFalse(base.insert("Petr", 1));
+        assertTrue(base.insert("Petr", 1));
     }
 
     @Test
@@ -64,7 +64,8 @@ public class SimpleMapTest {
     @Test(expected = NoSuchElementException.class)
     public void whenTestIterator() {
         Iterator temp = base.iterator();
-        temp.next();
+        SimpleMap.Node step = (SimpleMap.Node) temp.next();
+        assertEquals("Petr", step.key);
         assertFalse(temp.hasNext());
         temp.next();
     }
