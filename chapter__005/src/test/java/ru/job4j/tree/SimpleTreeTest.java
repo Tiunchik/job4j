@@ -121,5 +121,39 @@ public class SimpleTreeTest {
         tree.add(1, 4);
         assertFalse(tree.add(1, 4));
     }
+
+    /**
+     * тест ученика
+     *
+     * @author Maksim Tiunchik
+     */
+    @Test
+    public void isntTreeBinary() {
+        SimpleTree<Integer> tree = new SimpleTree<>(1);
+        tree.add(null, 2);
+        tree.add(null, 3);
+        tree.add(2, 8);
+        tree.add(2, 9);
+        tree.add(2, 10);
+        tree.add(3, 11);
+        tree.add(3, 12);
+        assertFalse(tree.isBinary());
+    }
+
+    /**
+     * тест ученика
+     *
+     * @author Maksim Tiunchik
+     */
+    @Test
+    public void isTreeBinary() {
+        SimpleTree<Integer> tree = new SimpleTree<>(1);
+        tree.add(null, 3);
+        tree.add(null, 2);
+        tree.add(2, 8);
+        tree.add(2, 9);
+        tree.add(3, 12);
+        assertTrue(tree.isBinary());
+    }
 }
 

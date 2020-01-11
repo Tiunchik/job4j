@@ -34,6 +34,7 @@ public class SimpleTree<E extends Comparable<E>> implements IntTree<E> {
         size++;
     }
 
+
     /**
      * вставить значение в дерево
      *
@@ -73,6 +74,15 @@ public class SimpleTree<E extends Comparable<E>> implements IntTree<E> {
     }
 
     /**
+     * получить счётчик изменеий
+     *
+     * @return получить счётчик изменеий
+     */
+    public int getModCount() {
+        return modCount;
+    }
+
+    /**
      * Поиск узла в дереве
      *
      * @param value - поиск по значению
@@ -96,13 +106,25 @@ public class SimpleTree<E extends Comparable<E>> implements IntTree<E> {
         return rsl;
     }
 
+
     /**
-     * получить счётчик изменеий
+     * Информирует, дерево бинарное или нет
      *
-     * @return получить счётчик изменеий
+     * @return 1 - если бинарное, 2- если нет
      */
-    public int getModCount() {
-        return modCount;
+    public boolean isBinary() {
+        return isBinary(root);
+    }
+
+    private boolean isBinary(Node<E> temp) {
+        var rsl = true;
+        List<Node<E>> list = temp.leaves();
+        int b = list.size(), i = 0;
+        rsl = list.size() < 3;
+        while (b > i && rsl) {
+            rsl = isBinary(list.get(i++));
+        }
+        return rsl;
     }
 
     /**
