@@ -44,22 +44,16 @@ public class SimpleTree<E extends Comparable<E>> implements IntTree<E> {
      */
     @Override
     public boolean add(E parent, E child) {
-        if (parent != null) {
+        if (findBy(child).isPresent()) {
+            return false;
+        } else {
             var temp = findBy(parent);
             if (temp.isPresent()) {
-                if (temp.get().leaves().stream().noneMatch(e -> e.eqValue(child))) {
-                    temp.ifPresent(e -> e.add(new Node<E>(child)));
-                    size++;
-                    modCount++;
-                    return true;
-                }
+                temp.get().add(new Node<>(child));
+                size++;
+                modCount++;
+                return true;
             }
-        } else {
-            root.add(new Node<E>(child));
-            size++;
-            modCount++;
-            return true;
-
         }
         return false;
     }
@@ -110,12 +104,17 @@ public class SimpleTree<E extends Comparable<E>> implements IntTree<E> {
     /**
      * Информирует, дерево бинарное или нет
      *
-     * @return 1 - если бинарное, 2- если нет
+     * @return 1 - если бинарное, 0 - если нет
      */
     public boolean isBinary() {
-        return isBinary(root);
+        for (E e : this) {
+            if (findBy(e).get().leaves().size() > 2) {
+                return false;
+            }
+        }
+        return true;
     }
-
+/*
     private boolean isBinary(Node<E> temp) {
         var rsl = true;
         List<Node<E>> list = temp.leaves();
@@ -126,7 +125,7 @@ public class SimpleTree<E extends Comparable<E>> implements IntTree<E> {
         }
         return rsl;
     }
-
+*/
     /**
      * Итератор
      *
@@ -136,22 +135,26 @@ public class SimpleTree<E extends Comparable<E>> implements IntTree<E> {
     public Iterator<E> iterator() {
         return new Iterator<E>() {
 
-            public final List<Node<E>> children = new ArrayList<>();
-            private int positon = 0;
+            private final List<Node<E>> children = new ArrayList<>(100);
+            private int position = 0;
             private int modified = getModCount();
+            private Node<E> current = null;
+            private Node<E> parent = null;
+            private int index = 0;
+            private int leaf = 0;
 
             @Override
             public boolean hasNext() {
-                if (children.size() == 0) {
-                    collectList(root);
+                if (children.size() <= position) {
+                    collectList();
                 }
-                return children.size() > positon;
+                return children.size() > position;
             }
 
             @Override
             public E next() {
-                if (children.size() == 0) {
-                    collectList(root);
+                if (children.size() <= position) {
+                    collectList();
                 }
                 if (modified != getModCount()) {
                     throw new ConcurrentModificationException("Tree was modificated");
@@ -159,15 +162,19 @@ public class SimpleTree<E extends Comparable<E>> implements IntTree<E> {
                 if (!hasNext()) {
                     throw new NoSuchElementException("Tree is expired");
                 }
-                return children.get(positon++).getValue();
+                return children.get(position++).getValue();
             }
 
-            private void collectList(Node<E> temp) {
-                int i = 0, b = temp.leaves().size();
-                while (b > i) {
-                    collectList(temp.leaves().get(i++));
+            private void collectList() {
+                if (current == null) {
+                    children.add(root);
+                    current = root;
+                } else {
+                    while (children.size() <= position && index < children.size()) {
+                        current = children.get(index++);
+                        children.addAll(current.leaves());
+                    }
                 }
-                children.add(temp);
             }
         };
     }

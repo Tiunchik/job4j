@@ -13,6 +13,7 @@ import java.util.ConcurrentModificationException;
 import java.util.Iterator;
 
 import java.util.NoSuchElementException;
+
 import static org.hamcrest.Matchers.is;
 
 /**
@@ -54,9 +55,9 @@ public class SimpleTreeTest {
     @Test
     public void whenWeUseIterator() {
         SimpleTree<Integer> tree = new SimpleTree<>(1);
-        tree.add(null, 2);
-        tree.add(null, 3);
-        tree.add(null, 4);
+        tree.add(1, 2);
+        tree.add(1, 3);
+        tree.add(1, 4);
         tree.add(2, 8);
         tree.add(2, 9);
         tree.add(2, 10);
@@ -81,15 +82,20 @@ public class SimpleTreeTest {
     @Test(expected = NoSuchElementException.class)
     public void whenExeptionNext() {
         SimpleTree<Integer> tree = new SimpleTree<>(1);
-        tree.add(null, 2);
-        tree.add(null, 3);
-        tree.add(null, 4);
+        tree.add(1, 2);
+        tree.add(1, 3);
+        tree.add(1, 4);
         Iterator<Integer> it = tree.iterator();
-        while (it.next() != null) {
-            it.next();
+        it.next();
+        it.next();
+        it.next();
+        it.next();
+        assertFalse(it.hasNext());
+        it.next();
 
-        }
     }
+
+
 
     /**
      * тест ученика
@@ -99,12 +105,12 @@ public class SimpleTreeTest {
     @Test(expected = ConcurrentModificationException.class)
     public void whenTreeWasCorrected() {
         SimpleTree<Integer> tree = new SimpleTree<>(1);
-        tree.add(null, 2);
-        tree.add(null, 3);
-        tree.add(null, 4);
+        tree.add(1, 2);
+        tree.add(1, 3);
+        tree.add(1, 4);
         Iterator<Integer> it = tree.iterator();
         it.next();
-        tree.add(null, 5);
+        tree.add(1, 5);
         it.next();
     }
 
@@ -130,8 +136,8 @@ public class SimpleTreeTest {
     @Test
     public void isntTreeBinary() {
         SimpleTree<Integer> tree = new SimpleTree<>(1);
-        tree.add(null, 2);
-        tree.add(null, 3);
+        tree.add(1, 2);
+        tree.add(1, 3);
         tree.add(2, 8);
         tree.add(2, 9);
         tree.add(2, 10);
@@ -148,11 +154,11 @@ public class SimpleTreeTest {
     @Test
     public void isTreeBinary() {
         SimpleTree<Integer> tree = new SimpleTree<>(1);
-        tree.add(null, 3);
-        tree.add(null, 2);
-        tree.add(2, 8);
-        tree.add(2, 9);
-        tree.add(3, 12);
+        tree.add(1, 3);
+        tree.add(1, 2);
+        tree.add(2, 4);
+        tree.add(2, 5);
+        tree.add(3, 6);
         assertTrue(tree.isBinary());
     }
 }
