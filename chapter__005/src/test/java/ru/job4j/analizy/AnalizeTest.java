@@ -3,7 +3,7 @@
  *
  * @author -
  */
-package ru.job4j.analize;
+package ru.job4j.analizy;
 
 import org.junit.Test;
 
