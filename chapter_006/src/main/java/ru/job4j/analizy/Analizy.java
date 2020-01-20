@@ -14,8 +14,8 @@ import java.util.stream.Collectors;
  * Класс Analizy - учебный клас для загрузки файда, обработки и выгркзки иотгоо в новый файл
  *
  * @author Maksim Tiunchik (senebh@gmail.com)
- * @version 0.2
- * @since 18.01.2020
+ * @version 0.3
+ * @since 20.01.2020
  */
 public class Analizy {
     public void unavailable(String source, String target) {
@@ -36,10 +36,14 @@ public class Analizy {
                     stage = true;
                 }
             }
-        } catch (FileNotFoundException e) {
-            e.printStackTrace();
-        } catch (IOException e) {
-            e.printStackTrace();
+        } catch (IOException ex) {
+            try (PrintWriter out = new PrintWriter(new FileOutputStream(source + "/log.txt"))) {
+                ex.printStackTrace(out);
+            } catch (IOException e) {
+                System.out.println("Log wasn't filled out");
+                e.printStackTrace();
+            }
+
         }
     }
 
