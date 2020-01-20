@@ -47,7 +47,7 @@ public class ConfigTest {
     @Test
     public void whenTestActualLoad() {
         Config config = new Config(where.toString());
-        config.load();
+        config.load("=");
         assertEquals("postgres", config.value("hibernate.connection.username"));
     }
 }

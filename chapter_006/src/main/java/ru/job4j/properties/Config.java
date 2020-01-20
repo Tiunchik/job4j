@@ -14,7 +14,7 @@ public class Config {
         this.path = path;
     }
 
-    public void load() {
+    public void load(String board) {
         List<String> out = new LinkedList<>();
         try (BufferedReader load = new BufferedReader(new FileReader(path))) {
             out = load.lines().collect(Collectors.toCollection(LinkedList::new));
@@ -25,7 +25,7 @@ public class Config {
         values.putAll(out.stream()
                 .filter(e -> !e.startsWith("#"))
                 .filter(e -> !e.startsWith("//"))
-                .filter(e -> e.contains("="))
+                .filter(e -> e.contains(board))
                 .collect(Collectors.toMap(e -> e.substring(0, e.indexOf("=")),
                         e -> e.substring(e.indexOf("=") + 1))));
     }
