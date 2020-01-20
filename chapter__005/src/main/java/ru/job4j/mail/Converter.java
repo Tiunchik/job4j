@@ -6,13 +6,14 @@
 package ru.job4j.mail;
 
 import java.util.*;
+import java.util.stream.Collectors;
 
 /**
  * Класс Converter - содержит метод по преобразование списка пользователей.
  *
  * @author Maksim Tiunchik (senebh@gmail.com)
- * @version 0.1
- * @since 14.01.2019
+ * @version 0.2
+ * @since 20.01.2019
  */
 public class Converter {
     /**
@@ -21,26 +22,24 @@ public class Converter {
      * @param base - изначальная база пользователей
      * @return - отсортрованная база без дубликатов
      */
-    public static List<User> converter(Collection<? extends User> base) {
-        List<User> respond = new ArrayList<>(base);
+    public static List<User> converter(List<? extends User> base) {
+        Map<User, User> respond = new HashMap<>(base.stream().collect(Collectors.toMap(e -> e, x -> x)));
         Set<String> tempSet;
-        User xi, xj;
-        int x = respond.size();
-        for (int i = 0; i < x; i++) {
-            xi = respond.get(i);
-            for (int j = 0; j < x; j++) {
-                xj = respond.get(j);
-                if (hasSameElemets(xi, xj)) {
-                    tempSet = new HashSet<>(xi.getEmails());
-                    tempSet.addAll(xj.getEmails());
-                    respond.set(i, new User(xi.getName(), tempSet));
-                    respond.remove(j);
-                    j--;
-                    x--;
+        for (var up : base) {
+            if (respond.containsKey(up)) {
+                for (var down : base) {
+                    if (hasSameElemets(respond.get(up), down)) {
+                        respond.remove(down);
+                        respond.remove(up);
+                        tempSet = new HashSet<>(up.getEmails());
+                        tempSet.addAll(new HashSet<>(down.getEmails()));
+                        respond.put(up, new User(up.getName(), tempSet));
+                    }
                 }
             }
         }
-        return respond;
+
+        return new ArrayList<>(respond.values());
     }
 
     /**
