@@ -26,8 +26,8 @@ public class Config {
                 .filter(e -> !e.startsWith("#"))
                 .filter(e -> !e.startsWith("//"))
                 .filter(e -> e.contains(board))
-                .collect(Collectors.toMap(e -> e.substring(0, e.indexOf("=")),
-                        e -> e.substring(e.indexOf("=") + 1))));
+                .collect(Collectors.toMap(e -> e.substring(0, e.indexOf(board)),
+                        e -> e.substring(e.indexOf(board) + 1))));
     }
 
     public String value(String key) {
