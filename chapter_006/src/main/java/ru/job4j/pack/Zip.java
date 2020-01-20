@@ -26,16 +26,15 @@ public class Zip {
         LinkedList<File> answer = new LinkedList<>();
         if (current.isDirectory()) {
             base.addAll(Arrays.asList(current.listFiles()));
-        }
-        while (!base.isEmpty()) {
-            current = base.removeFirst();
-            if (current.isDirectory()) {
-                base.addAll(Arrays.asList(current.listFiles()));
-                //answer.add(current);
-            }
-            if (current.isFile()) {
-                if (!(exts.contains(current.getName().substring(current.getName().lastIndexOf(".") + 1)))) {
-                    answer.add(current);
+            while (!base.isEmpty()) {
+                current = base.removeFirst();
+                if (current.isDirectory()) {
+                    base.addAll(Arrays.asList(current.listFiles()));
+                }
+                if (current.isFile()) {
+                    if (!(exts.contains(current.getName().substring(current.getName().lastIndexOf(".") + 1)))) {
+                        answer.add(current);
+                    }
                 }
             }
         }

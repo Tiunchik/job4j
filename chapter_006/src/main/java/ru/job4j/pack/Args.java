@@ -5,9 +5,9 @@ import java.util.List;
 
 public class Args {
 
-    private String directory;
+    private String directory = "";
     private List<String> exts = new ArrayList<>();
-    private String out;
+    private String out = "newZip.zip";
 
     public Args(String[] args) {
         String check = "";
