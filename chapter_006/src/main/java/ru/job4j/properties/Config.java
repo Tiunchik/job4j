@@ -2,9 +2,8 @@ package ru.job4j.properties;
 
 import java.io.BufferedReader;
 import java.io.FileReader;
-import java.util.HashMap;
-import java.util.Map;
-import java.util.StringJoiner;
+import java.io.IOException;
+import java.util.*;
 import java.util.stream.Collectors;
 
 public class Config {
@@ -16,11 +15,19 @@ public class Config {
     }
 
     public void load() {
-        String out = toString();
-        values.putAll(out.lines()
-                .filter(e -> e.startsWith("hibernate"))
+        List<String> out = new LinkedList<>();
+        try (BufferedReader load = new BufferedReader(new FileReader(path))) {
+            out = load.lines().collect(Collectors.toCollection(LinkedList::new));
+        } catch (IOException e) {
+            System.out.println("Ooops!");
+            e.printStackTrace();
+        }
+        values.putAll(out.stream()
+                .filter(e -> !e.startsWith("#"))
+                .filter(e -> !e.startsWith("//"))
+                .filter(e -> e.contains("="))
                 .collect(Collectors.toMap(e -> e.substring(0, e.indexOf("=")),
-                                            e -> e.substring(e.indexOf("=") + 1))));
+                        e -> e.substring(e.indexOf("=") + 1))));
     }
 
     public String value(String key) {
