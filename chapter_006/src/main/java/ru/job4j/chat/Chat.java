@@ -1,51 +1,74 @@
+/**
+ * Пакет для работы с IO, создание консольного чата
+ *
+ * @author Maksim Tiunchik
+ */
 package ru.job4j.chat;
 
 import java.io.*;
-import java.util.ArrayList;
-import java.util.LinkedList;
-import java.util.List;
 
+import java.util.*;
+import java.util.function.Consumer;
+
+/**
+ * Класс Chat - основной класс чат-бота
+ *
+ * @author Maksim Tiunchik (senebh@gmail.com)
+ * @version 0.1
+ * @since 21.01.2020
+ */
 public class Chat {
 
-    public List<String> upload(String path) {
+    /**
+     * Метод загружает ответы бота из файла
+     *
+     * @param path путь к ответам
+     * @return - список ответов
+     * @throws IOException - ловиться в главном метода чата
+     */
+    public List<String> upload(String path) throws IOException {
         List<String> answer = new ArrayList<>(100);
-        try (BufferedReader temp = new BufferedReader(new FileReader(path + "/answers.txt"))) {
-            temp.lines().forEach(e -> answer.add(e));
-        } catch (FileNotFoundException e) {
-            e.printStackTrace();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+        BufferedReader temp = new BufferedReader(new FileReader(path + "answers.txt"));
+        temp.lines().forEach(answer::add);
+        temp.close();
         return answer;
     }
 
-    public void saveLog(List<String> log, String path) {
-        try (FileOutputStream out = new FileOutputStream(path + "/log");
-             BufferedOutputStream bos = new BufferedOutputStream(out)) {
-            for (var e : log) {
-                byte[] step = e.getBytes();
-
-            }
-        } catch (FileNotFoundException e) {
-            e.printStackTrace();
-        } catch (IOException e) {
-            e.printStackTrace();
+    /**
+     * Сохраняет все сообщения чата
+     *
+     * @param log - передаваемый для сохранения список сообщений
+     * @param path - путь к файлу с логом
+     * @throws IOException - ловиться в главном метода чата
+     */
+    public void saveLog(List<String> log, String path) throws IOException {
+        BufferedWriter out = new BufferedWriter(new FileWriter(path + "/log.txt"));
+        for (var e : log) {
+            out.write(e);
+            out.write("\n");
         }
+        out.close();
     }
 
-    public void startChat(String base) {
-        try (BufferedReader reader = new BufferedReader(new InputStreamReader(System.in))) {
-            PrintStream answer = new PrintStream(System.out);
-            answer.println("");
+    /**
+     * Основной метод работы чата, згружает данные, организует диалог с пользователем
+     *
+     * @param base - адрес где находиться файл с ответами
+     * @param asker - каким ор\бразом реализуется общние с пользоваталем
+     * @param consumer - вывод данных пользователю
+     */
+    public void startChat(String base, Input asker, Consumer<String> consumer) {
+        try {
             List<String> answers = upload(base);
             List<String> log = new LinkedList<>();
-            String ans = "", temp = "";
-            while (!ans.equals("стоп")) {
-                ans = reader.readLine();
-                log.add(ans);
+            String temp = "";
+            while (!temp.equals("стоп")) {
                 temp = answers.get((int) (Math.random() * answers.size()));
                 log.add(temp);
+                temp = asker.ask(temp, consumer);
+                log.add(temp);
             }
+            saveLog(log, base);
         } catch (IOException e) {
             e.printStackTrace();
         }
