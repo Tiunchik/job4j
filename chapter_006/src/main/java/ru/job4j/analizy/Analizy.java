@@ -21,8 +21,7 @@ import java.util.stream.Collectors;
 public class Analizy {
     public void unavailable(String source, String target) {
         List<String> temp, answer = new ArrayList<>();
-        try (BufferedReader sour = new BufferedReader(new FileReader(source));
-             BufferedWriter out = new BufferedWriter(new FileWriter(target))) {
+        try (BufferedReader sour = new BufferedReader(new FileReader(source))) {
             temp = sour.lines().collect(Collectors.toCollection(LinkedList::new));
             var stage = true;
             var i = 0;
@@ -36,10 +35,7 @@ public class Analizy {
                     i++;
                 }
             }
-            for (var e : answer) {
-                out.write(e);
-                out.write("\n");
-            }
+            upload(answer, target);
         } catch (IOException ex) {
             try (PrintWriter out = new PrintWriter(new FileOutputStream(source + "/log.txt"))) {
                 ex.printStackTrace(out);
@@ -53,5 +49,16 @@ public class Analizy {
 
     public void unavailable(File source, File target) {
         this.unavailable(source.getAbsolutePath(), target.getAbsolutePath());
+    }
+
+    private void upload(List<String> answers, String target) {
+        try (BufferedWriter out = new BufferedWriter(new FileWriter(target))) {
+            for (var e : answers) {
+                out.write(e);
+                out.write("\n");
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 }
