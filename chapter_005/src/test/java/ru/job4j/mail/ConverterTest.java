@@ -29,7 +29,19 @@ public class ConverterTest {
                 new User("user2", Set.of("foo@gmail.com", "ups@pisem.net")),
                 new User("user3", Set.of("xyz@pisem.net", "vasya@pupkin.com")),
                 new User("user4", Set.of("ups@pisem.net", "aaa@bbb.ru")),
-                new User("user5", Set.of("xyz@pisem.net"))
+                new User("user5", Set.of("xyz@pisem.net")),
+
+                new User("user6", Set.of("xxx@ya.ru", "foo@gmail.com", "lol@mail.ru")),
+                new User("user7", Set.of("foo@gmail.com", "ups@pisem.net")),
+                new User("user8", Set.of("xyz@pisem.net", "vasya@pupkin.com")),
+                new User("user9", Set.of("ups@pisem.net", "aaa@bbb.ru")),
+                new User("user10", Set.of("xyz@pisem.net")),
+
+                new User("user11", Set.of("xxx@ya.ru", "foo@gmail.com", "lol@mail.ru")),
+                new User("user12", Set.of("foo@gmail.com", "ups@pisem.net")),
+                new User("user13", Set.of("xyz@pisem.net", "vasya@pupkin.com")),
+                new User("user14", Set.of("ups@pisem.net", "aaa@bbb.ru")),
+                new User("user15", Set.of("xyz@pisem.net"))
         ));
 
         var test = Converter.converter(base);
