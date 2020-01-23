@@ -17,8 +17,8 @@ import static org.junit.Assert.*;
  * Класс AnalizeTest - класс содержит тесты
  *
  * @author Maksim Tiunchik (senebh@gmail.com)
- * @version 0.1
- * @since 15.01.2019
+ * @version 0.2
+ * @since 23.01.2019
  */
 public class AnalizeTest {
 

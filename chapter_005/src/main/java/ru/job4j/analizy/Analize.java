@@ -12,31 +12,30 @@ import java.util.stream.Collectors;
  * Класс Analize - класс содержит метод по анализу массива
  *
  * @author Maksim Tiunchik (senebh@gmail.com)
- * @version 0.1
- * @since 15.01.2019
+ * @version 0.2
+ * @since 23.01.2019
  */
 public class Analize {
     /**
      * Проводит сравнение коллекции до изменения и после
      *
      * @param previous - коллекция до изменений
-     * @param current - коллекция после изменений
+     * @param current  - коллекция после изменений
      * @return - объект с информацией о изменениях
      */
     public Info diff(List<User> previous, List<User> current) {
         Info temp = new Info();
-        Map<Integer, User> mPre = previous.stream().collect(Collectors.toMap(e -> e.id, e -> e));
-        Map<Integer, User> mCur = current.stream().collect(Collectors.toMap(e -> e.id, e -> e));
-        for (var e : mPre.keySet()) {
-            if (mCur.containsKey(e)) {
-                if (!mPre.get(e).equals(mCur.get(e))) {
-                    temp.changed++;
-                }
+        Map<Integer, User> modifCurr = current.stream().collect(Collectors.toMap(e -> e.id, e -> e));
+        List<User> tempPrevious = new ArrayList<>(previous);
+        tempPrevious.removeAll(modifCurr.values());
+        for (var e : tempPrevious) {
+            if (modifCurr.containsKey(e.id)) {
+                temp.changed++;
             } else {
                 temp.deleted++;
             }
         }
-        temp.added = mCur.size() - (mPre.size() - temp.deleted);
+        temp.added = current.size() - (previous.size() - temp.deleted);
         return temp;
 
     }
