@@ -6,6 +6,7 @@
 package ru.job4j.analizy;
 
 import java.io.*;
+import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -14,27 +15,30 @@ import java.util.stream.Collectors;
  * Класс Analizy - учебный клас для загрузки файда, обработки и выгркзки иотгоо в новый файл
  *
  * @author Maksim Tiunchik (senebh@gmail.com)
- * @version 0.3
- * @since 20.01.2020
+ * @version 0.4
+ * @since 23.01.2020
  */
 public class Analizy {
     public void unavailable(String source, String target) {
-        List<String> temp;
+        List<String> temp, answer = new ArrayList<>();
         try (BufferedReader sour = new BufferedReader(new FileReader(source));
              BufferedWriter out = new BufferedWriter(new FileWriter(target))) {
             temp = sour.lines().collect(Collectors.toCollection(LinkedList::new));
             var stage = true;
+            var i = 0;
             for (var e : temp) {
                 if (stage && (e.startsWith("400") || e.startsWith("500"))) {
-                    out.write(e.substring(e.indexOf("00") + 3));
-                    out.write(";");
+                    answer.add(e.substring(e.indexOf("00") + 3) + ";");
                     stage = false;
                 } else if (!stage && !(e.startsWith("400") || e.startsWith("500"))) {
-                    out.write(e.substring(e.indexOf("00") + 3));
-                    out.write(";");
-                    out.write("\n");
+                    answer.set(i, answer.get(i) + e.substring(e.indexOf("00") + 3) + ";");
                     stage = true;
+                    i++;
                 }
+            }
+            for (var e : answer) {
+                out.write(e);
+                out.write("\n");
             }
         } catch (IOException ex) {
             try (PrintWriter out = new PrintWriter(new FileOutputStream(source + "/log.txt"))) {
