@@ -21,7 +21,7 @@ import static org.mockito.Mockito.when;
  * Класс OracleTest - класс для автоматических тестов клиента сервера
  *
  * @author Maksim Tiunchik (senebh@gmail.com)
- * @version 0.1
+ * @version 0.2
  * @since 25.01.2020
  */
 public class AskerTest {
@@ -58,8 +58,8 @@ public class AskerTest {
     public void whenWeOnlySayBy() throws IOException {
         String expected = Joiner.on(SEP).join(
                 "answer",
-                "answer",
-                "answer", "answer", "answer", "", "answer", "answer", ""
+                "answer\r\n",
+                "answer", "answer", "answer\r\n", "", "answer", "answer", ""
 
 
         );

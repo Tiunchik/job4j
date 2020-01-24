@@ -23,8 +23,7 @@ public class Asker {
              BufferedReader in = new BufferedReader(new InputStreamReader(clientScoket.getInputStream()))) {
             String str = "";
             do {
-                while (in.ready()) { // не понимаю как сдлать эот пункт нормально, если делать через isEmpty то не работает тест, если через ready - плохо работает в реальности
-                    str = in.readLine();
+                while ((str = in.readLine()).isEmpty()) { // не понимаю как сдлать эот пункт нормально, если делать через isEmpty то не работает тест, если через ready - плохо работает в реальности
                     System.out.println(str);
                 }
                 str = "";
