@@ -13,7 +13,7 @@
         <module>chapter_002</module>
         <module>chapter_003</module>
         <module>chapter_004</module>
-        <module>chapter__005</module>
+        <module>chapter_005</module>
         <module>chapter_006</module>
     </modules>
 
@@ -24,6 +24,18 @@
     </properties>
 
     <dependencies>
+        <!-- https://mvnrepository.com/artifact/org.mockito/mockito-all -->
+        <dependency>
+            <groupId>org.mockito</groupId>
+            <artifactId>mockito-all</artifactId>
+            <version>1.9.5</version>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>com.google.guava</groupId>
+            <artifactId>guava</artifactId>
+            <version>18.0</version>
+        </dependency>
         <dependency>
             <groupId>org.hamcrest</groupId>
             <artifactId>hamcrest-all</artifactId>
