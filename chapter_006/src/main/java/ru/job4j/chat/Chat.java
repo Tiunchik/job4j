@@ -28,7 +28,7 @@ public class Chat {
      */
     public List<String> upload(String path) throws IOException {
         List<String> answer = new ArrayList<>(100);
-        try (BufferedReader temp = new BufferedReader(new FileReader(path + "answers.txt"))) {
+        try (BufferedReader temp = new BufferedReader(new FileReader(path + "/answers.txt"))) {
             temp.lines().forEach(answer::add);
         }
         return answer;
