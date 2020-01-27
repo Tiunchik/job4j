@@ -14,11 +14,12 @@ import java.util.function.Consumer;
  * Класс Chat - основной класс чат-бота
  *
  * @author Maksim Tiunchik (senebh@gmail.com)
- * @version 0.2
- * @since 23.01.2020
+ * @version 0.3
+ * @since 27.01.2020
  */
 public class Chat {
 
+    private static final String STOP = "стоп";
     /**
      * Метод загружает ответы бота из файла
      *
@@ -30,8 +31,8 @@ public class Chat {
         List<String> answer = new ArrayList<>(100);
         try (BufferedReader temp = new BufferedReader(new FileReader(path + "/answers.txt"))) {
             temp.lines().forEach(answer::add);
+            return answer;
         }
-        return answer;
     }
 
     /**
@@ -63,7 +64,7 @@ public class Chat {
             List<String> answers = upload(base);
             List<String> log = new LinkedList<>();
             String temp = "";
-            while (!"стоп".equalsIgnoreCase(temp)) {
+            while (!temp.equalsIgnoreCase(STOP)) {
                 temp = answers.get((int) (Math.random() * answers.size()));
                 log.add(temp);
                 temp = asker.ask(temp, consumer);
