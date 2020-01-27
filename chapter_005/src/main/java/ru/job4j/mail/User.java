@@ -42,12 +42,12 @@ public class User {
             return false;
         }
         User user = (User) o;
-        return Objects.equals(name, user.name);
-
+        return name.equals(user.name)
+                && emails.equals(user.emails);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(name);
+        return Objects.hash(name, emails);
     }
 }
