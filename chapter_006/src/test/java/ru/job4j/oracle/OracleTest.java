@@ -72,7 +72,6 @@ public class OracleTest {
         );
         String answer = Joiner.on(SEP).join(
                 "Приветствую! Я знаю много умных фраз, спроси меня!",
-                "",
                 ""
 
         );
@@ -88,8 +87,7 @@ public class OracleTest {
         );
         String answer = Joiner.on(SEP).join(
                 "Приветствую! Я знаю много умных фраз, спроси меня!",
-                "",
-                "answer", "answer", "answer", "answer", "answer", "", ""
+                "answer", "answer", "answer", "answer", "answer", ""
         );
         testServer(expected, answer);
     }
