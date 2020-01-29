@@ -20,6 +20,8 @@ import java.util.function.Consumer;
 public class Chat {
 
     private static final String STOP = "стоп";
+    private static final String SEP = System.getProperty("line.separator");
+
     /**
      * Метод загружает ответы бота из файла
      *
@@ -46,7 +48,7 @@ public class Chat {
         try (BufferedWriter out = new BufferedWriter(new FileWriter(path + "/log.txt"))) {
             for (var e : log) {
                 out.write(e);
-                out.write("\n");
+                out.write(SEP);
             }
         }
 
