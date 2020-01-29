@@ -22,30 +22,32 @@ import java.util.stream.Collectors;
  */
 public class Oracle {
 
+    private static final String STOP = "пока";
+
     private List<String> load(Path path) throws IOException {
         return Files.newBufferedReader(path).lines().filter(e -> e.length() > 0).collect(Collectors.toList());
     }
 
     public void starServer(Socket server, Path answers) {
-        Logger log = log(Level.OFF);
+        Logger log = log(Level.FINEST);
         String ask = "";
         try (PrintWriter out = new PrintWriter(server.getOutputStream(), true);
              Scanner in = new Scanner(server.getInputStream())) {
             List<String> answer = load(answers);
             log.log(Level.FINE, "Server downloaded answers");
             out.println("Приветствую! Я знаю много умных фраз, спроси меня!");
-            out.println("");
+            //out.println("");
             log.log(Level.FINE, "Respond to client: Приветствую! Я знаю много умных фраз, спроси меня!");
             ask = in.nextLine();
             log.log(Level.FINE, "Client request:" + ask);
-            while (!("пока".equalsIgnoreCase(ask))) {
+            while (!(ask.equalsIgnoreCase(STOP))) {
                 int random = (int) (Math.random() * 95);
                 for (int index = 0; index < 5; index++) {
                     ask = answer.get((int) (random + index));
                     log.log(Level.FINE, "Respond to client:" + ask);
                     out.println(ask);
                 }
-                out.println("");
+                //out.println("");
                 ask = in.nextLine();
                 log.log(Level.FINE, "Client request:" + ask);
             }
