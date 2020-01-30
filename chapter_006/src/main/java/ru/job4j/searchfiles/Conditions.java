@@ -1,7 +1,22 @@
+/**
+ * Пакет для программы поиска файлов
+ *
+ * @author Maksim Tiunchik
+ */
+
 package ru.job4j.searchfiles;
 
+import java.util.HashMap;
+import java.util.Map;
 import java.util.regex.Pattern;
 
+/**
+ * Класс Conditions - извлечение значний из args
+ *
+ * @author Maksim Tiunchik (senebh@gmail.com)
+ * @version 0.1
+ * @since 30.01.2020
+ */
 public class Conditions {
     /*
      Программа должна собираться в jar и запускаться через java -jar find.jar -d c:/ -n *.txt -m -o log.txt
@@ -12,72 +27,40 @@ public class Conditions {
 -o - результат записать в файл.
      */
 
-    private String directory = "c:/";
-    private String condition = ".*";
-    private String result = "result.txt";
     private Pattern pattern;
-    private boolean mask = false;
-    private boolean fullmatch = false;
-    private boolean regular = false;
-
+    private Map<String, String> base = new HashMap<>();
 
     public void get(String[] args) {
-        String check = "";
-        for (int index = 0; index < args.length; index++) {
-            if (args[index].matches("^-.+$")) {
-                check = args[index];
-                switch (check) {
-                    case ("-m"):
-                        mask = true;
-                        break;
-                    case ("-f"):
-                        fullmatch = true;
-                        break;
-                    case ("-r"):
-                        regular = true;
-                        break;
-                    default:
-                        break;
-                }
-                continue;
+        String key = "";
+        for (var e : args) {
+            if (e.matches("^-.+$")) {
+                key = e;
             }
-            switch (check) {
-                case ("-d"):
-                    directory = args[index];
-                    break;
-                case ("-n"):
-                    condition = args[index];
-                    break;
-                case ("-o"):
-                    if (args[index].length() > 0) {
-                        result = args[index];
-                    }
-                    break;
-                default:
-                    break;
-            }
+            base.put(key, e);
+
         }
         makePattern();
     }
 
     private void makePattern() {
+        String temp = base.get("-n");
         int x = 0;
-        if (mask) {
-            if (condition.startsWith("*")) {
-                condition = "." + condition;
+        if (base.get("-m") != null) {
+            if (temp.startsWith("*")) {
+                temp = "." + temp;
             }
-            if (condition.endsWith("*")) {
-                condition = condition.substring(0, condition.length() - 1) + ".*";
+            if (temp.endsWith("*")) {
+                temp = temp.substring(0, temp.length() - 1) + ".*";
             }
-            pattern = Pattern.compile(condition);
+            pattern = Pattern.compile(temp);
             x++;
         }
-        if (fullmatch) {
-            pattern = Pattern.compile("^" + condition + "$");
+        if (base.get("-f") != null) {
+            pattern = Pattern.compile("^" + temp + "$");
             x++;
         }
-        if (regular) {
-            pattern = Pattern.compile(condition);
+        if (base.get("-r") != null) {
+            pattern = Pattern.compile(temp);
             x++;
         }
         if (x > 1 || x == 0) {
@@ -86,11 +69,19 @@ public class Conditions {
     }
 
     public String getDirectory() {
-        return directory;
+        String temp = base.get("-d");
+        if (temp == null) {
+            temp = "c:/";
+        }
+        return temp;
     }
 
     public String getResult() {
-        return result;
+        String temp = base.get("-o");
+        if (temp == null) {
+            temp = "result.txt";
+        }
+        return temp;
     }
 
     public Pattern getPattern() {
