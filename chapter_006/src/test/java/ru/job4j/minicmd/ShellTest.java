@@ -44,10 +44,10 @@ public class ShellTest {
         assertEquals(SEP + "job4j" + SEP + "chapter_001", cmd.path());
 
         cmd.cd("..");
-        assertEquals("\\job4j", cmd.path());
+        assertEquals(SEP + "job4j", cmd.path());
 
         cmd.cd("//job4jJun///");
-        assertEquals("\\job4jJun", cmd.path());
+        assertEquals(SEP + "job4jJun", cmd.path());
 
     }
 }
