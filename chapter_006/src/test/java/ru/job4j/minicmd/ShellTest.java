@@ -18,8 +18,8 @@ import static org.junit.Assert.*;
  * Класс ShellTest - тест эмуляция методов командной строки
  *
  * @author Maksim Tiunchik (senebh@gmail.com)
- * @version 0.1
- * @since 30.01.2020
+ * @version 0.2
+ * @since 01.02.2020
  */
 public class ShellTest {
 
@@ -45,6 +45,13 @@ public class ShellTest {
 
         cmd.cd("..");
         assertEquals(SEP + "job4j", cmd.path());
+
+        cmd.cd("chapter_001");
+        assertEquals(SEP + "job4j" + SEP + "chapter_001", cmd.path());
+
+        cmd.cd("..");
+        assertEquals(SEP + "job4j", cmd.path());
+
 
         cmd.cd("//job4jJun///");
         assertEquals(SEP + "job4jJun", cmd.path());
