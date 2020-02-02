@@ -1,5 +1,5 @@
 CREATE DATABASE MyPSQLServer
-    WITH 
+    WITH
     OWNER = postgres
     ENCODING = 'UTF8'
     LC_COLLATE = 'Russian_Russia.1251'
