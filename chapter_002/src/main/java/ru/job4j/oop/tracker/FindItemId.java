@@ -32,7 +32,7 @@ public class FindItemId implements UserActions {
      * @param tracker - трэкер - база данных, с которым ведёться работа
      */
     @Override
-    public boolean execute(Input input, Tracker tracker, Consumer output) {
+    public boolean execute(Input input, ITracker tracker, Consumer output) {
         String name = input.askStr("Enter ID number for searching: ");
         Item item = tracker.findById(name);
         if (item != null) {

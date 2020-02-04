@@ -23,7 +23,7 @@ public class Escape implements UserActions {
     }
 
     @Override
-    public boolean execute(Input input, Tracker tracker, Consumer output) {
+    public boolean execute(Input input, ITracker tracker, Consumer output) {
         return false;
     }
 }

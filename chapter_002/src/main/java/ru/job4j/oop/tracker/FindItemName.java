@@ -35,7 +35,7 @@ public class FindItemName implements UserActions {
      * @param tracker - трэкер - база данных, с которым ведёться работа
      */
     @Override
-    public boolean execute(Input input, Tracker tracker, Consumer output) {
+    public boolean execute(Input input, ITracker tracker, Consumer output) {
         String name = input.askStr("Enter name number for searching: ");
         Item[] array = tracker.findByName(name);
         if (array.length > 0) {

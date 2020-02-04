@@ -32,7 +32,7 @@ public class ShowAll implements UserActions {
      * @param tracker - трэкер - база данных, с которым ведёться работа
      */
     @Override
-    public boolean execute(Input input, Tracker tracker, Consumer output) {
+    public boolean execute(Input input, ITracker tracker, Consumer output) {
         Item[] array = tracker.findAll();
         for (int i = 0; i < array.length; i++) {
             output.accept("Position: " + i + " Name: " + array[i].getName() + " ID: "

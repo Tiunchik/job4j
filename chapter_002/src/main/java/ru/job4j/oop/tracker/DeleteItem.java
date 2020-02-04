@@ -32,9 +32,9 @@ public class DeleteItem implements UserActions {
      * @param tracker - трэкер - база данных, с которым ведёться работа
      */
     @Override
-    public boolean execute(Input input, Tracker tracker, Consumer output) {
+    public boolean execute(Input input, ITracker tracker, Consumer output) {
         String name = input.askStr("Enter ID number of a deleting item: ");
-        if (tracker.deleteById(name)) {
+        if (tracker.delete(name)) {
             output.accept("Item was deleted");
         } else {
             output.accept("ID is incorrect. Try again");

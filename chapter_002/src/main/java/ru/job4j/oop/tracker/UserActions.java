@@ -28,6 +28,6 @@ public interface UserActions {
      * @param tracker - база данных с которой происходит работа
      * @return - если false - прерывание работы программы
      */
-    public boolean execute(Input input, Tracker tracker, Consumer consumer);
+    public boolean execute(Input input, ITracker tracker, Consumer consumer);
 
 }

@@ -14,7 +14,7 @@ import java.util.*;
  * @version 0.3
  * @since 23.12.2019
  */
-public class Tracker {
+public class Tracker implements ITracker {
     /**
      * Массив для хранения заявок.
      */
@@ -30,6 +30,7 @@ public class Tracker {
      *
      * @param item новая заявка
      */
+    @Override
     public Item add(Item item) {
         item.setId(this.generateId());
         items.add(item);
@@ -51,6 +52,7 @@ public class Tracker {
      *
      * @return массив заполненный всеми не пустыми ячейками массива tracker.item[]
      */
+    @Override
     public Item[] findAll() {
         int index = 0;
         Item[] rsl = new Item[items.size()];
@@ -66,6 +68,7 @@ public class Tracker {
      * @param key - клечевое слово по которому производиться поиск
      * @return массив заполненный объектами типа Item поле name которых содержит значение key
      */
+    @Override
     public Item[] findByName(String key) {
         Item[] array = new Item[items.size()];
         int smallCircle = 0;
@@ -84,6 +87,7 @@ public class Tracker {
      * @param id - номер по которому производиться поиск
      * @return - возвращает ссылку на найденный объект
      */
+    @Override
     public Item findById(String id) {
         int index = this.indexOf(id);
         if (index != -1) {
@@ -99,7 +103,8 @@ public class Tracker {
      *
      * @param id - по данному идентификатору ищется позиция, которю необходимо удалить
      */
-    public boolean deleteById(String id) {
+    @Override
+    public boolean delete(String id) {
         int index = this.indexOf(id);
         if (index != -1) {
             items.remove(index);
@@ -131,6 +136,7 @@ public class Tracker {
      *
      * @param id в данный параметр необходимо передовать ID номер заявки, которую неоходимо зменить
      */
+    @Override
     public boolean replace(String id, Item item) {
         int index = this.indexOf(id);
         if (index != -1) {
