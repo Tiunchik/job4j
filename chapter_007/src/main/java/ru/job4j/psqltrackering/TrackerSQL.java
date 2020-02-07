@@ -15,20 +15,24 @@ import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Properties;
+import java.util.Random;
 
 /**
  * Класс TrackerSQL - реализация трекера с базой данной в виде SQL сервера.
  *
  * @author Maksim Tiunchik (senebh@gmail.com)
- * @version 0.1
- * @since -
+ * @version 0.2
+ * @since 08.02.2020
  */
 public class TrackerSQL implements ITracker, AutoCloseable {
     private static final Logger LOG = LogManager.getLogger(TrackerSQL.class.getName());
 
     private Connection connection;
-    private boolean baseOn = false;
-    private boolean connectionOn = false;
+
+    public TrackerSQL() {
+        init();
+        table();
+    }
 
     public boolean init() {
         try (InputStream in = TrackerSQL.class.getClassLoader().getResourceAsStream("app.properties")) {
@@ -50,79 +54,66 @@ public class TrackerSQL implements ITracker, AutoCloseable {
     }
 
     private void table() {
-        if (!connectionOn) {
-            init();
-        }
         try {
             Statement st = connection.createStatement();
             st.execute("drop table if exists items");
             st.execute("create table items ("
-                    + "id serial primary key,"
+                    + "id varchar(80) primary key,"
                     + "item_name varchar(100))");
         } catch (SQLException r) {
             LOG.error("Table creating error", r);
         }
-        baseOn = true;
     }
 
 
     @Override
     public Item add(Item item) {
-        if (!baseOn) {
-            table();
-        }
-        try {
-            PreparedStatement st = connection.prepareStatement("insert into items (item_name) values (?)");
-            st.setString(1, item.getName());
+        String temp = "";
+        try (PreparedStatement st = connection
+                .prepareStatement("insert into items (id, item_name) values (?, ?)")) {
+            temp = generateId();
+            st.setString(1, temp);
+            st.setString(2, item.getName());
             st.execute();
         } catch (SQLException r) {
             LOG.error("Item adding error", r);
         }
-        return null;
+        Item tempItemp = new Item(item.getName());
+        tempItemp.setId(temp);
+        return tempItemp;
     }
 
     @Override
     public boolean replace(String id, Item item) {
-        if (!baseOn) {
-            table();
-        }
-        try {
-            PreparedStatement st = connection.prepareStatement("update items set item_name = ? where id = ?");
+        var answer = false;
+        try (PreparedStatement st = connection
+                .prepareStatement("update items set item_name = ? where id = ?")) {
             st.setString(1, item.getName());
-            int temp = Integer.parseInt(id);
-            st.setInt(2, temp);
+            st.setString(2, id);
             st.execute();
         } catch (SQLException r) {
             LOG.error("Replace item error", r);
         }
-        return true;
+        return answer;
     }
 
     @Override
     public boolean delete(String id) {
-        if (!baseOn) {
-            table();
-        }
-        try {
-            PreparedStatement st = connection.prepareStatement("delete from items where id = ?");
-            int temp = Integer.parseInt(id);
-            st.setInt(1, temp);
-            st.execute();
+        var answer = false;
+        try (PreparedStatement st = connection.prepareStatement("delete from items where id = ?")) {
+            st.setString(1, id);
+            answer = st.execute();
         } catch (SQLException r) {
             LOG.error("Delete item error", r);
         }
-        return true;
+        return answer;
     }
 
     @Override
     public Item[] findAll() {
         List<Item> temp = new ArrayList<>();
-        if (!baseOn) {
-            table();
-        }
-        try {
-            Statement st = connection.createStatement();
-            ResultSet anwer = st.executeQuery("select * from items");
+        try (Statement st = connection.createStatement();
+             ResultSet anwer = st.executeQuery("select * from items")) {
             while (anwer.next()) {
                 Item tempItem = new Item(anwer.getString("item_name"));
                 tempItem.setId(anwer.getString("id"));
@@ -140,21 +131,20 @@ public class TrackerSQL implements ITracker, AutoCloseable {
     @Override
     public Item[] findByName(String key) {
         List<Item> temp = new ArrayList<>();
-        if (!baseOn) {
-            table();
-        }
-        try {
-            PreparedStatement st = connection.prepareStatement("select * from items where item_name =?");
+        try (PreparedStatement st = connection
+                .prepareStatement("select * from items where item_name =?")) {
             st.setString(1, key);
-            ResultSet anwer = st.executeQuery();
-            while (anwer.next()) {
-                Item tempItem = new Item(anwer.getString("item_name"));
-                tempItem.setId(anwer.getString("id"));
-                temp.add(tempItem);
+            try (ResultSet anwer = st.executeQuery()) {
+                while (anwer.next()) {
+                    Item tempItem = new Item(anwer.getString("item_name"));
+                    tempItem.setId(anwer.getString("id"));
+                    temp.add(tempItem);
+                }
             }
         } catch (SQLException r) {
             LOG.error("findByName item error", r);
         }
+
         Item[] tempArray = new Item[temp.size()];
         temp.toArray(tempArray);
         return tempArray;
@@ -163,21 +153,17 @@ public class TrackerSQL implements ITracker, AutoCloseable {
     @Override
     public Item findById(String id) {
         Item tempItem;
-        if (!baseOn) {
-            table();
-        }
-        try {
-            PreparedStatement st = connection.prepareStatement("select * from items where id =?");
-            int temp = Integer.parseInt(id);
-            st.setInt(1, temp);
-            ResultSet anwer = st.executeQuery();
-            while (anwer.next()) {
-                tempItem = new Item(anwer.getString("item_name"));
-                tempItem.setId(anwer.getString("id"));
-                return tempItem;
+        try (PreparedStatement st = connection.prepareStatement("select * from items where id =?")) {
+            st.setString(1, id);
+            try (ResultSet anwer = st.executeQuery()) {
+                while (anwer.next()) {
+                    tempItem = new Item(anwer.getString("item_name"));
+                    tempItem.setId(anwer.getString("id"));
+                    return tempItem;
+                }
             }
         } catch (SQLException r) {
-            LOG.error("findByName item error", r);
+            LOG.error("FindByName item error", r);
         }
         return null;
     }
@@ -185,5 +171,10 @@ public class TrackerSQL implements ITracker, AutoCloseable {
     @Override
     public void close() throws Exception {
         connection.close();
+    }
+
+    private String generateId() {
+        Random korea = new Random();
+        return String.valueOf(System.currentTimeMillis() + korea.nextLong());
     }
 }

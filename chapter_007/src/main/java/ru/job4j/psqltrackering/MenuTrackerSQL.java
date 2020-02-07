@@ -7,12 +7,14 @@ package ru.job4j.psqltrackering;
 
 import ru.job4j.oop.tracker.*;
 
+import java.io.IOException;
+
 /**
  * Класс MenuTracker - класс для запуска класса StartUI
  *
  * @author Maksim Tiunchik (senebh@gmail.com)
- * @version 0.1
- * @since 29.12.2019
+ * @version 0.2
+ * @since 08.02.2020
  */
 public class MenuTrackerSQL {
     /**
@@ -21,9 +23,13 @@ public class MenuTrackerSQL {
      * @param args - args.
      */
     public static void main(String[] args) {
-        UserActions[] action = {new AddItem(), new ShowAll(), new AdjustItem(),
-                new DeleteItem(), new FindItemId(), new FindItemName(), new Escape()};
-        new StartUI(new ValidateInput(new ConsoleInput()), new TrackerSQL(), System.out::println).init(action);
+        try (TrackerSQL temp = new TrackerSQL()) {
+            UserActions[] action = {new AddItem(), new ShowAll(), new AdjustItem(),
+                    new DeleteItem(), new FindItemId(), new FindItemName(), new Escape()};
+            new StartUI(new ValidateInput(new ConsoleInput()), temp, System.out::println).init(action);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 
 }
