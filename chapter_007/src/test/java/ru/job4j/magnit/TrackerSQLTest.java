@@ -1,4 +1,4 @@
-package ru.job4j.psqltracker;
+package ru.job4j.magnit;
 
 import static org.junit.Assert.*;
 
