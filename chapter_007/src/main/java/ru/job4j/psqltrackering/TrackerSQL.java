@@ -10,6 +10,7 @@ import org.apache.logging.log4j.Logger;
 import ru.job4j.oop.tracker.ITracker;
 import ru.job4j.oop.tracker.Item;
 
+import java.io.IOException;
 import java.io.InputStream;
 import java.sql.*;
 import java.util.ArrayList;
@@ -31,6 +32,11 @@ public class TrackerSQL implements ITracker, AutoCloseable {
 
     public TrackerSQL() {
         init();
+        table();
+    }
+
+    public TrackerSQL(Connection connection) {
+        this.connection = connection;
         table();
     }
 
