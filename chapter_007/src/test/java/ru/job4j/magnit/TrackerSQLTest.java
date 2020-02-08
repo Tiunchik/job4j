@@ -35,6 +35,7 @@ public class TrackerSQLTest {
     private final ByteArrayOutputStream out = new ByteArrayOutputStream();
     private final Consumer<String> output = new Consumer<String>() {
         private final PrintStream stdout = new PrintStream(out);
+
         @Override
         public void accept(String s) {
             stdout.println(s);
@@ -78,7 +79,7 @@ public class TrackerSQLTest {
                     .add("0 Stub action")
                     .toString();
             assertThat(new String(out.toByteArray()), CoreMatchers.is(expect));
-        } catch (Exception e){
+        } catch (Exception e) {
             e.printStackTrace();
         }
     }
