@@ -1,5 +1,5 @@
 /**
- * Пакет для работы с IO, эмуляция методов командной строки
+ * Пакет ru.job4j.minicmd для эмуляции методов командной строки
  *
  * @author Maksim Tiunchik
  */
@@ -19,42 +19,32 @@ import static org.junit.Assert.*;
  *
  * @author Maksim Tiunchik (senebh@gmail.com)
  * @version 0.2
- * @since 01.02.2020
+ * @since 09.02.2020
  */
 public class ShellTest {
 
-    private static final String SEP = System.getProperty("file.separator");
 
     @Test
     public void testAllFunctions() {
-        File root = new File(System.getProperty("java.io.tmpdir") + "/root");
-        root.mkdir();
-        File first = new File(root + "/job4j/chapter_001");
-        first.mkdirs();
-        File sevond = new File(root + "/job4jJun");
-        sevond.mkdir();
 
-        String[] args = {"-ea", root.toString()};
-        Shell cmd = new Shell(args);
+        final Shell shell = new Shell();
 
-        assertEquals(SEP, cmd.path());
+        assertEquals("/", shell.path());
 
-        cmd.cd("job4j").cd("chapter_001");
-        cmd.cd("../local").cd("./");
-        assertEquals(SEP + "job4j" + SEP + "chapter_001", cmd.path());
+        shell.cd("/");
+        assertEquals("/", shell.path());
 
-        cmd.cd("..");
-        assertEquals(SEP + "job4j", cmd.path());
+        shell.cd("usr/..");
+        assertEquals("/", shell.path());
 
-        cmd.cd("chapter_001");
-        assertEquals(SEP + "job4j" + SEP + "chapter_001", cmd.path());
+        shell.cd("usr").cd("local");
+        shell.cd("../local").cd("./");
+        assertEquals("/usr/local", shell.path());
 
-        cmd.cd("..");
-        assertEquals(SEP + "job4j", cmd.path());
+        shell.cd("..");
+        assertEquals("/usr", shell.path());
 
-
-        cmd.cd("//job4jJun///");
-        assertEquals(SEP + "job4jJun", cmd.path());
-
+        shell.cd("//lib///");
+        assertEquals("/lib", shell.path());
     }
 }
