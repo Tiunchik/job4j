@@ -27,7 +27,7 @@ import static org.hamcrest.Matchers.is;
  * Класс TrackerSQLTest - использован для тестов трекера с базой данной в виде SQL сервера.
  *
  * @author Maksim Tiunchik (senebh@gmail.com)
- * @version 0.2
+ * @version 0.3
  * @since 08.02.2020
  */
 public class TrackerSQLTest {
