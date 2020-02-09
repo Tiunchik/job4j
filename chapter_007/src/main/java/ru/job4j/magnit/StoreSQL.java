@@ -21,14 +21,10 @@ import java.util.List;
 
 
 public class StoreSQL implements AutoCloseable {
-    private boolean baseOn = false;
     private final Config config;
     private Connection connect;
 
     public StoreSQL(Config config) {
-        if (Files.exists(Paths.get(config.get("filepath")))) {
-            baseOn = true;
-        }
         if (config != null) {
             try {
                 connect = DriverManager.getConnection(config.get("url"));
@@ -41,15 +37,20 @@ public class StoreSQL implements AutoCloseable {
     }
 
     public void generate(int size) {
-        try {
-            if (!baseOn) {
-                PreparedStatement pst = connect.prepareStatement("create table entry (field integer)");
-                pst.execute();
-            }
-            PreparedStatement pst = connect.prepareStatement("insert into entry values (?)");
+        try (PreparedStatement pst = connect
+                .prepareStatement("create table if not exists entry (field integer)")) {
+            pst.execute();
+        } catch (SQLException r) {
+            r.printStackTrace();
+        }
+        try (PreparedStatement pst = connect.prepareStatement("insert into entry values (?), (?), (?), (?), (?)")) {
             if (connect != null) {
-                for (int index = 1; index <= size; index++) {
+                for (int index = 1; index <= size; index = index + 5) {
                     pst.setInt(1, index);
+                    pst.setInt(2, index + 1);
+                    pst.setInt(3, index + 2);
+                    pst.setInt(4, index + 3);
+                    pst.setInt(5, index + 4);
                     pst.execute();
                 }
             }
