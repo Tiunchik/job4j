@@ -51,8 +51,7 @@ public class TrackerSQL implements ITracker, AutoCloseable {
                     config.getProperty("password")
             );
             Statement st = connection.createStatement();
-            st.execute("drop database if exists tracker");
-            st.execute("create database tracker");
+            st.execute("create database if not exists tracker");
         } catch (Exception e) {
             throw new IllegalStateException(e);
         }
@@ -62,8 +61,7 @@ public class TrackerSQL implements ITracker, AutoCloseable {
     private void table() {
         try {
             Statement st = connection.createStatement();
-            st.execute("drop table if exists items");
-            st.execute("create table items ("
+            st.execute("create table if not exists items ("
                     + "id varchar(80) primary key,"
                     + "item_name varchar(100))");
         } catch (SQLException r) {
@@ -84,9 +82,8 @@ public class TrackerSQL implements ITracker, AutoCloseable {
         } catch (SQLException r) {
             LOG.error("Item adding error", r);
         }
-        Item tempItemp = new Item(item.getName());
-        tempItemp.setId(temp);
-        return tempItemp;
+        item.setId(temp);
+        return item;
     }
 
     @Override
@@ -96,7 +93,7 @@ public class TrackerSQL implements ITracker, AutoCloseable {
                 .prepareStatement("update items set item_name = ? where id = ?")) {
             st.setString(1, item.getName());
             st.setString(2, id);
-            st.execute();
+            answer = st.executeUpdate() > 0;
         } catch (SQLException r) {
             LOG.error("Replace item error", r);
         }
@@ -108,7 +105,7 @@ public class TrackerSQL implements ITracker, AutoCloseable {
         var answer = false;
         try (PreparedStatement st = connection.prepareStatement("delete from items where id = ?")) {
             st.setString(1, id);
-            answer = st.execute();
+            answer = st.executeUpdate() > 0;
         } catch (SQLException r) {
             LOG.error("Delete item error", r);
         }
