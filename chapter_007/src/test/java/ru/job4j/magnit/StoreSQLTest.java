@@ -20,7 +20,7 @@ import java.util.List;
  * Класс StoreSQLTest - класс для модульного тестирования проводимой работы
  *
  * @author Maksim Tiunchik (senebh@gmail.com)
- * @version 0.3
+ * @version 0.4
  * @since 13.02.2020
  */
 public class StoreSQLTest {
