@@ -15,8 +15,8 @@ import java.util.List;
  * Класс StoreSQL -класс для создания и работы с SQLLite
  *
  * @author Maksim Tiunchik (senebh@gmail.com)
- * @version 0.1
- * @since 07.02.2020
+ * @version 0.2
+ * @since 13.02.2020
  */
 
 

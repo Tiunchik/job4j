@@ -51,19 +51,19 @@ public class StoreSQLTest {
         }
         File entries = new File(System.getProperty("java.io.tmpdir") + "/entries.xsl");
         try (BufferedWriter writer = Files.newBufferedWriter(entries.toPath())) {
-            String text = "<xsl:stylesheet version=\"1.0\" xmlns:xsl=\"http://www.w3.org/1999/XSL/Transform\">" +
-                    "    <xsl:template match=\"/\">" +
-                    "        <entries>" +
-                    "            <xsl:for-each select=\"entries/entry\">" +
-                    "                <entry>" +
-                    "                    <xsl:attribute name=\"href\">" +
-                    "                        <xsl:value-of select=\"field\"/>" +
-                    "                    </xsl:attribute>" +
-                    "                </entry>" +
-                    "            </xsl:for-each>" +
-                    "        </entries>" +
-                    "    </xsl:template>" +
-                    "</xsl:stylesheet>";
+            String text = "<xsl:stylesheet version=\"1.0\" xmlns:xsl=\"http://www.w3.org/1999/XSL/Transform\">"
+                   + "    <xsl:template match=\"/\">"
+                   + "        <entries>"
+                   + "            <xsl:for-each select=\"entries/entry\">"
+                   + "                <entry>"
+                   + "                    <xsl:attribute name=\"href\">"
+                   + "                        <xsl:value-of select=\"field\"/>"
+                   + "                    </xsl:attribute>"
+                   + "                </entry>"
+                   + "            </xsl:for-each>"
+                   + "        </entries>"
+                   + "    </xsl:template>"
+                   + "</xsl:stylesheet>";
             writer.write(text);
         } catch (IOException e) {
             e.printStackTrace();
