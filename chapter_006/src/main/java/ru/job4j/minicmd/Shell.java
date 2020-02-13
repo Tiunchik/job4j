@@ -15,8 +15,8 @@ import java.util.List;
  * Класс Shell - эмуляция методов командной строки
  *
  * @author Maksim Tiunchik (senebh@gmail.com)
- * @version 0.1
- * @since 09.02.2020
+ * @version 0.2
+ * @since 13.02.2020
  */
 public class Shell {
     private static final Logger LOG = LogManager.getLogger(Shell.class.getName());
