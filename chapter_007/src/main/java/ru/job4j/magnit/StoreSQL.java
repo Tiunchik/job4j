@@ -43,15 +43,20 @@ public class StoreSQL implements AutoCloseable {
         } catch (SQLException r) {
             r.printStackTrace();
         }
-        try (PreparedStatement pst = connect.prepareStatement("insert into entry values (?), (?), (?), (?), (?)")) {
+        try (PreparedStatement pst = connect.prepareStatement("insert into entry values (?)")) {
             if (connect != null) {
                 for (int index = 1; index <= size; index = index + 5) {
                     pst.setInt(1, index);
-                    pst.setInt(2, index + 1);
-                    pst.setInt(3, index + 2);
-                    pst.setInt(4, index + 3);
-                    pst.setInt(5, index + 4);
-                    pst.execute();
+                    pst.addBatch();
+                    pst.setInt(1, index + 1);
+                    pst.addBatch();
+                    pst.setInt(1, index + 2);
+                    pst.addBatch();
+                    pst.setInt(1, index + 3);
+                    pst.addBatch();
+                    pst.setInt(1, index + 4);
+                    pst.addBatch();
+                    pst.executeBatch();
                 }
             }
         } catch (SQLException r) {

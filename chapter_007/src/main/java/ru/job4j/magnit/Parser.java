@@ -29,7 +29,7 @@ public class Parser {
 
     private static int answer = 0;
 
-    public static void parserSAX(File input) {
+    public static int parserSAX(File input) {
         SAXParserFactory factory = SAXParserFactory.newInstance();
         try {
             SAXParser parser = factory.newSAXParser();
@@ -37,12 +37,14 @@ public class Parser {
             try {
                 parser.parse(input, handler);
                 System.out.println(answer);
+                return answer;
             } catch (IOException r) {
                 LOG.error("Download xml error", r);
             }
         } catch (SAXException | ParserConfigurationException e) {
             LOG.error("SAX/Parser error", e);
         }
+        return 0;
     }
 
     public static class XMLHandler extends DefaultHandler {

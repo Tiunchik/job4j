@@ -9,22 +9,26 @@ import org.junit.Assert;
 import org.junit.Ignore;
 import org.junit.Test;
 
+import java.io.BufferedWriter;
 import java.io.File;
+import java.io.FileWriter;
+import java.io.IOException;
+import java.nio.file.Files;
 import java.sql.SQLException;
 import java.util.LinkedList;
 import java.util.List;
 
 /**
- * Класс StoreSQLTest - класс для ручной тестировки проводимой работы
+ * Класс StoreSQLTest - класс для модульного тестирования проводимой работы
  *
  * @author Maksim Tiunchik (senebh@gmail.com)
- * @version 0.1
- * @since 07.02.2020
+ * @version 0.2
+ * @since 13.02.2020
  */
 public class StoreSQLTest {
 
-    @Ignore
-    public void firstTest() {
+    @Test
+    public void fulltestofusualwork() {
         List<Entry> temp = new LinkedList<>();
         Config config = new Config();
         config.init();
@@ -45,10 +49,30 @@ public class StoreSQLTest {
                 e.printStackTrace();
             }
         }
-        new StoreXML(new File("c:/java/log.xml")).save(temp);
-        new ConvertXSQT().convert(new File("c:/java/log.xml"),
-                new File("c:/java/relog.xml"),
-                new File("C:\\projects\\job4j\\chapter_007\\src\\main\\resources\\entries.xsl"));
-        Parser.parserSAX(new File("c:/java/relog.xml"));
+        File entries = new File(System.getProperty("java.io.tmpdir") + "/entries.xsl");
+        try (BufferedWriter writer = Files.newBufferedWriter(entries.toPath())) {
+            String text = "<xsl:stylesheet version=\"1.0\" xmlns:xsl=\"http://www.w3.org/1999/XSL/Transform\">" +
+                    "    <xsl:template match=\"/\">" +
+                    "        <entries>" +
+                    "            <xsl:for-each select=\"entries/entry\">" +
+                    "                <entry>" +
+                    "                    <xsl:attribute name=\"href\">" +
+                    "                        <xsl:value-of select=\"field\"/>" +
+                    "                    </xsl:attribute>" +
+                    "                </entry>" +
+                    "            </xsl:for-each>" +
+                    "        </entries>" +
+                    "    </xsl:template>" +
+                    "</xsl:stylesheet>";
+            writer.write(text);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        new StoreXML(new File(System.getProperty("java.io.tmpdir") + "/log.xml")).save(temp);
+        new ConvertXSQT().convert(new File(System.getProperty("java.io.tmpdir") + "/log.xml"),
+                new File(System.getProperty("java.io.tmpdir") + "/relog.xml"),
+                entries);
+        int answer = Parser.parserSAX(new File(System.getProperty("java.io.tmpdir") + "/relog.xml"));
+        Assert.assertEquals(1784293664, answer);
     }
 }
