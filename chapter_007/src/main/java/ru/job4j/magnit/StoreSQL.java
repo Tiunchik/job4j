@@ -25,7 +25,7 @@ public class StoreSQL implements AutoCloseable {
     public StoreSQL(Config config) {
         if (config != null) {
             try {
-                connect = DriverManager.getConnection(config.get("url"));
+                connect = DriverManager.getConnection(config.get(System.getProperty("java.io.tmpdir") + "url"));
             } catch (SQLException e) {
                 e.printStackTrace();
             }
