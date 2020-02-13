@@ -6,12 +6,10 @@
 package ru.job4j.magnit;
 
 import org.junit.Assert;
-import org.junit.Ignore;
 import org.junit.Test;
 
 import java.io.BufferedWriter;
 import java.io.File;
-import java.io.FileWriter;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.sql.SQLException;
@@ -22,7 +20,7 @@ import java.util.List;
  * Класс StoreSQLTest - класс для модульного тестирования проводимой работы
  *
  * @author Maksim Tiunchik (senebh@gmail.com)
- * @version 0.2
+ * @version 0.3
  * @since 13.02.2020
  */
 public class StoreSQLTest {

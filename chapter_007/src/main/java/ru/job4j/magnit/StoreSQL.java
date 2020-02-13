@@ -5,8 +5,6 @@
  */
 package ru.job4j.magnit;
 
-import java.nio.file.Files;
-import java.nio.file.Paths;
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
@@ -15,7 +13,7 @@ import java.util.List;
  * Класс StoreSQL -класс для создания и работы с SQLLite
  *
  * @author Maksim Tiunchik (senebh@gmail.com)
- * @version 0.2
+ * @version 0.3
  * @since 13.02.2020
  */
 
