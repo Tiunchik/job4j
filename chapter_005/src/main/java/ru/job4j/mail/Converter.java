@@ -13,7 +13,7 @@ import java.util.stream.Collectors;
  *
  * @author Maksim Tiunchik (senebh@gmail.com)
  * @version 0.3
- * @since 27.01.2019
+ * @since 16.02.2019
  */
 public class Converter {
     /**
@@ -23,30 +23,35 @@ public class Converter {
      * @return - отсортрованная база без дубликатов
      */
     public static List<User> converter(List<? extends User> base) {
-        Map<User, Set<String>> mapBase = new HashMap<>();
-        Map<String, User> mapTemp = new HashMap<>();
-
-        for (var user : base) {
-            for (var emails : user.getEmails()) {
-                if (mapTemp.containsKey(emails)) {
-                    mapTemp.put(emails, mapTemp.get(emails));
-                } else {
-                    mapTemp.put(emails, user);
+        Map<String, Set<String>> tempList = new HashMap<>();
+        Map<String, User> tempMap = new HashMap();
+        User key;
+        for (var us : base) {
+            key = us;
+            for (var em : us.getEmails()) {
+                if (tempMap.containsKey(em)) {
+                    key = tempMap.get(em);
+                    break;
                 }
             }
+            User finalKey = key;
+            tempMap.putAll(us.getEmails().stream().collect(Collectors.toMap(e -> e, x -> finalKey)));
         }
-
-        for (var email : mapTemp.keySet()) {
-            var x = mapTemp.get(email);
-            if (mapBase.containsKey(x)) {
-                mapBase.get(x).add(email);
-            } else {
-                Set<String> temp = new HashSet<>();
-                temp.add(email);
-                mapBase.put(x, temp);
+        String tempText;
+        for (var e : tempMap.keySet()) {
+            tempText = tempMap.get(e).getName();
+            if (!tempList.containsKey(tempText)) {
+                tempList.put(tempText, new HashSet<String>());
+            }
+            if (tempList.containsKey(tempText)) {
+                tempList.get(tempText).add(e);
             }
         }
-        return mapBase.keySet().stream().map(e -> new User(e.getName(), e.getEmails())).collect(Collectors.toList());
+        List<User> answer = new ArrayList<>();
+        for (var e : tempList.keySet()) {
+            answer.add(new User(e, tempList.get(e)));
+        }
+        return answer;
     }
 }
 

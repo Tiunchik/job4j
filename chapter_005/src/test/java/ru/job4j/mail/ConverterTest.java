@@ -16,10 +16,11 @@ import static org.junit.Assert.*;
  * Класс ConverterTest - тестовый класс.
  *
  * @author Maksim Tiunchik (senebh@gmail.com)
- * @version 0.1
- * @since 14.01.2019
+ * @version 0.2
+ * @since 16.02.2019
  */
 public class ConverterTest {
+
 
     @Test
     public void whenWeTestConverter() {
@@ -34,14 +35,15 @@ public class ConverterTest {
 
         var test = Converter.converter(base);
         List<User> expected = new ArrayList<>(List.of(
-                new User("unknownUser1", Set.of("xyz@pisem.net", "vasya@pupkin.com")),
-                new User("unknownUser2", Set.of("xxx@ya.ru", "foo@gmail.com", "lol@mail.ru", "ups@pisem.net", "aaa@bbb.ru"))
-
+                new User("unknownUser2", Set.of("xxx@ya.ru", "foo@gmail.com", "lol@mail.ru", "ups@pisem.net", "aaa@bbb.ru")),
+                new User("unknownUser1", Set.of("xyz@pisem.net", "vasya@pupkin.com"))
         ));
-        //Iterator<User> that = test.iterator();
-        //Iterator<User> those = expected.iterator();
-        //assertThat(those.next().getEmails(), is(that.next().getEmails()));
-        //assertThat(those.next().getEmails(), is(that.next().getEmails()));
-        test.forEach(e -> System.out.println(e.getName() + " / " + e.getEmails()));
+        for (int index = 0; index < 2; index++) {
+            test.get(index).getEmails().removeAll(expected.get(index).getEmails());
+            assertEquals(test.get(index).getEmails().size(), 0);
+        }
+
     }
+
+
 }
