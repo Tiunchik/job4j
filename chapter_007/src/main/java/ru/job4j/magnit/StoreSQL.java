@@ -13,8 +13,8 @@ import java.util.List;
  * Класс StoreSQL -класс для создания и работы с SQLLite
  *
  * @author Maksim Tiunchik (senebh@gmail.com)
- * @version 0.3
- * @since 13.02.2020
+ * @version 0.4
+ * @since 17.02.2020
  */
 
 
@@ -44,19 +44,40 @@ public class StoreSQL implements AutoCloseable {
         }
         try (PreparedStatement pst = connect.prepareStatement("insert into entry values (?)")) {
             if (connect != null) {
-                for (int index = 1; index <= size; index = index + 5) {
-                    pst.setInt(1, index);
+                connect.setAutoCommit(false);
+                for (int index = 1; index <= size;) {
+                    pst.setInt(1, index++);
                     pst.addBatch();
-                    pst.setInt(1, index + 1);
-                    pst.addBatch();
-                    pst.setInt(1, index + 2);
-                    pst.addBatch();
-                    pst.setInt(1, index + 3);
-                    pst.addBatch();
-                    pst.setInt(1, index + 4);
-                    pst.addBatch();
-                    pst.executeBatch();
                 }
+                pst.executeBatch();
+                connect.commit();
+                connect.setAutoCommit(true);
+            }
+        } catch (SQLException r) {
+            try {
+                connect.rollback();
+                connect.setAutoCommit(true);
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+            r.printStackTrace();
+        }
+    }
+
+    public void generateTest(int size) {
+        try (PreparedStatement pst = connect
+                .prepareStatement("create table if not exists entry (field integer)")) {
+            pst.execute();
+        } catch (SQLException r) {
+            r.printStackTrace();
+        }
+        try (PreparedStatement pst = connect.prepareStatement("insert into entry values (?)")) {
+            if (connect != null) {
+                for (int index = 1; index <= size;) {
+                    pst.setInt(1, index++);
+                    pst.addBatch();
+                }
+                pst.executeBatch();
             }
         } catch (SQLException r) {
             r.printStackTrace();

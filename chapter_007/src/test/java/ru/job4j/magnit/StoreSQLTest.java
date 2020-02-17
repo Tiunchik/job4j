@@ -20,8 +20,8 @@ import java.util.List;
  * Класс StoreSQLTest - класс для модульного тестирования проводимой работы
  *
  * @author Maksim Tiunchik (senebh@gmail.com)
- * @version 0.4
- * @since 13.02.2020
+ * @version 0.5
+ * @since 17.02.2020
  */
 public class StoreSQLTest {
 
@@ -34,7 +34,7 @@ public class StoreSQLTest {
         StoreSQL store = new StoreSQL(config);
         try {
             store.getConnect().setAutoCommit(false);
-            store.generate(1000000);
+            store.generateTest(1000000);
             temp = store.load();
             Assert.assertEquals(1000000, temp.size());
         } catch (SQLException e) {
