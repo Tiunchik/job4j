@@ -1,5 +1,5 @@
 /**
- * Calculator package
+ * Calculator package.
  *
  * @author Maksim Tiunchik
  */
@@ -11,9 +11,9 @@ import org.apache.logging.log4j.Logger;
 /**
  * Класс MainLoop - main programm loop, work with user, start methods.
  *
- * @author Maksim Tiunchik (senebh@gmail.com)
- * @version 0.1
- * @since 17.02.2020
+ * @author Maksim Tiunchik (senebh@gmail.com).
+ * @version 0.1.
+ * @since 17.02.2020.
  */
 public class MainLoop {
     /**
@@ -25,13 +25,14 @@ public class MainLoop {
      * constant for stopping execution.
      */
     private static final String STOP = "by";
+    private static final String ZERO = "zero";
 
     /**
      * main loop of programm.
      *
-     * @param interact  class with methods for interactions
-     * @param interprit class with methods for interpritation string to dounle
-     * @param calc      class with methods for calculations
+     * @param interact  class with methods for interactions.
+     * @param interprit class with methods for interpritation string to dounle.
+     * @param calc      class with methods for calculations.
      */
     public void start(Interaction interact, Interpritator interprit, Calculator calc) {
         double lastresult = 0.0;
@@ -45,6 +46,9 @@ public class MainLoop {
                     after[0] = "" + lastresult;
                 }
                 lastresult = calc.calculate(after);
+            }
+            if (answer.equalsIgnoreCase(ZERO)) {
+                lastresult = 0;
             }
             interact.informUser(String.format("%-30s %10f", "Result of arithmetic action", lastresult));
         }

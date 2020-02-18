@@ -1,5 +1,5 @@
 /**
- * Calculator package
+ * Calculator package.
  *
  * @author Maksim Tiunchik
  */
@@ -17,16 +17,16 @@ import org.apache.logging.log4j.Logger;
  */
 public class StartClass {
     /**
-     * inner logger
+     * inner logger.
      */
     private static final Logger LOG = LogManager.getLogger(StartClass.class.getName());
 
     /**
      * Start execution of programm.
      *
-     * @param args - not used, arguments from command line
+     * @param args - not used, arguments from command line.
      */
     public static void main(String[] args) {
-        new MainLoop().start(new Interaction(), new Interpritator(), new Calculator());
+        new MainLoop().start(new Interaction(), new Interpritator(), new RngCalculator());
     }
 }

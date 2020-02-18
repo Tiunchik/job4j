@@ -1,5 +1,5 @@
 /**
- * Calculator package
+ * Calculator package.
  *
  * @author Maksim Tiunchik
  */

@@ -6,7 +6,7 @@
 package ru.job4j.calculator;
 
 /**
- * Class for executing simple arithmetic operations
+ * Class for executing simple arithmetic operations.
  *
  * @author Maksim Tiunchik (senebh@gmail.com)
  * @version 0.2
@@ -18,13 +18,14 @@ public class Calculator {
     /**
      * Main calculator method - get text massive with numbers and symbol of arithmetic action.
      *
-     * @param respond String[] 0 - first number, 1 - arithmetic action, 2 - second number
-     * @return result of calculation
+     * @param respond String[] 0 - first number, 1 - arithmetic action, 2 - second number.
+     * @return result of calculation.
      */
     public double calculate(String[] respond) {
-        double answer = 0;
+
         double first = Double.parseDouble(respond[0]);
         double second = Double.parseDouble(respond[2]);
+        double answer = first;
         switch (respond[1]) {
             case "+":
                 answer = add(first, second);
@@ -39,7 +40,6 @@ public class Calculator {
                 answer = multiply(first, second);
                 break;
             default:
-                answer = 0;
                 break;
         }
         return answer;
@@ -49,8 +49,8 @@ public class Calculator {
     /**
      * addition of two variables.
      *
-     * @param first  - first variable
-     * @param second - second variable
+     * @param first  - first variable.
+     * @param second - second variable.
      */
     private double add(double first, double second) {
         return first + second;
@@ -59,8 +59,8 @@ public class Calculator {
     /**
      * subtract from the first variable the value of second variable.
      *
-     * @param first  - first variable
-     * @param second - second variable
+     * @param first  - first variable.
+     * @param second - second variable.
      */
     private double subtract(double first, double second) {
         return first - second;
@@ -69,8 +69,8 @@ public class Calculator {
     /**
      * multiply of two variables.
      *
-     * @param first  - first variable
-     * @param second - second variable
+     * @param first  - first variable.
+     * @param second - second variable.
      */
     private double multiply(double first, double second) {
         return first * second;
@@ -79,8 +79,8 @@ public class Calculator {
     /**
      * division of the first variable by value of second variable.
      *
-     * @param first  - first variable
-     * @param second - second variable
+     * @param first  - first variable.
+     * @param second - second variable.
      */
     private double div(double first, double second) {
         return first / second;
