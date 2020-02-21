@@ -38,16 +38,23 @@ insert into users (names) values ('Adam'), ('Alan'), ('Mark');
 insert into attends (meeting_id, users_id) values (1,1), (1,2), (1,3), (2,1), (2,2), (2,3) ,(3,1), (3,2), (3,3);
 insert into status (attends_id, status) values (1,'accept'), (2,'accept'), (3,'denied'), (4,'denied'), (5,'denied'), (6,'notrespond'), (7,'denied'), (8,'accept'), (9,'notrespond');
 insert into meetings (names) values ('forth meeting'), ('fiveth meeting');
-
+--insert into status (attends_id, status) values (10,'notrespond'), (11,'notrespond'), (12,'notrespond'), (13,'denied'), (14,'denied'), (15,'notrespond');
 insert into attends (users_id, meeting_id) values ((select id from users where users.names ='Adam'), (select id from meetings where meetings.names ='fiveth meeting') );
 
 insert into status (attends_id, status) values ((select id from attends where users_id=(select id from users where users.names ='Adam')
-												 and meeting_id =(select id from meetings where meetings.names ='fiveth meeting') ),'accept');
+												 and meeting_id =(select id from meetings where meetings.names ='fiveth meeting') ),'denied');
 
 --2. Нужно написать запрос, который получит список всех заяков и количество подтвердивших участников.
+select meetings.names, tbs.accepted from meetings left outer join (select meetings.names as names, count(status.status) as accepted
+			 from meetings left outer join attends on meetings.id = attends.meeting_id right outer join
+			 status on status.attends_id = attends.id where status.status = 'accept' group by meetings.names) as tbs on meetings.names = tbs.names;
 
-with tbs as (select meetings.names as names, count(status.status) as accepted  from meetings left outer join attends on meetings.id = attends.meeting_id right outer join status on status.attends_id = attends.id where status.status = 'accept' group by meetings.names)
-select meetings.names, tbs.accepted from meetings left outer join tbs on meetings.names = tbs.names;
 
 --3. Нужно получить все совещания, где не было ни одной заявки на посещения
-select meetings.names, count(attends.meeting_id) from meetings left outer join attends on meetings.id = attends.meeting_id group by meetings.names having count(attends.meeting_id) = 0;
+select aa from (select meetings.names as aa, count(attends.meeting_id) from meetings left outer join attends on meetings.id = attends.meeting_id
+														left outer join status on attends.id = status.attends_id group by meetings.names) as OneTable
+left outer join
+(select meetings.names as bb, count(status.status) from meetings left outer join attends on meetings.id = attends.meeting_id
+														left outer join status on attends.id = status.attends_id where status.status = 'accept'
+														group by meetings.names) as TwoTable
+on aa=bb where bb is null;
