@@ -14,5 +14,5 @@ package ru.job4j.calculator.anothercalculator;
  */
 public interface Compute {
 
-    double calculate(String[] arguments);
+    double calculate(double first, double second);
 }

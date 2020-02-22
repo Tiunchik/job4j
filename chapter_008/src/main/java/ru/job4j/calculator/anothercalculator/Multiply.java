@@ -19,9 +19,7 @@ public class Multiply implements Compute {
     private static final Logger LOG = LogManager.getLogger(Multiply.class.getName());
 
     @Override
-    public double calculate(String[] arguments) {
-        double first = Double.parseDouble(arguments[0]);
-        double second = Double.parseDouble(arguments[2]);
+    public double calculate(double first, double second) {
         double answer = first;
         answer = new Calculator().multiply(first, second);
         return answer;

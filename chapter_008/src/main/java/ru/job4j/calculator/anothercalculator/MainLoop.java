@@ -48,8 +48,10 @@ public class MainLoop {
                 if (after[0].equals("")) {
                     after[0] = "" + lastresult;
                 }
+                double first = Double.parseDouble(after[0]);
+                double second = Double.parseDouble(after[2]);
                 action = after[1] != null ? actions.get(after[1]) : null;
-                lastresult = action != null ? action.calculate(after) : lastresult;
+                lastresult = action != null ? action.calculate(first, second) : lastresult;
 
             }
             if (answer.equalsIgnoreCase(ZERO)) {

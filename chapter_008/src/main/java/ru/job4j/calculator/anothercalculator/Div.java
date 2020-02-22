@@ -19,9 +19,7 @@ public class Div implements Compute {
     private static final Logger LOG = LogManager.getLogger(Div.class.getName());
 
     @Override
-    public double calculate(String[] arguments) {
-        double first = Double.parseDouble(arguments[0]);
-        double second = Double.parseDouble(arguments[2]);
+    public double calculate(double first, double second) {
         double answer = first;
         answer = new Calculator().div(first, second);
         return answer;

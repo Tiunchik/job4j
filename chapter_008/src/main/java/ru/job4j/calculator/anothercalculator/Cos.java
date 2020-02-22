@@ -19,9 +19,7 @@ public class Cos implements Compute {
     private static final Logger LOG = LogManager.getLogger(Cos.class.getName());
 
     @Override
-    public double calculate(String[] arguments) {
-        double first = Double.parseDouble(arguments[0]);
-        double second = Double.parseDouble(arguments[2]);
+    public double calculate(double first, double second) {
         double answer = first;
         answer = new Calculator().cos(second);
         return answer;

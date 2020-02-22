@@ -19,9 +19,7 @@ public class Add implements Compute {
     private static final Logger LOG = LogManager.getLogger(Add.class.getName());
 
     @Override
-    public double calculate(String[] arguments) {
-        double first = Double.parseDouble(arguments[0]);
-        double second = Double.parseDouble(arguments[2]);
+    public double calculate(double first, double second) {
         double answer = first;
         answer = new Calculator().add(first, second);
         return answer;

@@ -7,9 +7,7 @@ package ru.job4j.storage;
 
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
-import ru.job4j.calculator.Calculator;
 
-import java.util.Calendar;
 import java.util.Date;
 
 /**

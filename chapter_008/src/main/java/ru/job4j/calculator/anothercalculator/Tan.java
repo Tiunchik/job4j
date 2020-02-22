@@ -19,9 +19,7 @@ public class Tan implements Compute {
     private static final Logger LOG = LogManager.getLogger(Tan.class.getName());
 
     @Override
-    public double calculate(String[] arguments) {
-        double first = Double.parseDouble(arguments[0]);
-        double second = Double.parseDouble(arguments[2]);
+    public double calculate(double first, double second) {
         double answer = first;
         answer = new Calculator().tan(second);
         return answer;
