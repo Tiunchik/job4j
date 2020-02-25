@@ -6,7 +6,7 @@
 package ru.job4j.crosszero;
 
 /**
- * Interface AIactions - 
+ * Interface AIactions - interface for AI actions
  *
  * @author Maksim Tiunchik (senebh@gmail.com)
  * @version 0.1
@@ -14,6 +14,11 @@ package ru.job4j.crosszero;
  */
 public interface AIactions {
 
+    /**
+     * Make actions with board, return symbol "O" for next methods
+     *
+     * @return return symbol "O"
+     */
     String aiturn();
 
 }

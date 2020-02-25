@@ -11,7 +11,7 @@ import org.apache.logging.log4j.Logger;
 import java.util.Properties;
 
 /**
- * Class StartGame -
+ * Class StartGame - start and execute full circle of game according properties
  *
  * @author Maksim Tiunchik (senebh@gmail.com)
  * @version 0.1
@@ -20,8 +20,18 @@ import java.util.Properties;
 public class StartGame implements TakeAction {
     private static final Logger LOG = LogManager.getLogger(StartGame.class.getName());
 
+    /**
+     * constant with value for exit from option menu
+     */
     private final static String STOP = "exit";
 
+    /**
+     * start and execute full circle of game according properties
+     *
+     * @param inter object for interaction with user
+     * @param interpret object for understanding user answers
+     * @return "next" when finish all actions
+     */
     @Override
     public String execute(Interact inter, IInterpretator interpret) {
         Config cong = new Config("game.properties");
@@ -50,6 +60,11 @@ public class StartGame implements TakeAction {
         return "next";
     }
 
+    /**
+     * Return name of object
+     *
+     * @return name of object
+     */
     @Override
     public String showName() {
         return "Start game";

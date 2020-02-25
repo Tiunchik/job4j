@@ -1,5 +1,5 @@
 /**
- * Menu package.
+ * Package ru.job4j.crosszero for
  *
  * @author Maksim Tiunchik
  */
@@ -16,8 +16,8 @@ import java.io.InputStreamReader;
  * Class Interaction - contains methods for asking and respons to user.
  *
  * @author Maksim Tiunchik (senebh@gmail.com)
- * @version 0.1
- * @since 17.02.2020
+ * @version 0.2
+ * @since 25.02.2020
  */
 public class Interaction implements Interact {
     /**

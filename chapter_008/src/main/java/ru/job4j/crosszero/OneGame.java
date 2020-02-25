@@ -12,7 +12,7 @@ import java.util.Properties;
 import java.util.concurrent.TimeUnit;
 
 /**
- * Class OneGame -
+ * Class OneGame - main loop for one game
  *
  * @author Maksim Tiunchik (senebh@gmail.com)
  * @version 0.1
@@ -20,21 +20,55 @@ import java.util.concurrent.TimeUnit;
  */
 public class OneGame {
     private static final Logger LOG = LogManager.getLogger(OneGame.class.getName());
-
+    /**
+     * constant with value for exit from menu
+     */
     private final static String STOP = "exit";
 
+    /**
+     * link to game board
+     */
     private Deck board;
+    /**
+     * start AI or not
+     */
     private String aiUser;
+    /**
+     * size of board
+     */
     private int size;
+    /**
+     * contains last answer of user
+     */
     private String answer;
+    /**
+     * link to Logic object
+     */
     private Logic log;
+    /**
+     * link to AI
+     */
     private AIactions aiact;
+    /**
+     * contains recongized answer of user
+     */
     private String[] action = {"--", "--", "--"};
-
+    /**
+     * ask and inform user
+     */
     private Interact inter;
+    /**
+     * methods for understanding user answers
+     */
     private IInterpretator interpret;
 
-
+    /**
+     * constructor for OneGame class
+     *
+     * @param inter class for sending messages
+     * @param interpret class for recognition answers from user
+     * @param prop properies for game
+     */
     public OneGame(Interact inter, IInterpretator interpret, Properties prop) {
         this.aiUser = (String) prop.get("ai");
         this.size = Integer.parseInt((String) prop.get("size"));
@@ -46,6 +80,11 @@ public class OneGame {
         this.interpret = interpret;
     }
 
+    /**
+     * main loop of game
+     *
+     * @return "X" - winner is X gamer, "O" - winner is X gamer, "draw" - draw
+     */
     String playGame() {
         board.cleanBoard();
         board.printBoard(inter);
@@ -83,6 +122,12 @@ public class OneGame {
         return answer;
     }
 
+    /**
+     * execute actions for user turn
+     *
+     * @param symbol sybol of user
+     * @return "X" or "exit" for nxt methods
+     */
     private String userTurn(String symbol) {
         action[1] = "";
         int x = 0;
@@ -108,6 +153,12 @@ public class OneGame {
         return symbol;
     }
 
+    /**
+     * start procedure to determine winner
+     *
+     * @param symbol symbol of user to check
+     * @return tue - win, false - priceed game
+     */
     private boolean winCheck(String symbol) {
         if (log.isWinner(symbol)) {
             inter.informUser("Last game has been winned the player " + symbol + "\n");

@@ -18,11 +18,23 @@ import org.apache.logging.log4j.Logger;
 public class ActionExit implements  TakeAction {
     private static final Logger LOG = LogManager.getLogger(ActionExit.class.getName());
 
+    /**
+     * exit from main menu
+     *
+     * @param inter object for interaction with user
+     * @param interpret object for understanding user answers
+     * @return "next" when finish all actions
+     */
     @Override
     public String execute(Interact inter, IInterpretator interpret) {
-        return "by";
+        return "exit";
     }
 
+    /**
+     * Return name of object
+     *
+     * @return name of object
+     */
     @Override
     public String showName() {
         return "Exit";

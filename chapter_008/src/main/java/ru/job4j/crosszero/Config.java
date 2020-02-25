@@ -24,15 +24,27 @@ import java.util.Properties;
  */
 public class Config implements InterfaceProperties {
     private static final Logger LOG = LogManager.getLogger(Config.class.getName());
-
+    /**
+     * name of properties file
+     */
     private final String url;
 
+    /**
+     * constructor config file
+     *
+     * @param url name of properties file
+     */
     Config(String url) {
         this.url = url;
         createConfig(url);
     }
 
-
+    /**
+     * Load properties file
+     *
+     * @param url - name of resource file
+     * @return Properties object
+     */
     @Override
     public Properties load(String url) {
         try (Reader in = Files.newBufferedReader(Paths.get(url))) {
@@ -45,6 +57,12 @@ public class Config implements InterfaceProperties {
         return null;
     }
 
+    /**
+     * Save changes into properties file
+     *
+     * @param prop saved file
+     * @param url name of resource file
+     */
     @Override
     public void save(Properties prop, String url) {
         try (Writer tempOut = Files.newBufferedWriter(Paths.get(url))) {
@@ -55,6 +73,11 @@ public class Config implements InterfaceProperties {
         }
     }
 
+    /**
+     * private config method. create deafult config file if it dosn't exist
+     *
+     * @param url name of properties file
+     */
     private void createConfig(String url) {
         Path file = Paths.get(url);
         if (!Files.exists(file, LinkOption.NOFOLLOW_LINKS)) {

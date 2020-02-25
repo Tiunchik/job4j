@@ -8,7 +8,7 @@ package ru.job4j.crosszero;
 import java.util.Properties;
 
 /**
- * Interface LoadProperties - 
+ * Interface LoadProperties - load properties for game
  *
  * @author Maksim Tiunchik (senebh@gmail.com)
  * @version 0.1
@@ -16,5 +16,11 @@ import java.util.Properties;
  */
 public interface LoadProperties {
 
+    /**
+     * Load properties file
+     *
+     * @param url - name of resource file
+     * @return Properties object
+     */
     Properties load(String url);
 }

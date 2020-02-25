@@ -6,7 +6,7 @@
 package ru.job4j.crosszero;
 
 /**
- * Interface TakeAction - 
+ * Interface TakeAction - executed class, include list of actions
  *
  * @author Maksim Tiunchik (senebh@gmail.com)
  * @version 0.1
@@ -14,7 +14,19 @@ package ru.job4j.crosszero;
  */
 public interface TakeAction {
 
+    /**
+     * execute any actions, use object for interactions and interpitation
+     *
+     * @param inter object for interaction with user
+     * @param interpret object for understanding user answers
+     * @return "next" when finish all actions
+     */
     String execute(Interact inter, IInterpretator interpret);
 
+    /**
+     * Return name of object
+     *
+     * @return name of object
+     */
     String showName();
 }

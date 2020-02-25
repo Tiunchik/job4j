@@ -6,7 +6,7 @@
 package ru.job4j.crosszero;
 
 /**
- * Interface Interact - 
+ * Interface Interact - ask and inform user
  *
  * @author Maksim Tiunchik (senebh@gmail.com)
  * @version 0.1
@@ -14,8 +14,19 @@ package ru.job4j.crosszero;
  */
 public interface Interact {
 
+    /**
+     * Send message to user
+     *
+     * @param inform text of message
+     */
     void informUser(String inform);
 
+    /**
+     * Send message to user and get respond from they
+     *
+     * @param question text of message
+     * @return respond of user
+     */
     String askUser(String question);
 
 }

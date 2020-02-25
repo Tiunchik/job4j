@@ -12,7 +12,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 /**
- * Class StartClass - 
+ * Class StartClass - start programm
  *
  * @author Maksim Tiunchik (senebh@gmail.com)
  * @version 0.1
@@ -21,6 +21,11 @@ import java.util.Map;
 public class StartClass {
     private static final Logger LOG = LogManager.getLogger(StartClass.class.getName());
 
+    /**
+     * main
+     *
+     * @param args
+     */
     public static void main(String[] args) {
         Map<String, TakeAction> temp = new HashMap<>();
         temp.put("1", new StartGame());

@@ -6,7 +6,7 @@
 package ru.job4j.crosszero;
 
 /**
- * Interface IInterpretator - 
+ * Interface IInterpretator - interface for methods for understanding user answers
  *
  * @author Maksim Tiunchik (senebh@gmail.com)
  * @version 0.1
@@ -14,6 +14,12 @@ package ru.job4j.crosszero;
  */
 public interface IInterpretator {
 
+    /**
+     * Take answer of user and return sorted accordingly RegExp array String
+     *
+     * @param answer any text
+     * @return special prepared array, or array {"__","__","__"}
+     */
     String[] understand(String answer);
 
 }

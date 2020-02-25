@@ -11,7 +11,7 @@ import org.apache.logging.log4j.Logger;
 import java.util.Map;
 
 /**
- * Class MainLoop -
+ * Class MainLoop - main menu loop
  *
  * @author Maksim Tiunchik (senebh@gmail.com)
  * @version 0.1
@@ -19,9 +19,19 @@ import java.util.Map;
  */
 public class MainLoop implements InterMainLoop {
     private static final Logger LOG = LogManager.getLogger(MainLoop.class.getName());
-
+    /**
+     * constant with value for exit from menu
+     */
     private final static String STOP = "exit";
 
+    /**
+     * Start programm
+     *
+     * @param inter class for sending messages
+     * @param interpret class for recognition answers from user
+     * @param menu class to show menu
+     * @param listActions options for menu
+     */
     @Override
     public void init(Interact inter, IInterpretator interpret, InterfaceMenu menu, Map<String, TakeAction> listActions) {
         String answer = "";

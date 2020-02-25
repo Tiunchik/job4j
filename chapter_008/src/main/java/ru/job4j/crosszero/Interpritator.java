@@ -1,5 +1,5 @@
 /**
- * Calculator package.
+ * Package ru.job4j.crosszero for
  *
  * @author Maksim Tiunchik
  */
@@ -21,11 +21,11 @@ public class Interpritator implements  IInterpretator {
      */
     private static final Logger LOG = LogManager.getLogger(Interpritator.class.getName());
 
-    /**
-     * takes string expression and convert to string massive with parameters.
+     /**
+     * Take answer of user and return sorted accordingly RegExp array String
      *
-     * @param answer String answer from user.
-     * @return String[] 0 - first number, 1 - arithmetic action, 2 - second number.
+     * @param answer any text
+     * @return special prepared array, or array {"__","__","__"}
      */
     public String[] understand(String answer) {
         String[] tempString = {"", "", ""};

@@ -11,7 +11,8 @@ import org.apache.logging.log4j.Logger;
 import java.util.Properties;
 
 /**
- * Class ChangeOptionsAction -
+ * Class ChangeOptionsAction - load properies file, show properties for game, properties
+ * can be changed and changes can be saved
  *
  * @author Maksim Tiunchik (senebh@gmail.com)
  * @version 0.1
@@ -19,9 +20,18 @@ import java.util.Properties;
  */
 public class ChangeOptionsAction implements TakeAction {
     private static final Logger LOG = LogManager.getLogger(ChangeOptionsAction.class.getName());
-
+    /**
+     * constant with value for exit from option menu
+     */
     private static final String STOP = "exit";
 
+    /**
+     * load properies file, show properties for game, properties can be changed and changes can be saved
+     *
+     * @param inter object for interaction with user
+     * @param interpret object for understanding user answers
+     * @return "next" when finish all actions
+     */
     @Override
     public String execute(Interact inter, IInterpretator interpret) {
         InterfaceProperties loader = new Config("game.properties");
@@ -44,6 +54,11 @@ public class ChangeOptionsAction implements TakeAction {
         return "next";
     }
 
+    /**
+     * Return name of object
+     *
+     * @return name of object
+     */
     @Override
     public String showName() {
         return "Change options";

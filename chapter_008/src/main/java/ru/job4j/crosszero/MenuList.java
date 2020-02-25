@@ -12,7 +12,7 @@ import java.util.*;
 import java.util.stream.Collectors;
 
 /**
- * Class MenuList -
+ * Class MenuList - show menu that is consisted from TakeAction objects
  *
  * @author Maksim Tiunchik (senebh@gmail.com)
  * @version 0.1
@@ -21,6 +21,12 @@ import java.util.stream.Collectors;
 public class MenuList implements InterfaceMenu {
     private static final Logger LOG = LogManager.getLogger(MenuList.class.getName());
 
+    /**
+     * Show list of actions with methods of Interact class
+     *
+     * @param listOfActions list of actions
+     * @param inter class implmented for showing
+     */
     @Override
     public void show(Map<String, TakeAction> listOfActions, Interact inter) {
         Set<String> temp = new TreeSet<>(listOfActions.keySet());
