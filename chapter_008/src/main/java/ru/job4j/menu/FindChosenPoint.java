@@ -20,7 +20,7 @@ import java.util.Stack;
  * @version 0.1
  * @since 22.02.2020
  */
-public class FindChosenPoint {
+public class FindChosenPoint implements Find {
     private static final Logger LOG = LogManager.getLogger(FindChosenPoint.class.getName());
 
     /**
@@ -54,6 +54,7 @@ public class FindChosenPoint {
      * @param key user request
      * @return Node for this request
      */
+    @Override
     public Node find(String key) {
         Queue<String> queue = new LinkedList<>();
         char[] temp = key.toCharArray();

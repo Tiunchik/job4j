@@ -19,7 +19,7 @@ import java.io.InputStreamReader;
  * @version 0.1
  * @since 17.02.2020
  */
-public class Interaction {
+public class Interaction implements Interact {
     /**
      * inner logger.
      */

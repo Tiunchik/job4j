@@ -17,7 +17,7 @@ import java.util.stream.Collectors;
  * @version 0.1
  * @since -
  */
-public class PrintMenu {
+public class PrintMenu implements Print {
     private static final Logger LOG = LogManager.getLogger(PrintMenu.class.getName());
 
     /**

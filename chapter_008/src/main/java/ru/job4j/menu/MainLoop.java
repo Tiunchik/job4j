@@ -36,7 +36,7 @@ public class MainLoop {
      * @param findChosenPoint class for understanding ser answers
      * @param menu            class for print menu from nods
      */
-    public void start(Interaction interact, FindChosenPoint findChosenPoint, PrintMenu menu) {
+    public void start(Interact interact, Find findChosenPoint, Print menu) {
         String answer = "";
         while (!answer.equals(STOP)) {
             menu.print();
