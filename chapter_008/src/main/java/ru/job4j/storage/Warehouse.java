@@ -8,6 +8,9 @@ package ru.job4j.storage;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
+import java.util.Calendar;
+import java.util.Date;
+
 /**
  * Класс Warehouse - class storage for data model Food.
  *
@@ -17,4 +20,11 @@ import org.apache.logging.log4j.Logger;
  */
 public class Warehouse extends FoodStorage {
     private static final Logger LOG = LogManager.getLogger(Warehouse.class.getName());
+
+    @Override
+    public boolean accept(double dbl) {
+        return dbl < 0.25;
+    }
 }
+
+

@@ -34,4 +34,12 @@ public interface Storage {
      * @return true or false
      */
     boolean hasNext();
+
+    /**
+     * check this food acceptable for this storage, or not
+     *
+     * @param dbl - % of expiring
+     * @return
+     */
+    boolean accept(double dbl);
 }

@@ -32,16 +32,12 @@ public class ShopTest {
 
     @Test
     public void test() throws ParseException {
-        ControllQuality<Food> quality = new ControllQuality();
+        Set<Storage> act = new HashSet<Storage>(Set.of(warehouse, shop, trash));
+        ControllQuality quality = new ControllQuality(act);
         List<Food> tempList = new ArrayList<>();
-        Map<Double, TakeAction> act = new HashMap<>(Map.of(
-                0.25, new PutToWarehouse(warehouse),
-                0.75, new PutToShop(shop),
-                1.0, new PutToWarehouseWithDis(shop),
-                99999.0, new PutToTrash(trash)
-        ));
-        tempList = quality.prepareList(new HashSet<>(Set.of(shop, warehouse)));
-        quality.sort(act, tempList);
+        tempList = quality.prepareList();
+        quality.addAll(tempList);
+        quality.resort();
         assertEquals("Apple", trash.get().getName());
         assertEquals("Bread", warehouse.get().getName());
 

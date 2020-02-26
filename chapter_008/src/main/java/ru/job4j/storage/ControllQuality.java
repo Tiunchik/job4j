@@ -18,18 +18,24 @@ import java.util.stream.Collectors;
  * @version 0.2
  * @since 21.02.2020
  */
-public class ControllQuality<T extends Food> {
+public class ControllQuality {
     private static final Logger LOG = LogManager.getLogger(ControllQuality.class.getName());
+
+    private Set<Storage> listStorage;
+
+    ControllQuality(Set<Storage> listStorage) {
+        this.listStorage = listStorage;
+    }
+
 
     /**
      * Collect all Food from all Storages
      *
-     * @param set Set of storages
-     * @return List of Food
+     * @return List of Food from all storages
      */
-    public List<Food> prepareList(Set<Storage> set) {
+    public List<Food> prepareList() {
         List<Food> answer = new ArrayList<>();
-        for (var e : set) {
+        for (var e : listStorage) {
             while (e.hasNext()) {
                 answer.add(e.get());
             }
@@ -37,38 +43,38 @@ public class ControllQuality<T extends Food> {
         return answer;
     }
 
-
     /**
-     * Sort List of Food to defferent Storages
+     * add food to set of storages accordingly accept method of storage
      *
-     * @param listStorage List of actions for saving to storages with additional actions
-     * @param foodList    List of Food
+     * @param e food true if
      */
-    public void sort(Map<Double, TakeAction> listStorage, List<Food> foodList) {
+    public void add(Food e) {
         Calendar cal = Calendar.getInstance();
         cal.add(Calendar.DATE, 0);
         Date today = cal.getTime();
-        List<Double> keys = listStorage.keySet().stream().sorted().collect(Collectors.toList());
-        for (var e : foodList) {
-            double check = ((double) (e.getCreatedDate().getTime() - today.getTime()))
-                    / ((double) (e.getCreatedDate().getTime() - e.getExpairedDate().getTime()));
-            for (var index : keys) {
-                if (check < index) {
-                    listStorage.get(index).execute(e);
-                    break;
+        double check = ((double) (e.getCreatedDate().getTime() - today.getTime()))
+                / ((double) (e.getCreatedDate().getTime() - e.getExpairedDate().getTime()));
+        for (var str : listStorage) {
+            if (str.accept(check)) {
+                if (check > 0.75 && check < 1.0) {
+                    e.setDisscount(check);
                 }
+                str.push(e);
             }
+        }
+    }
+
+    public void addAll(List<Food> list) {
+        for (var e : list) {
+            add(e);
         }
     }
 
     /**
      * Resort List of Food to defferent Storages
-     *
-     * @param listStorage List of actions for saving to storages with additional actions
-     * @param set         Set of storages
      */
-    public void resort(Map<Double, TakeAction> listStorage, Set<Storage> set) {
-        List<Food> tempList = prepareList(set);
-        sort(listStorage, tempList);
+    public void resort() {
+        List<Food> tempList = prepareList();
+        addAll(tempList);
     }
 }

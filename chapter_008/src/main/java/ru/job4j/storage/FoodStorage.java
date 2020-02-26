@@ -55,5 +55,16 @@ public class FoodStorage implements Storage {
     public boolean hasNext() {
         return base.peekLast() != null;
     }
+
+    /**
+     * check this food acceptable for this storage, or not
+     *
+     * @param dbl
+     * @return
+     */
+    @Override
+    public boolean accept(double dbl) {
+        return true;
+    }
 }
 
