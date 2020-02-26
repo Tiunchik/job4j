@@ -35,6 +35,11 @@ public class TextGenerator implements SimpleGenerator {
     @Override
     public String terminate(String template, Map<String, String> keys) throws KeyException {
         Matcher matcher = KEYS.matcher(template);
+        for (var t : keys.keySet()) {
+            if (!template.contains("${" + t + "}")) {
+                throw new KeyException("excess key");
+            }
+        }
         while (matcher.find()) {
             int start = matcher.start();
             int end = matcher.end();
