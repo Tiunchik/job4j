@@ -44,7 +44,7 @@ public class ControllQuality<T extends Food> {
      * @param listStorage List of actions for saving to storages with additional actions
      * @param foodList    List of Food
      */
-    public void sort(Map<Double, TakeAction<Food>> listStorage, List<Food> foodList) {
+    public void sort(Map<Double, TakeAction> listStorage, List<Food> foodList) {
         Calendar cal = Calendar.getInstance();
         cal.add(Calendar.DATE, 0);
         Date today = cal.getTime();
@@ -67,7 +67,7 @@ public class ControllQuality<T extends Food> {
      * @param listStorage List of actions for saving to storages with additional actions
      * @param set         Set of storages
      */
-    public void resort(Map<Double, TakeAction<Food>> listStorage, Set<Storage> set) {
+    public void resort(Map<Double, TakeAction> listStorage, Set<Storage> set) {
         List<Food> tempList = prepareList(set);
         sort(listStorage, tempList);
     }

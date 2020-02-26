@@ -18,20 +18,20 @@ import java.util.Date;
  * @version 0.1
  * @since 21.02.2020
  */
-public class PutToWarehouseWithDis<E extends Food> implements TakeAction<E> {
+public class PutToWarehouseWithDis implements TakeAction {
     private static final Logger LOG = LogManager.getLogger(PutToWarehouseWithDis.class.getName());
 
     /**
      * Link to Storage for executing.
      */
-    private Storage<E> link;
+    private Storage link;
 
     /**
      * Constructor, create link to Storage.
      *
      * @param warehouse
      */
-    public PutToWarehouseWithDis(Storage<E> warehouse) {
+    public PutToWarehouseWithDis(Storage warehouse) {
         link = warehouse;
     }
 
@@ -41,7 +41,7 @@ public class PutToWarehouseWithDis<E extends Food> implements TakeAction<E> {
      * @param e Food
      */
     @Override
-    public void execute(E e) {
+    public void execute(Food e) {
         Calendar cal = Calendar.getInstance();
         cal.add(Calendar.DATE, 0);
         Date today = cal.getTime();

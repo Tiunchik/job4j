@@ -15,20 +15,20 @@ import org.apache.logging.log4j.Logger;
  * @version 0.1
  * @since 21.02.2020
  */
-public class PutToWarehouse<E extends Food> implements TakeAction<E> {
+public class PutToWarehouse implements TakeAction {
     private static final Logger LOG = LogManager.getLogger(PutToWarehouse.class.getName());
 
     /**
      * Link to Storage for executing.
      */
-    private Storage<E> link;
+    private Storage link;
 
     /**
      * Constructor, create link to Storage.
      *
      * @param warehouse
      */
-    public PutToWarehouse(Storage<E> warehouse) {
+    public PutToWarehouse(Storage warehouse) {
         link = warehouse;
     }
 
@@ -38,7 +38,7 @@ public class PutToWarehouse<E extends Food> implements TakeAction<E> {
      * @param e Food
      */
     @Override
-    public void execute(E e) {
+    public void execute(Food e) {
         link.push(e);
     }
 }

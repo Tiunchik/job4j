@@ -15,6 +15,6 @@ import org.apache.logging.log4j.Logger;
  * @version 0.1
  * @since 19.02.20.
  */
-public class Trash<T extends Food> extends FoodStorage<T> {
+public class Trash extends FoodStorage {
     private static final Logger LOG = LogManager.getLogger(Trash.class.getName());
 }

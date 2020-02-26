@@ -12,21 +12,21 @@ package ru.job4j.storage;
  * @version 0.1
  * @since 19.02.20.
  */
-public interface Storage<T extends Food> {
+public interface Storage {
 
     /**
      * get and remove T from base
      *
      * @return T from base
      */
-    T get();
+    Food get();
 
     /**
      * push T to base list
      *
      * @param t pushed argument
      */
-    void push(T t);
+    void push(Food t);
 
     /**
      * check is there any T into base

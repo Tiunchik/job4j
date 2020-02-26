@@ -19,12 +19,12 @@ import java.util.List;
  * @version 0.1
  * @since 19.02.20.
  */
-public class FoodStorage<T extends Food> implements Storage<T> {
+public class FoodStorage implements Storage {
     private static final Logger LOG = LogManager.getLogger(FoodStorage.class.getName());
     /**
      * inner list for keeping T objects
      */
-    private LinkedList<T> base = new LinkedList<>();
+    private LinkedList<Food> base = new LinkedList<>();
 
     /**
      * get and remove T from base
@@ -32,7 +32,7 @@ public class FoodStorage<T extends Food> implements Storage<T> {
      * @return T from base
      */
     @Override
-    public T get() {
+    public Food get() {
         return base.pollLast();
     }
 
@@ -42,7 +42,7 @@ public class FoodStorage<T extends Food> implements Storage<T> {
      * @param t pushed argument
      */
     @Override
-    public void push(T t) {
+    public void push(Food t) {
         base.push(t);
     }
 

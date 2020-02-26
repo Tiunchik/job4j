@@ -12,9 +12,9 @@ import static org.junit.Assert.*;
 
 public class ShopTest {
 
-    private Storage<Food> warehouse = new Warehouse<>();
-    private Storage<Food> shop = new Shop<>();
-    private Storage<Food> trash = new Trash<>();
+    private Storage warehouse = new Warehouse();
+    private Storage shop = new Shop();
+    private Storage trash = new Trash();
     private SimpleDateFormat dateFormat = new SimpleDateFormat("dd.MM.yyyy");
     private Date creation;
     private Date expairation;
@@ -34,11 +34,11 @@ public class ShopTest {
     public void test() throws ParseException {
         ControllQuality<Food> quality = new ControllQuality();
         List<Food> tempList = new ArrayList<>();
-        Map<Double, TakeAction<Food>> act = new HashMap<>(Map.of(
-                0.25, new PutToWarehouse<Food>(warehouse),
-                0.75, new PutToShop<Food>(shop),
-                1.0, new PutToWarehouseWithDis<Food>(shop),
-                99999.0, new PutToTrash<Food>(trash)
+        Map<Double, TakeAction> act = new HashMap<>(Map.of(
+                0.25, new PutToWarehouse(warehouse),
+                0.75, new PutToShop(shop),
+                1.0, new PutToWarehouseWithDis(shop),
+                99999.0, new PutToTrash(trash)
         ));
         tempList = quality.prepareList(new HashSet<>(Set.of(shop, warehouse)));
         quality.sort(act, tempList);
