@@ -9,25 +9,31 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
 /**
- * Class User - class for calling GC
+ * Class User - class for calling GC.
  *
  * @author Maksim Tiunchik (senebh@gmail.com)
  * @version 0.1
  * @since 29.02.2020
  */
 public class User {
-    private static final Logger LOG = LogManager.getLogger(User.class.getName());
     /**
-     * namr of object
+     * base logger.
      */
-    private String name;
-    /**
-     * special array to make object heavier
-     */
-    private char[] eatSpace;
+    private static final Logger LOG = LogManager
+            .getLogger(User.class.getName());
 
     /**
-     * constructor
+     * name of object.
+     */
+    private String name;
+
+    /**
+     * special array to make object heavier.
+     */
+    private final char[] eatSpace;
+
+    /**
+     * constructor.
      *
      * @param name set name
      * @param array set size of array
@@ -38,7 +44,7 @@ public class User {
     }
 
     /**
-     * when object is cleared by GC, sout name of object
+     * when object is cleared by GC, sout name of object.
      *
      * @throws Throwable
      */
@@ -49,7 +55,7 @@ public class User {
     }
 
     /**
-     * print information about memoty size
+     * print information about memoty size.
      */
     public void info() {
         int kb = 1024;
@@ -59,7 +65,7 @@ public class User {
     }
 
     /**
-     * main - manual test, -xmx20m
+     * main - manual test, -xmx20m.
      *
      * @param args
      */

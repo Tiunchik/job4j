@@ -18,7 +18,7 @@ import java.util.concurrent.TimeUnit;
  * @version 0.1
  * @since 24.02.2020
  */
-public class OneGame {
+public class OneGame implements InterfaceGame {
     private static final Logger LOG = LogManager.getLogger(OneGame.class.getName());
     /**
      * constant with value for exit from menu
@@ -85,7 +85,7 @@ public class OneGame {
      *
      * @return "X" - winner is X gamer, "O" - winner is X gamer, "draw" - draw
      */
-    String playGame() {
+    public String playGame() {
         board.cleanBoard();
         board.printBoard(inter);
         while (!answer.equalsIgnoreCase(STOP)) {

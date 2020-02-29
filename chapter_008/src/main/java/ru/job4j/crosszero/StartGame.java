@@ -39,7 +39,7 @@ public class StartGame implements TakeAction {
         int games = Integer.parseInt((String) prop.get("games"));
         int first = 0;
         int second = 0;
-        OneGame game = new OneGame(inter, interpret, prop);
+        InterfaceGame game = new OneGame(inter, interpret, prop);
         while (games >= (first + second)) {
             String conclus = game.playGame();
             if (conclus.equalsIgnoreCase("x")) {

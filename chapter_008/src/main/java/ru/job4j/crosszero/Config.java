@@ -8,7 +8,9 @@ package ru.job4j.crosszero;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
-import java.io.*;
+import java.io.IOException;
+import java.io.Reader;
+import java.io.Writer;
 import java.nio.file.Files;
 import java.nio.file.LinkOption;
 import java.nio.file.Path;
@@ -82,7 +84,8 @@ public class Config implements InterfaceProperties {
         Path file = Paths.get(url);
         if (!Files.exists(file, LinkOption.NOFOLLOW_LINKS)) {
             Properties prop = new Properties();
-            prop.put("ai", "null");
+            prop.put("aiX", "null");
+            prop.put("aiO", "null");
             prop.put("size", "3");
             prop.put("games", "1");
             save(prop, url);
