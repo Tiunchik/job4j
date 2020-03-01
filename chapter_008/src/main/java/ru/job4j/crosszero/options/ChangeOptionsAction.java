@@ -3,15 +3,19 @@
  *
  * @author Maksim Tiunchik
  */
-package ru.job4j.crosszero;
+package ru.job4j.crosszero.options;
 
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
+import ru.job4j.crosszero.interfaces.IInterpretator;
+import ru.job4j.crosszero.interfaces.Interact;
+import ru.job4j.crosszero.interfaces.InterfaceProperties;
+import ru.job4j.crosszero.interfaces.TakeAction;
 
 import java.util.Properties;
 
 /**
- * Class ChangeOptionsAction - load properies file, show properties for game, properties
+ * Class ChangeOptionsAction - load properies file, show properties for game, properties.
  * can be changed and changes can be saved
  *
  * @author Maksim Tiunchik (senebh@gmail.com)
@@ -21,12 +25,12 @@ import java.util.Properties;
 public class ChangeOptionsAction implements TakeAction {
     private static final Logger LOG = LogManager.getLogger(ChangeOptionsAction.class.getName());
     /**
-     * constant with value for exit from option menu
+     * constant with value for exit from option menu.
      */
     private static final String STOP = "exit";
 
     /**
-     * load properies file, show properties for game, properties can be changed and changes can be saved
+     * load properies file, show properties for game, properties can be changed and changes can be saved.
      *
      * @param inter object for interaction with user
      * @param interpret object for understanding user answers
@@ -55,7 +59,7 @@ public class ChangeOptionsAction implements TakeAction {
     }
 
     /**
-     * Return name of object
+     * Return name of object.
      *
      * @return name of object
      */

@@ -3,23 +3,26 @@
  *
  * @author Maksim Tiunchik
  */
-package ru.job4j.crosszero;
+package ru.job4j.crosszero.exit;
 
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
+import ru.job4j.crosszero.interfaces.IInterpretator;
+import ru.job4j.crosszero.interfaces.Interact;
+import ru.job4j.crosszero.interfaces.TakeAction;
 
 /**
- * Class ActionExit - 
+ * Class ActionExit.
  *
  * @author Maksim Tiunchik (senebh@gmail.com)
  * @version 0.1
  * @since 24.02.2020
  */
-public class ActionExit implements  TakeAction {
+public class ActionExit implements TakeAction {
     private static final Logger LOG = LogManager.getLogger(ActionExit.class.getName());
 
     /**
-     * exit from main menu
+     * exit from main menu.
      *
      * @param inter object for interaction with user
      * @param interpret object for understanding user answers
@@ -31,7 +34,7 @@ public class ActionExit implements  TakeAction {
     }
 
     /**
-     * Return name of object
+     * Return name of object.
      *
      * @return name of object
      */

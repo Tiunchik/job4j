@@ -3,7 +3,7 @@
  *
  * @author Maksim Tiunchik
  */
-package ru.job4j.crosszero;
+package ru.job4j.crosszero.interfaces;
 
 import java.util.Map;
 
@@ -18,12 +18,12 @@ public interface InterMainLoop {
 
 
         /**
-         * Start programm
+         * Start programm.
          *
          * @param inter class for sending messages
          * @param interpret class for recognition answers from user
          * @param menu class to show menu
          * @param listActions options for menu
          */
-        void init(Interact inter, IInterpretator interpret, InterfaceMenu menu,  Map<String, TakeAction> listActions);
+        void init(Interact inter, IInterpretator interpret, InterfaceMenu menu,  Map<String, TakeAction> listActions) throws InterruptedException;
 }

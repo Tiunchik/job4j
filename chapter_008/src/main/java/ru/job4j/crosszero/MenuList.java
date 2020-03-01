@@ -7,12 +7,15 @@ package ru.job4j.crosszero;
 
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
+import ru.job4j.crosszero.interfaces.Interact;
+import ru.job4j.crosszero.interfaces.InterfaceMenu;
+import ru.job4j.crosszero.interfaces.TakeAction;
 
 import java.util.*;
 import java.util.stream.Collectors;
 
 /**
- * Class MenuList - show menu that is consisted from TakeAction objects
+ * Class MenuList - show menu that is consisted from TakeAction objects.
  *
  * @author Maksim Tiunchik (senebh@gmail.com)
  * @version 0.1
@@ -22,7 +25,7 @@ public class MenuList implements InterfaceMenu {
     private static final Logger LOG = LogManager.getLogger(MenuList.class.getName());
 
     /**
-     * Show list of actions with methods of Interact class
+     * Show list of actions with methods of Interact class.
      *
      * @param listOfActions list of actions
      * @param inter class implmented for showing

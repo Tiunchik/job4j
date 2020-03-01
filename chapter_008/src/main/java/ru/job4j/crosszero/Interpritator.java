@@ -7,6 +7,7 @@ package ru.job4j.crosszero;
 
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
+import ru.job4j.crosszero.interfaces.IInterpretator;
 
 /**
  * Класс Interpritator -main class interpritator string to strng[].
@@ -15,14 +16,14 @@ import org.apache.logging.log4j.Logger;
  * @version 0.1
  * @since v
  */
-public class Interpritator implements  IInterpretator {
+public class Interpritator implements IInterpretator {
     /**
-     * inner logger
+     * inner logger.
      */
     private static final Logger LOG = LogManager.getLogger(Interpritator.class.getName());
 
      /**
-     * Take answer of user and return sorted accordingly RegExp array String
+     * Take answer of user and return sorted accordingly RegExp array String.
      *
      * @param answer any text
      * @return special prepared array, or array {"__","__","__"}

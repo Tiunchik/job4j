@@ -7,6 +7,7 @@ package ru.job4j.crosszero;
 
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
+import ru.job4j.crosszero.interfaces.*;
 
 import java.util.Map;
 
@@ -33,14 +34,18 @@ public class MainLoop implements InterMainLoop {
      * @param listActions options for menu
      */
     @Override
-    public void init(Interact inter, IInterpretator interpret, InterfaceMenu menu, Map<String, TakeAction> listActions) {
+    public void init(Interact inter, IInterpretator interpret, InterfaceMenu menu, Map<String, TakeAction> listActions)  {
         String answer = "";
         while (!answer.equalsIgnoreCase(STOP)) {
             menu.show(listActions, inter);
             answer = inter.askUser("Please, choose point of menu, or fill out EXIT to exit\n");
             TakeAction temp = listActions.get(answer);
             if (temp != null) {
+                try {
                 answer = listActions.get(answer).execute(inter, interpret);
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
             }
         }
     }

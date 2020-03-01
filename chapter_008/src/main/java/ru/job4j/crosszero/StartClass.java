@@ -7,6 +7,10 @@ package ru.job4j.crosszero;
 
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
+import ru.job4j.crosszero.exit.ActionExit;
+import ru.job4j.crosszero.interfaces.TakeAction;
+import ru.job4j.crosszero.options.ChangeOptionsAction;
+import ru.job4j.crosszero.startgame.StartGame;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -22,7 +26,7 @@ public class StartClass {
     private static final Logger LOG = LogManager.getLogger(StartClass.class.getName());
 
     /**
-     * main
+     * main.
      *
      * @param args
      */

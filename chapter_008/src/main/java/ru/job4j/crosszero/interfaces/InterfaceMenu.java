@@ -3,7 +3,7 @@
  *
  * @author Maksim Tiunchik
  */
-package ru.job4j.crosszero;
+package ru.job4j.crosszero.interfaces;
 
 import java.util.Map;
 

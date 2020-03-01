@@ -3,12 +3,12 @@
  *
  * @author Maksim Tiunchik
  */
-package ru.job4j.crosszero;
+package ru.job4j.crosszero.interfaces;
 
 import java.util.Properties;
 
 /**
- * Interface SaveProperties - save properties for game
+ * Interface SaveProperties - save properties for game.
  *
  * @author Maksim Tiunchik (senebh@gmail.com)
  * @version 0.1
@@ -17,7 +17,7 @@ import java.util.Properties;
 public interface SaveProperties {
 
     /**
-     * Save changes into properties file
+     * Save changes into properties file.
      *
      * @param prop saved file
      * @param url name of resource file

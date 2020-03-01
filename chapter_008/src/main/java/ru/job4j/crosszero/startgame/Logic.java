@@ -3,26 +3,26 @@
  *
  * @author Maksim Tiunchik
  */
-package ru.job4j.crosszero;
+package ru.job4j.crosszero.startgame;
 
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
+import ru.job4j.crosszero.interfaces.InterfaceLogic;
 
 import java.util.Arrays;
-import java.util.Objects;
 import java.util.stream.Stream;
 
 /**
- * Class Logic - main logic of game
+ * Class Logic - main logic of game.
  *
  * @author Maksim Tiunchik (senebh@gmail.com)
  * @version 0.1
  * @since 24.02.2020
  */
-public class Logic {
+public class Logic implements InterfaceLogic {
     private static final Logger LOG = LogManager.getLogger(Logic.class.getName());
     /**
-     * consist line for pseudographics
+     * consist line for pseudographics.
      */
     private final String empty = "____";
 
@@ -32,7 +32,7 @@ public class Logic {
     private String[][] table;
 
     /**
-     * constructor of logic object
+     * constructor of logic object.
      *
      * @param table - link to board
      */
@@ -41,7 +41,7 @@ public class Logic {
     }
 
     /**
-     * check cell of board
+     * check cell of board.
      *
      * @param x number for row of board
      * @param y number of column of board
@@ -52,7 +52,7 @@ public class Logic {
     }
 
     /**
-     * method to find winner
+     * method to find winner.
      *
      * @param symbol - symbol of winner
      * @param startX start check line from row
@@ -61,7 +61,7 @@ public class Logic {
      * @param deltaY step for checking
      * @return true if symbol holder is win or false
      */
-    public boolean fillBy(String symbol, int startX, int startY, int deltaX, int deltaY) {
+    private boolean fillBy(String symbol, int startX, int startY, int deltaX, int deltaY) {
         boolean result = true;
         for (int index = 0; index != this.table.length; index++) {
             var cell = this.table[startX][startY];
@@ -76,7 +76,7 @@ public class Logic {
     }
 
     /**
-     * views all possibile lines and determines winner
+     * views all possibile lines and determines winner.
      *
      * @param symbol - symbol of winner
      * @return true if symbol holder is win or false
@@ -102,7 +102,7 @@ public class Logic {
     }
 
     /**
-     * check is there an empty cell into board
+     * check is there an empty cell into board.
      *
      * @return
      */

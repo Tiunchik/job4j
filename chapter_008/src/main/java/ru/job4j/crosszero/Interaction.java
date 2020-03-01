@@ -7,6 +7,7 @@ package ru.job4j.crosszero;
 
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
+import ru.job4j.crosszero.interfaces.Interact;
 
 import java.io.BufferedReader;
 import java.io.IOException;

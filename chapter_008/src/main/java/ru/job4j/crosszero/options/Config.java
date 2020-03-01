@@ -3,10 +3,11 @@
  *
  * @author Maksim Tiunchik
  */
-package ru.job4j.crosszero;
+package ru.job4j.crosszero.options;
 
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
+import ru.job4j.crosszero.interfaces.InterfaceProperties;
 
 import java.io.IOException;
 import java.io.Reader;
@@ -22,27 +23,27 @@ import java.util.Properties;
  *
  * @author Maksim Tiunchik (senebh@gmail.com)
  * @version 0.1
- * @since 24.02.2020
+ * @since 01.03.2020
  */
 public class Config implements InterfaceProperties {
     private static final Logger LOG = LogManager.getLogger(Config.class.getName());
     /**
-     * name of properties file
+     * name of properties file.
      */
     private final String url;
 
     /**
-     * constructor config file
+     * constructor config file.
      *
      * @param url name of properties file
      */
-    Config(String url) {
+    public Config(String url) {
         this.url = url;
         createConfig(url);
     }
 
     /**
-     * Load properties file
+     * Load properties file.
      *
      * @param url - name of resource file
      * @return Properties object
@@ -60,7 +61,7 @@ public class Config implements InterfaceProperties {
     }
 
     /**
-     * Save changes into properties file
+     * Save changes into properties file.
      *
      * @param prop saved file
      * @param url name of resource file
@@ -76,7 +77,7 @@ public class Config implements InterfaceProperties {
     }
 
     /**
-     * private config method. create deafult config file if it dosn't exist
+     * private config method. create deafult config file if it dosn't exist.
      *
      * @param url name of properties file
      */
@@ -84,8 +85,8 @@ public class Config implements InterfaceProperties {
         Path file = Paths.get(url);
         if (!Files.exists(file, LinkOption.NOFOLLOW_LINKS)) {
             Properties prop = new Properties();
-            prop.put("aiX", "null");
-            prop.put("aiO", "null");
+            prop.put("aix", "null");
+            prop.put("aio", "null");
             prop.put("size", "3");
             prop.put("games", "1");
             save(prop, url);
