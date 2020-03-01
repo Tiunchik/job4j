@@ -70,12 +70,17 @@ public class User {
      * @param args
      */
     public static void main(String[] args) {
-        User user = new User("testName", 100);
+        try {
+            Thread.sleep(30000);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+        User user = new User("testName", 10000);
         user.info();
         int index = 0;
         while (index < 50000) {
             index++;
-            user = new User("testName" + index, 100);
+            user = new User("testName" + index, 10000);
         }
     }
 }
