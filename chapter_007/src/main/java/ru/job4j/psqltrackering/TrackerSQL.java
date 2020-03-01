@@ -51,7 +51,8 @@ public class TrackerSQL implements ITracker, AutoCloseable {
                     config.getProperty("password")
             );
             Statement st = connection.createStatement();
-            st.execute("create database if not exists tracker");
+            st.execute("SELECT 'CREATE DATABASE tracker'"
+                    + " WHERE NOT EXISTS (SELECT FROM pg_database WHERE datname = 'tracker')");
         } catch (Exception e) {
             throw new IllegalStateException(e);
         }
