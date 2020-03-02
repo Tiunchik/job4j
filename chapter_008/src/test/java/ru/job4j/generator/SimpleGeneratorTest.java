@@ -26,11 +26,25 @@ public class SimpleGeneratorTest {
     public void wheWeHaveMoreThenOneKeyThenPrintResult() throws KeyException {
         SimpleGenerator gener = new TextGenerator();
 
-        String text = "Luck I am your father! ${cry}, ${cry}, ${cry} ";
+        String text = "Luck I am your father! ${cry}, ${cry}, ${cry}";
         Map<String, String> keys = new HashMap<>(Map.of("cry", "Nooo"));
 
         String answer = gener.terminate(text, keys);
-        String expected = "Luck I am your father! Nooo, Nooo, Nooo ";
+        String expected = "Luck I am your father! Nooo, Nooo, Nooo";
+
+        assertEquals(expected, answer);
+    }
+
+    @Test
+    public void wheWeHaveMoreThenOneKeyAndTheyDifferentThenPrintResult() throws KeyException {
+        SimpleGenerator gener = new TextGenerator();
+
+        String text = "What would you like?! ${burger}, ${cola}, ${aidaho}";
+        Map<String, String> keys = new HashMap<>(Map.of("burger", "Wopper", "cola",
+                "Pepsi", "aidaho", "French free"));
+
+        String answer = gener.terminate(text, keys);
+        String expected = "What would you like?! Wopper, Pepsi, French free";
 
         assertEquals(expected, answer);
     }

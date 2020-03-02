@@ -16,8 +16,8 @@ import java.util.regex.Pattern;
  * Class TextGenerator - realization of interface SimpleGenerator, wrok with regex
  *
  * @author Maksim Tiunchik (senebh@gmail.com)
- * @version 0.1
- * @since 23.02.2020
+ * @version 0.2
+ * @since 02.03.2020
  */
 public class TextGenerator implements SimpleGenerator {
     private static final Logger LOG = LogManager.getLogger(TextGenerator.class.getName());
@@ -40,18 +40,19 @@ public class TextGenerator implements SimpleGenerator {
                 throw new KeyException("excess key");
             }
         }
+        StringBuilder builder = new StringBuilder();
         while (matcher.find()) {
-            int start = matcher.start();
-            int end = matcher.end();
+            int start = matcher.start(0);
+            int end = matcher.end(0);
             String temp = template.substring(start, end);
             temp = temp.substring(2, temp.length() - 1);
             temp = keys.get(temp);
             if (temp == null) {
                 throw new KeyException("missing key");
             }
-            template = matcher.replaceFirst(temp);
-            matcher = KEYS.matcher(template);
+            matcher.appendReplacement(builder, temp);
         }
-        return template;
+
+        return builder.toString();
     }
 }
