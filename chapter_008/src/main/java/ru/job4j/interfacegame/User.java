@@ -26,7 +26,7 @@ public interface User {
      *
      * @return information about user
      */
-    String setStatus();
+    String getStatus();
 
     /**
      * roll Dice added ro user, return result
