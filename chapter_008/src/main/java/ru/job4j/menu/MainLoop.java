@@ -8,9 +8,6 @@ package ru.job4j.menu;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
-
-import java.util.Map;
-
 /**
  * Class MainLoop - main programm loop, work with user, start methods.
  *
@@ -27,7 +24,7 @@ public class MainLoop {
     /**
      * constant for stopping execution.
      */
-    private static final String STOP = "by";
+    private static final String STOP = "exit";
 
     /**
      * main loop of programm
