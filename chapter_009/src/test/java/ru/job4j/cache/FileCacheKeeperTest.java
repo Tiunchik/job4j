@@ -8,12 +8,10 @@ import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Paths;
 
-import static org.junit.Assert.*;
-
 public class FileCacheKeeperTest {
 
     @Test
-    public void WhenWeDontHaveFileInCacheButHaveInFolderThenWeReceiveFile() throws IOException {
+    public void whenWeDontHaveFileInCacheButHaveInFolderThenWeReceiveFile() throws IOException {
         String path = System.getProperty("java.io.tmpdir");
         if (!Files.exists(Paths.get(path + "/New.txt"))) {
             var file = Files.createFile(Paths.get(path + "/New.txt"));
@@ -31,7 +29,7 @@ public class FileCacheKeeperTest {
     }
 
     @Test
-    public void WhenWeDontHaveFileInCacheAnDontHaveInFolderThenWeReceiveNull() throws IOException {
+    public void whenWeDontHaveFileInCacheAnDontHaveInFolderThenWeReceiveNull() throws IOException {
         String path = System.getProperty("java.io.tmpdir");
         FileCacheKeeper testKeeper = new FileCacheKeeper(path);
 
