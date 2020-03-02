@@ -16,9 +16,9 @@ import java.util.HashMap;
  *
  * @author Maksim Tiunchik (senebh@gmail.com)
  * @version 0.1
- * @since 01.03.2020
+ * @since 02.03.2020
  */
-public abstract class AbstractCacheMap<K, V> implements Cache<K, V> {
+public abstract class AbstractCacheMap<K, V> {
     /**
      * inner logger
      */
@@ -35,7 +35,6 @@ public abstract class AbstractCacheMap<K, V> implements Cache<K, V> {
      * @param key   key to get information from Map
      * @param value object which will be created sofrreferense for
      */
-    @Override
     public void insert(K key, V value) {
         collect.put(key, new SoftReference<>(value));
     }
@@ -47,7 +46,6 @@ public abstract class AbstractCacheMap<K, V> implements Cache<K, V> {
      * @param key key to find object
      * @return value for key
      */
-    @Override
     public V get(K key) {
         V temp = null;
         if (collect.containsKey(key)) {
@@ -66,9 +64,12 @@ public abstract class AbstractCacheMap<K, V> implements Cache<K, V> {
      * @param key key to find link for deliting
      * @return true if object have been deleted
      */
-    @Override
     public boolean delete(K key) {
         collect.remove(key);
         return collect.containsKey(key);
+    }
+
+    public V load(K key) {
+        return null;
     }
 }
