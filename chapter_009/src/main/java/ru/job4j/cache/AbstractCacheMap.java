@@ -35,6 +35,7 @@ public abstract class AbstractCacheMap<K, V> {
      * @param key   key to get information from Map
      * @param value object which will be created sofrreferense for
      */
+
     public void insert(K key, V value) {
         collect.put(key, new SoftReference<>(value));
     }
@@ -46,6 +47,7 @@ public abstract class AbstractCacheMap<K, V> {
      * @param key key to find object
      * @return value for key
      */
+
     public V get(K key) {
         V temp = null;
         if (collect.containsKey(key)) {
@@ -64,12 +66,11 @@ public abstract class AbstractCacheMap<K, V> {
      * @param key key to find link for deliting
      * @return true if object have been deleted
      */
+
     public boolean delete(K key) {
         collect.remove(key);
         return collect.containsKey(key);
     }
 
-    public V load(K key) {
-        return null;
-    }
+    public abstract V load(K key);
 }
