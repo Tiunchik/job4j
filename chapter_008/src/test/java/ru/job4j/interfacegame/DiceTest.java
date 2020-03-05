@@ -7,7 +7,7 @@ import static org.junit.Assert.*;
 public class DiceTest {
 
     @Test (expected = NullPointerException.class)
-    public void WhenWeRolAndThneGetnumberBiggerThenZero() {
+    public void whenWeRolAndThneGetnumberBiggerThenZero() {
         Dice dice = null;
 
         int expected = dice.roll();

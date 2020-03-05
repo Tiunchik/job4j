@@ -53,6 +53,7 @@ public class StartGame implements TakeAction {
     public String execute(Interact inter, IInterpretator interpret) throws InterruptedException {
         Properties prop = new Config("game.properties").load("game.properties");
         board = new Board(Integer.parseInt(prop.getProperty("size")));
+        board.cleanBoard();
         int first = 0, second = 0;
         int games = Integer.parseInt((String) prop.get("games"));
         InterfacePlayer[] players = setPlayers(prop, board, inter);
